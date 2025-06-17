@@ -1,6 +1,25 @@
 @import "tailwindcss";
+
+@layer utilities {
+  @media (min-width: 960px) {
+    .xmd\:h-\[85vh\] {
+      height: 85vh;
+    }
+  }
+  @media (min-width: 1024px) {
+    .lg\:h-\[94vh\] {
+      height: 94vh !important;
+    }
+  }
+}
+
 html,
 body,
 #root {
   height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
