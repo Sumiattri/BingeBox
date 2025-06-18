@@ -71,7 +71,7 @@ function Login() {
               New to Netflix?
               <span>
                 <Link
-                  to="/signup"
+                  to="/"
                   className=" text-white font-semibold hover:underline"
                 >
                   {" "}

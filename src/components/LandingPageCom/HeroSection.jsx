@@ -1,6 +1,14 @@
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function HeroSection() {
+  const navigate = useNavigate();
+  function handleClick(e) {
+    e.preventDefault();
+
+    navigate("/signup");
+  }
   return (
     <div
       // className="bg-cover bg-center h-[90vh] w-full overflow-hidden box-border border-4 relative"
@@ -26,6 +34,7 @@ function HeroSection() {
         </p>
         <form
           action=""
+          onSubmit={handleClick}
           className="  mt-5  flex sm:flex-row flex-col justify-between   relative max-h-15"
         >
           <input
@@ -47,11 +56,11 @@ function HeroSection() {
 
           <button
             type="submit"
-            className="lg:px-3.5 sm:py-0 py-5 px-2 sm:mx-0 mx-auto max-h-13 sm:mt-0 mt-3 text-white bg-[#e50815] rounded-md lg:font-semibold sm:font-normal text-xs lg:text-sm sm:w-[35%] sm:max-w-60 max-w-55 flex  justify-center items-center lg:gap-2 "
+            className="hover:cursor-pointer lg:px-3.5 sm:py-0 py-5 px-2 sm:mx-0 mx-auto max-h-13 sm:mt-0 mt-3 text-white bg-[#e50815] rounded-md lg:font-semibold sm:font-normal text-xs lg:text-sm sm:w-[35%] sm:max-w-60 max-w-55 flex  justify-center items-center lg:gap-2 "
           >
+            {" "}
             <span className="text-2xl font-bold">Get started</span>{" "}
             <IoIosArrowForward className="text-3xl" />
-            <i></i>
           </button>
         </form>
       </div>
