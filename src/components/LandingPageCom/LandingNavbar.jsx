@@ -1,4 +1,5 @@
 import { IoMdArrowDropdown } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function LandingNavbar() {
   return (
@@ -6,17 +7,13 @@ function LandingNavbar() {
       {/* <nav className="flex justify-between  items-center px-35  max-h-30 bg-transparent pt-[6px] absolute z-2 w-screen"> */}
       {/* <nav className="flex justify-between  items-center px-35  max-h-30 bg-transparent pt-[6px] relative z-2"> */}
       <nav className="flex justify-between  content-baseline md:px-35 sm:px-20 px-5 max-h-30 bg-transparent pt-[6px] relative z-10 ]">
-        <a
-          href="#"
-          onClick={(e) => e.preventDefault()}
-          className="md:w-40 w-25 h-20 pt-3 "
-        >
+        <Link to="/" className="md:w-40 w-25 h-20 pt-3">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
-            alt=""
-            className="w-full h-auto object-contain  mt-3"
+            alt="Netflix Logo"
+            className="w-full h-auto object-contain mt-3"
           />
-        </a>
+        </Link>
 
         <div className="flex items-center gap-4.5">
           <div className=" relative w-fit">
@@ -30,12 +27,13 @@ function LandingNavbar() {
               <IoMdArrowDropdown />
             </div>
           </div>
-          <a
-            href=""
-            className=" py-1.5 px-3.5 text-white bg-[#e50815] rounded-md font-semibold text-sm "
+
+          <Link
+            to="/login"
+            className="py-1.5 px-3.5 text-white bg-[#e50815] rounded-md font-semibold text-sm hover:bg-red-700 transition-colors duration-300 cursor-pointer"
           >
             Sign In
-          </a>
+          </Link>
         </div>
       </nav>
     </>

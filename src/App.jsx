@@ -17,6 +17,7 @@ import {
   ProtectedRoute,
   HomeLayout,
 } from ".";
+import WelcomePage from "./pages/Visitor/WelcomePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/welcome" element={<WelcomePage />} />
 
       <Route
         path="/home"

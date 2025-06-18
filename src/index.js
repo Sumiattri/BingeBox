@@ -15,3 +15,4 @@ export { default as ProtectedRoute } from "./routes/ProtectedRoute";
 
 //layout
 export { default as HomeLayout } from "./Layout/HomeLayout";
+export { default as WelcomePage } from "./pages/Visitor/WelcomePage";
