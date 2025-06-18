@@ -1,6 +1,29 @@
 import { Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { signIn } from "../../auth/auth";
+import { useState } from "react";
+
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signIn(email, password);
+      console.log("Login successful");
+      navigate("/welcome"); // or homepage after login
+    } catch (error) {
+      if (error.code === "auth/invalid-credential") {
+        alert("Invalid Credentials");
+      } else {
+        console.error("Login failed:", error.message);
+      }
+    }
+  };
+
   return (
     <>
       <div
@@ -27,10 +50,16 @@ function Login() {
             Sign In
           </span>
           <div className="mt-5  ">
-            <form action="" className="flex flex-col gap-4 relative">
+            <form
+              onSubmit={handleSubmit}
+              action=""
+              className="flex flex-col gap-4 relative"
+            >
               <input
                 type="email"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
                 required
                 className="peer/email  text-white bg-transparent  py-4 pl-5 w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
@@ -44,6 +73,8 @@ function Login() {
               <input
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
                 required
                 className="peer  text-white bg-transparent py-4 pl-5  w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
@@ -55,12 +86,13 @@ function Login() {
                 Password
               </label>
 
-              <Link
-                to="/welcome"
+              <button
+                type="submit"
                 className=" py-2.5 text-white bg-[#e50815] rounded-md  flex  justify-center items-center lg:gap-2 "
               >
+                {" "}
                 Sign In
-              </Link>
+              </button>
             </form>
           </div>
           <div className="mt-9  text-center">

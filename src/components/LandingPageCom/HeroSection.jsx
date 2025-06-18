@@ -41,7 +41,6 @@ function HeroSection() {
             className="peer  text-white bg-black/50  py-4 pl-5 sm:w-[62%] w-full border border-[#5f5f5e] rounded-md placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
             type="email"
             id="email"
-            pattern="[A-Za-z0-9._-]+@[A-Za-z]+\.[a-z]{2,}$"
             required
           />
 

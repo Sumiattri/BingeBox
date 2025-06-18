@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { signUp } from "../../auth/auth";
+import { useState } from "react";
 
 function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  function handleClick(e) {
-    e.preventDefault();
 
-    navigate("/welcome");
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signUp(email, password);
+      console.log("User signed up successfully");
+      navigate("/welcome"); // or wherever your home/dashboard is
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        alert("This email is already registered. Please sign in.");
+      } else {
+        alert(error.message);
+      }
+      console.error("Signup failed:", error.message);
+    }
+  };
+
   return (
     <div className="">
       <div>
@@ -44,13 +60,15 @@ function Signup() {
 
           <div className="mt-5  ">
             <form
-              onSubmit={handleClick}
+              onSubmit={handleSubmit}
               action=""
               className="flex flex-col gap-4 relative"
             >
               <input
                 type="email"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
                 required
                 className="peer/email  text-black bg-transparent  py-4 pl-5 w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
@@ -64,6 +82,8 @@ function Signup() {
               <input
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
                 required
                 className="peer  text-black bg-transparent py-4 pl-5  w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
@@ -75,7 +95,10 @@ function Signup() {
                 Password
               </label>
 
-              <button className=" py-3.5 text-xl text-white bg-[#e50815] rounded-md  flex  justify-center items-center ">
+              <button
+                type="submit"
+                className=" py-3.5 text-xl text-white bg-[#e50815] rounded-md  flex  justify-center items-center "
+              >
                 {" "}
                 Next
               </button>
