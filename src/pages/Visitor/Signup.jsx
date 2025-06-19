@@ -39,10 +39,14 @@ function Signup() {
     try {
       await signUp(email, password);
       console.log("User signed up successfully");
-      navigate("/welcome");
+      setTimeout(() => {
+        navigate("/welcome");
+      }, 300);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        navigate("/login", { state: { fromSignup: true } });
+        setTimeout(() => {
+          navigate("/login", { state: { fromSignup: true } });
+        }, 300);
       } else {
         alert(error.message);
         console.error("Signup failed:", error.message);
@@ -140,7 +144,7 @@ function Signup() {
 
               <button
                 type="submit"
-                className={` py-3.5 ${passError ? "mt-5" : "mt-0"}  text-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center `}
+                className={` py-3.5 ${passError ? "mt-5" : "mt-0"} active:bg-gray-600  text-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center `}
               >
                 {" "}
                 Next

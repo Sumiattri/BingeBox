@@ -47,7 +47,9 @@ function Login() {
     try {
       await signIn(email, password);
       console.log("Login successful");
-      navigate("/welcome"); // or homepage after login
+      setTimeout(() => {
+        navigate("/welcome");
+      }, 300);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         // alert("Invalid Credentials");
@@ -173,7 +175,7 @@ function Login() {
 
               <button
                 type="submit"
-                className={` py-2.5 ${passError ? "mt-4" : "mt-0"} cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center lg:gap-2 `}
+                className={` py-2.5 ${passError ? "mt-4" : "mt-0"} cursor-pointer active:bg-gray-600 hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center lg:gap-2 `}
               >
                 {" "}
                 Sign In
