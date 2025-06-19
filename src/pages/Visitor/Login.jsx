@@ -49,7 +49,7 @@ function Login() {
       console.log("Login successful");
       setTimeout(() => {
         navigate("/welcome");
-      }, 300);
+      }, 200);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         // alert("Invalid Credentials");

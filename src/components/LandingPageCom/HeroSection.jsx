@@ -34,7 +34,7 @@ function HeroSection() {
       } else {
         setTimeout(() => {
           navigate("/signup", { state: { email } });
-        }, 300);
+        }, 200);
       }
     } catch (error) {
       console.error("Firebase check error:", error.message);

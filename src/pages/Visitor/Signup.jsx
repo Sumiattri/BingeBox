@@ -41,12 +41,12 @@ function Signup() {
       console.log("User signed up successfully");
       setTimeout(() => {
         navigate("/welcome");
-      }, 300);
+      }, 200);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setTimeout(() => {
           navigate("/login", { state: { fromSignup: true } });
-        }, 300);
+        }, 200);
       } else {
         alert(error.message);
         console.error("Signup failed:", error.message);
