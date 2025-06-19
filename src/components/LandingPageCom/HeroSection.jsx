@@ -28,7 +28,9 @@ function HeroSection() {
       const methods = await checkIfEmailExists(email);
 
       if (methods && methods.length > 0) {
-        navigate("/login", { state: { email, fromLanding: true } });
+        setTimeout(() => {
+          navigate("/login", { state: { email, fromLanding: true } });
+        }, 300);
       } else {
         navigate("/signup", { state: { email } });
       }
@@ -84,11 +86,6 @@ function HeroSection() {
           <p className="hidden">Please enter a valid email address</p>
 
           <button
-            onClick={() =>
-              setTimeout(() => {
-                navigate("/login");
-              }, 300)
-            }
             type="submit"
             className={`hover:cursor-pointer hover:bg-red-700 active:bg-gray-600 transition-colors duration-300 lg:px-3.5 sm:py-7 py-5 px-2 sm:mx-0 mx-auto max-h-13 sm:mt-0 ${emailError ? "mt-10" : "sm:mt-0"} mt-3  text-white bg-[#e50815] rounded-md lg:font-semibold sm:font-normal text-xs lg:text-sm sm:w-[35%] sm:max-w-60 max-w-55 flex  justify-center items-center lg:gap-2 `}
           >
