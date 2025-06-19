@@ -75,7 +75,7 @@ function Signup() {
         </nav>
       </div>
       <hr className="text-gray-200" />
-      <div className="h-[80vh] w-full flex justify-center items-center border border-amber-300 ">
+      <div className="h-[80vh] w-full flex justify-center items-center ">
         <div className=" h-[35rem] w-[35rem] flex flex-col pr-20 pl-10  gap-2">
           <h2>Step 1</h2>
           <h1 className="text-3xl font-semibold font-sans">
