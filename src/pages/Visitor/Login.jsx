@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Footer from "../../components/LandingPageCom/Footer";
+// footer resloved
 
 function Login() {
   const location = useLocation();
