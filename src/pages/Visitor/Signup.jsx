@@ -4,8 +4,6 @@ import { signUp } from "../../auth/auth";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
-import { toast } from "react-toastify";
-import { checkIfEmailExists } from "../../auth/auth";
 
 function Signup() {
   const location = useLocation();

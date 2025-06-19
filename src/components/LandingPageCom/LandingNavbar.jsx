@@ -30,7 +30,7 @@ function LandingNavbar() {
 
           <Link
             to="/login"
-            className="py-1.5 px-3.5 text-white bg-[#e50815] rounded-md font-semibold text-sm hover:bg-red-700 transition-colors duration-300 cursor-pointer"
+            className="py-1.5 px-3.5 text-white bg-[#e50815] rounded-md font-semibold text-sm active:bg-gray-600 hover:bg-red-700 transition-colors duration-300 cursor-pointer"
           >
             Sign In
           </Link>
