@@ -2,7 +2,7 @@ import React from "react";
 
 function FrequentQues() {
   return (
-    <div className="w-full h-auto flex flex-col lg:px-35 md:px-20 px-5 bg-black pt-5">
+    <div className="w-full h-auto flex flex-col lg:px-35 md:px-20 px-5 bg-black pt-5 ">
       <div className="bg-black px-6">
         <h2 className="text-white lg:text-2xl sm:text-xl text-lg font-semibold  sm:-ml-4 -ml-2">
           Frequently asked questions

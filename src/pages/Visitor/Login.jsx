@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoInformationCircleOutline } from "react-icons/io5";
+import Footer from "../../components/LandingPageCom/Footer";
 
 function Login() {
   const location = useLocation();
@@ -205,12 +206,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="bg-[#161616] h-70 relative">
-        {" "}
-        <div className="absolute bottom-25 left-40 text-md text-gray-600">
-          Netflix India
-        </div>
-      </div>
+      <Footer />
     </>
   );
 }

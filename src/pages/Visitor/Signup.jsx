@@ -4,6 +4,7 @@ import { signUp } from "../../auth/auth";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
+import Footer from "../../components/LandingPageCom/Footer";
 
 function Signup() {
   const location = useLocation();
@@ -153,6 +154,7 @@ function Signup() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
