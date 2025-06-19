@@ -32,7 +32,9 @@ function HeroSection() {
           navigate("/login", { state: { email, fromLanding: true } });
         }, 300);
       } else {
-        navigate("/signup", { state: { email } });
+        setTimeout(() => {
+          navigate("/signup", { state: { email } });
+        }, 300);
       }
     } catch (error) {
       console.error("Firebase check error:", error.message);
