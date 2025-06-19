@@ -28,7 +28,7 @@ function HeroSection() {
       const methods = await checkIfEmailExists(email);
 
       if (methods && methods.length > 0) {
-        navigate("/login", { state: { email } });
+        navigate("/login", { state: { email, fromLanding: true } });
       } else {
         navigate("/signup", { state: { email } });
       }
@@ -67,7 +67,7 @@ function HeroSection() {
           className="  mt-5  flex sm:flex-row flex-col justify-between   relative max-h-15"
         >
           <input
-            className={`peer text-white bg-black/50 py-4 pl-5 sm:w-[62%] w-full border ${emailError ? "border-red-500" : "border-[#5f5f5e]"} rounded-md placeholder-transparent focus:outline-none focus:ring-2`}
+            className={`peer input-autofill-dark text-white bg-black/50 py-4 pl-5 sm:w-[62%] w-full border ${emailError ? "border-red-500" : "border-[#5f5f5e]"} rounded-md placeholder-transparent focus:outline-none focus:ring-2`}
             type="text"
             id="email"
             placeholder=""

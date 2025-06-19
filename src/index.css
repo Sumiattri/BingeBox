@@ -23,3 +23,19 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+/* input:-webkit-autofill {
+  background-color: transparent !important;
+  color: white !important;
+  transition: background-color 9999s ease-in-out 0s;
+} */
+/* For inputs with dark background */
+.input-autofill-dark:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 1) inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+/* For inputs with light background */
+.input-autofill-light:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}

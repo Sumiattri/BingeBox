@@ -4,12 +4,15 @@ import { signIn } from "../../auth/auth";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
-import { toast } from "react-toastify";
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 function Login() {
   const location = useLocation();
   const navigate = useNavigate();
   const prefilledEmail = location.state?.email || "";
+  const fromLanding = location.state?.fromLanding || false;
+  const fromSignUp = location.state?.fromSignup || false;
+
   const [email, setEmail] = useState(prefilledEmail);
   const [password, setPassword] = useState("");
 
@@ -17,16 +20,9 @@ function Login() {
   const [passError, setPassError] = useState(false);
 
   const [loginError, setLoginError] = useState("");
+  const [isPassWrong, setIsPassWrong] = useState(false);
 
-  useEffect(() => {
-    if (loginError) {
-      const timer = setTimeout(() => {
-        setLoginError("");
-      }, 3000); // 3 seconds
-
-      return () => clearTimeout(timer); // cleanup
-    }
-  }, [loginError]);
+  const [submittedEmail, setSubmittedEmail] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,8 +52,13 @@ function Login() {
       if (error.code === "auth/user-not-found") {
         // alert("Invalid Credentials");
         setLoginError("Invalid credentials");
-      } else {
+        setIsPassWrong(false);
+      } else if (error.code === "auth/wrong-password") {
         console.error("Login failed:", error.message);
+        setLoginError();
+        setSubmittedEmail(email);
+        setIsPassWrong(true);
+        setTimeout(3000);
       }
     }
   };
@@ -84,10 +85,39 @@ function Login() {
         </Link>
         <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1 "></div>
         <div className="z-2  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-8 sm:px-13 px-7 sm:mt-0 mt-8 gap-2 rounded-md  ">
+          {(fromLanding || fromSignUp) && !isPassWrong && !loginError && (
+            <div className="">
+              <div className="bg-[#1c4072] text-white px-5 py-3 mb-2 rounded-sm flex items-center gap-2">
+                <span>
+                  {" "}
+                  <IoInformationCircleOutline className="text-3xl font-extrabold" />
+                </span>
+                <p>
+                  It looks like you already have an account. Sign in below to
+                  start watching
+                </p>
+              </div>
+            </div>
+          )}
           <span className="text-white sm:text-4xl text-3xl font-semibold ">
             Sign In
           </span>
-          <div className="mt-5  ">
+          <div className={`${loginError ? "block" : "hidden"}  `}>
+            {" "}
+            <p className="text-black bg-[#d89d32] px-3 py-3 rounded-sm">
+              Sorry, we can't find an account with this email address. Please
+              try again or create a new account.
+            </p>{" "}
+          </div>
+          <div className={`${isPassWrong ? "block" : "hidden"}  `}>
+            {" "}
+            <p className="text-black bg-[#d89d32] px-3 py-3 rounded-sm">
+              <span className="font-semibold"> Incorrect password</span> for
+              <span className="font-semibold"> {submittedEmail} </span> You can
+              try again or reset your password .
+            </p>{" "}
+          </div>
+          <div className="mt-5   ">
             <form
               onSubmit={handleSubmit}
               action=""
@@ -99,7 +129,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
-                className={`peer/email  text-white bg-transparent  py-4 pl-5 w-full border ${emailError ? "border-red-600" : "border-[#5f5f5e]"} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
+                className={`peer/email  input-autofill-dark text-white bg-transparent  py-4 pl-5 w-full border ${emailError ? "border-red-600" : "border-[#5f5f5e]"} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="email"
@@ -178,11 +208,6 @@ function Login() {
         <div className="absolute bottom-25 left-40 text-md text-gray-600">
           Netflix India
         </div>
-        {loginError && (
-          <div className="fixed sm:top-25 top-17 left-1/2 transform -translate-x-1/2 bg-[#e50914] text-white px-6 py-3 rounded shadow-lg z-50 transition-all duration-300 animate-slide-in">
-            {loginError}
-          </div>
-        )}
       </div>
     </>
   );

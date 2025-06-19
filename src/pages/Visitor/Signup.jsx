@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import { toast } from "react-toastify";
+import { checkIfEmailExists } from "../../auth/auth";
 
 function Signup() {
   const location = useLocation();
@@ -43,7 +44,7 @@ function Signup() {
       navigate("/welcome");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        toast.error("This email is already registered. Please sign in.");
+        navigate("/login", { state: { fromSignup: true } });
       } else {
         alert(error.message);
         console.error("Signup failed:", error.message);
@@ -74,7 +75,7 @@ function Signup() {
         </nav>
       </div>
       <hr className="text-gray-200" />
-      <div className="h-[80vh] w-full flex justify-center items-center ">
+      <div className="h-[80vh] w-full flex justify-center items-center border border-amber-300 ">
         <div className=" h-[35rem] w-[35rem] flex flex-col pr-20 pl-10  gap-2">
           <h2>Step 1</h2>
           <h1 className="text-3xl font-semibold font-sans">
@@ -96,7 +97,7 @@ function Signup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
-                className={`peer/email  text-black bg-transparent  pt-5 pb-3 pl-5 w-full border ${emailError ? "border-red-500" : "border-[#5f5f5e]"} border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
+                className={`peer/email  input-autofill-light text-black bg-transparent  pt-5 pb-3 pl-5 w-full border ${emailError ? "border-red-500" : "border-[#5f5f5e]"} border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="email"
