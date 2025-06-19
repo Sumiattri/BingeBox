@@ -1,23 +1,61 @@
 import { Link } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../../auth/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { RxCrossCircled } from "react-icons/rx";
+import { toast } from "react-toastify";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
+  const prefilledEmail = location.state?.email || "";
+  const [email, setEmail] = useState(prefilledEmail);
+  const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
+
+  const [loginError, setLoginError] = useState("");
+
+  useEffect(() => {
+    if (loginError) {
+      const timer = setTimeout(() => {
+        setLoginError("");
+      }, 3000); // 3 seconds
+
+      return () => clearTimeout(timer); // cleanup
+    }
+  }, [loginError]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let hasError = false;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError(true);
+      hasError = true;
+    } else {
+      setEmailError(false); // reset if valid
+    }
+
+    if (password.length < 6) {
+      setPassError(true);
+      hasError = true;
+    } else {
+      setPassError(false); // reset if valid
+    }
+    if (hasError) return;
+
     try {
       await signIn(email, password);
       console.log("Login successful");
       navigate("/welcome"); // or homepage after login
     } catch (error) {
-      if (error.code === "auth/invalid-credential") {
-        alert("Invalid Credentials");
+      if (error.code === "auth/user-not-found") {
+        // alert("Invalid Credentials");
+        setLoginError("Invalid credentials");
       } else {
         console.error("Login failed:", error.message);
       }
@@ -53,16 +91,15 @@ function Login() {
             <form
               onSubmit={handleSubmit}
               action=""
-              className="flex flex-col gap-4 relative"
+              className={`flex flex-col ${emailError ? "gap-7" : "gap-4"}   relative`}
             >
               <input
-                type="email"
+                type="text"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
-                required
-                className="peer/email  text-white bg-transparent  py-4 pl-5 w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
+                className={`peer/email  text-white bg-transparent  py-4 pl-5 w-full border ${emailError ? "border-red-600" : "border-[#5f5f5e]"} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="email"
@@ -70,25 +107,43 @@ function Login() {
               >
                 Email address
               </label>
+
+              {emailError && (
+                <p className="text-[#e50815] absolute top-15  text-sm flex items-center gap-1">
+                  <span>
+                    <RxCrossCircled />
+                  </span>{" "}
+                  Please enter valid email address
+                </p>
+              )}
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
-                required
-                className="peer  text-white bg-transparent py-4 pl-5  w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
+                className={`peer  text-white bg-transparent py-4 pl-5  w-full border  ${passError ? "border-red-600" : " border-[#5f5f5e] "} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="password"
-                className="text-gray-400 absolute  left-6  top-26  -translate-y-1/2  transition-all  peer-placeholder-shown:top-26 peer-placeholder-shown:text-base  peer-placeholder-shown:text-white peer-focus:top-21 peer-not-placeholder-shown:top-21 peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs  peer-focus:left-5 peer-focus:text-xs  peer-focus:text-gray-300 "
+                className={`text-gray-400 absolute  left-6  top-26  -translate-y-1/2  transition-all  ${emailError ? "peer-placeholder-shown:top-28" : "peer-placeholder-shown:top-25"} peer-placeholder-shown:text-base  peer-placeholder-shown:text-white ${emailError ? "peer-not-placeholder-shown:top-25" : "peer-not-placeholder-shown:top-22"}   peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs ${emailError ? "peer-focus:top-25" : "peer-focus:top-22"} peer-focus:left-5 peer-focus:text-xs   `}
               >
                 Password
               </label>
+              {passError && (
+                <p
+                  className={`text-[#e50815] absolute ${emailError ? "top-37" : "top-33"}   text-sm flex items-center gap-1`}
+                >
+                  <span>
+                    <RxCrossCircled />
+                  </span>{" "}
+                  Please enter a minimum of 6 digit
+                </p>
+              )}
 
               <button
                 type="submit"
-                className=" py-2.5 text-white bg-[#e50815] rounded-md  flex  justify-center items-center lg:gap-2 "
+                className={` py-2.5 ${passError ? "mt-4" : "mt-0"} cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center lg:gap-2 `}
               >
                 {" "}
                 Sign In
@@ -123,6 +178,11 @@ function Login() {
         <div className="absolute bottom-25 left-40 text-md text-gray-600">
           Netflix India
         </div>
+        {loginError && (
+          <div className="fixed sm:top-25 top-17 left-1/2 transform -translate-x-1/2 bg-[#e50914] text-white px-6 py-3 rounded shadow-lg z-50 transition-all duration-300 animate-slide-in">
+            {loginError}
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,27 +1,53 @@
 import { Link } from "react-router-dom";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../auth/auth";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { RxCrossCircled } from "react-icons/rx";
+import { toast } from "react-toastify";
 
 function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
+  const prefilledEmail = location.state?.email || "";
+  const [email, setEmail] = useState(prefilledEmail);
+  const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let hasError = false;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError(true);
+      hasError = true;
+    } else {
+      setEmailError(false); // reset if valid
+    }
+    if (password.length < 6) {
+      setPassError(true);
+      hasError = true;
+    } else {
+      setPassError(false); // reset if valid
+    }
+
+    if (hasError) return;
+
     try {
       await signUp(email, password);
       console.log("User signed up successfully");
-      navigate("/welcome"); // or wherever your home/dashboard is
+      navigate("/welcome");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        alert("This email is already registered. Please sign in.");
+        toast.error("This email is already registered. Please sign in.");
       } else {
         alert(error.message);
+        console.error("Signup failed:", error.message);
       }
-      console.error("Signup failed:", error.message);
     }
   };
 
@@ -62,16 +88,15 @@ function Signup() {
             <form
               onSubmit={handleSubmit}
               action=""
-              className="flex flex-col gap-4 relative"
+              className={`flex flex-col  ${emailError ? "gap-7" : " gap-4"} relative`}
             >
               <input
-                type="email"
+                type="text"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
-                required
-                className="peer/email  text-black bg-transparent  py-4 pl-5 w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
+                className={`peer/email  text-black bg-transparent  pt-5 pb-3 pl-5 w-full border ${emailError ? "border-red-500" : "border-[#5f5f5e]"} border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="email"
@@ -79,25 +104,44 @@ function Signup() {
               >
                 Email address
               </label>
+
+              {emailError && (
+                <p className="text-[#e50815] absolute top-15  text-sm flex items-center gap-1">
+                  <span>
+                    <RxCrossCircled />
+                  </span>{" "}
+                  Please enter valid email address
+                </p>
+              )}
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
-                required
-                className="peer  text-black bg-transparent py-4 pl-5  w-full border border-[#5f5f5e] rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600"
+                className={`peer  text-black bg-transparent pt-5 pb-3 pl-5  w-full border  ${passError ? "border-red-500" : "border-[#5f5f5e]"} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="password"
-                className="text-gray-600 absolute  left-6  top-26  -translate-y-1/2  transition-all  peer-placeholder-shown:top-26 peer-placeholder-shown:text-base  peer-placeholder-shown:text-gray-500  peer-not-placeholder-shown:top-22 peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs peer-focus:top-22  peer-focus:left-5 peer-focus:text-xs  peer-focus:text-gray-600 "
+                className={`text-gray-600 absolute  left-6  top-26  -translate-y-1/2  transition-all  ${emailError ? "peer-placeholder-shown:top-28" : "peer-placeholder-shown:top-25"} peer-placeholder-shown:text-base  peer-placeholder-shown:text-gray-500 ${emailError ? "peer-not-placeholder-shown:top-25" : "peer-not-placeholder-shown:top-22"}   peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs ${emailError ? "peer-focus:top-25" : "peer-focus:top-22"} peer-focus:left-5 peer-focus:text-xs  peer-focus:text-gray-600 `}
               >
                 Password
               </label>
 
+              {passError && (
+                <p
+                  className={`text-[#e50815] absolute ${emailError ? "top-37" : "top-33"}   text-sm flex items-center gap-1`}
+                >
+                  <span>
+                    <RxCrossCircled />
+                  </span>{" "}
+                  Please enter a minimum of 6 digit
+                </p>
+              )}
+
               <button
                 type="submit"
-                className=" py-3.5 text-xl text-white bg-[#e50815] rounded-md  flex  justify-center items-center "
+                className={` py-3.5 ${passError ? "mt-5" : "mt-0"}  text-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center `}
               >
                 {" "}
                 Next

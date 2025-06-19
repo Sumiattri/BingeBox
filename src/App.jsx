@@ -5,6 +5,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+
 import {
   Home,
   Movies,
@@ -46,7 +48,19 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      {" "}
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-center"
+        newestOnTop={true}
+        hideProgressBar={true}
+        autoClose={600}
+        limit={1}
+      />
+    </>
+  );
 }
 
 export default App;
