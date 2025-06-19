@@ -1,7 +1,9 @@
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LandingNavbar() {
+  const navigate = useNavigate();
   return (
     <>
       {/* <nav className="flex justify-between  items-center px-35  max-h-30 bg-transparent pt-[6px] absolute z-2 w-screen"> */}
@@ -28,12 +30,16 @@ function LandingNavbar() {
             </div>
           </div>
 
-          <Link
-            to="/login"
-            className="py-1.5 px-3.5 text-white bg-[#e50815] rounded-md font-semibold text-sm active:bg-gray-600 hover:bg-red-700 transition-colors duration-300 cursor-pointer"
+          <button
+            onClick={() =>
+              setTimeout(() => {
+                navigate("/login");
+              }, 300)
+            }
+            className="py-1.5 px-3.5 text-white bg-[#e50815] rounded-md font-semibold text-sm active:bg-gray-600  hover:bg-red-700 transition-colors duration-300 cursor-pointer"
           >
             Sign In
-          </Link>
+          </button>
         </div>
       </nav>
     </>
