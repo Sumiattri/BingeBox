@@ -18,8 +18,11 @@ import {
   Signup,
   ProtectedRoute,
   HomeLayout,
+  WelcomePage,
+  CreateProfile,
+  Profiles,
 } from ".";
-import WelcomePage from "./pages/Visitor/WelcomePage";
+
 import { useEffect } from "react";
 
 const router = createBrowserRouter(
@@ -29,6 +32,23 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/welcome" element={<WelcomePage />} />
+
+      <Route
+        path="/create-profile"
+        element={
+          <ProtectedRoute>
+            <CreateProfile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profiles"
+        element={
+          <ProtectedRoute>
+            <Profiles />
+          </ProtectedRoute>
+        }
+      />
 
       <Route
         path="/home"

@@ -1,7 +1,12 @@
-import React from "react";
+import LogoutButton from "../../components/AuthUserComp/LogoutBtn";
 
 function WelcomePage() {
-  return <div>WelcomePage</div>;
+  return (
+    <div>
+      WelcomePage
+      <LogoutButton />
+    </div>
+  );
 }
 
 export default WelcomePage;
