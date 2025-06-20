@@ -50,7 +50,7 @@ function Login() {
       await signIn(email, password);
       console.log("Login successful");
       setTimeout(() => {
-        navigate("/welcome");
+        navigate("/profiles");
       }, 200);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
@@ -87,7 +87,7 @@ function Login() {
             className="w-full h-auto object-contain mt-3 "
           />
         </Link>
-        <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1 "></div>
+        <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1  "></div>
         <div className="z-2  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-8 sm:px-13 px-7 sm:mt-0 mt-8 gap-2 rounded-md  ">
           {(fromLanding || fromSignUp) && !isPassWrong && !loginError && (
             <div className="">
