@@ -15,7 +15,7 @@ function LandingPage() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/welcome");
+        navigate("/profiles");
       }
     });
 

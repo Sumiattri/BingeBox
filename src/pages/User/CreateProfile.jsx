@@ -1,4 +1,3 @@
-// pages/CreateProfile.jsx
 import { useState } from "react";
 import { addProfileToFirestore } from "../../firebase/firestoreUtils";
 import { useNavigate } from "react-router-dom";
@@ -73,7 +72,7 @@ const CreateProfile = () => {
                       src={`/${avatar}`}
                       alt={avatar}
                       onClick={() => setSelectedAvatar(avatar)}
-                      className={`w-16 h-16 cursor-pointer border-2 rounded-full hover:scale-105 transition-transform duration-200 ${
+                      className={`w-16 h-16 cursor-pointer border-2 rounded-full hover:scale-105 active:scale-90 transition-transform duration-200 ${
                         selectedAvatar === avatar
                           ? "border-red-600"
                           : "border-transparent"
