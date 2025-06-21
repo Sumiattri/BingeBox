@@ -1,11 +1,11 @@
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
-
-import { ToastContainer } from "react-toastify";
 
 import {
   Home,
@@ -22,8 +22,7 @@ import {
   CreateProfile,
   Profiles,
 } from ".";
-
-import { useEffect } from "react";
+import VerifyEmail from "./pages/User/VerifyEmail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +40,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+      <Route path="/verify-email" element={<VerifyEmail />} />
       <Route
         path="/profiles"
         element={
@@ -104,13 +104,6 @@ function App() {
         className="pointer-events-none fixed inset-0 z-50"
       ></div>{" "}
       <RouterProvider router={router} />
-      <ToastContainer
-        position="top-center"
-        newestOnTop={true}
-        hideProgressBar={true}
-        autoClose={600}
-        limit={1}
-      />
     </>
   );
 }

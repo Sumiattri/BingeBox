@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import Footer from "../../components/LandingPageCom/Footer";
 import Navbar from "../../components/LandingPageCom/Navbar";
+// import { updateProfile } from "firebase/auth";
 
 function Signup() {
   const location = useLocation();
@@ -39,10 +40,10 @@ function Signup() {
 
     try {
       await signUp(email, password);
-      console.log("User signed up successfully");
+
       setTimeout(() => {
-        navigate("/create-profile");
-      }, 200);
+        navigate("/verify-email");
+      }, 0);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setTimeout(() => {

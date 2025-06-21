@@ -77,16 +77,16 @@ function Login() {
            )`,
         }}
       >
-        <Link
-          to="/"
-          className="md:w-40 w-25 h-20 pt-3 absolute z-2 top-3 md:left-25 sm:left-15 left-5"
+        <button
+          onClick={() => setTimeout(() => navigate("/"), 600)}
+          className="md:w-40 w-25 h-20 pt-3 cursor-pointer absolute z-2 top-3 md:left-25 sm:left-15 left-5"
         >
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
             alt="Netflix Logo"
             className="w-full h-auto object-contain mt-3 "
           />
-        </Link>
+        </button>
         <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1  "></div>
         <div className="z-2  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-8 sm:px-13 px-7 sm:mt-0 mt-8 gap-2 rounded-md  ">
           {(fromLanding || fromSignUp) && !isPassWrong && !loginError && (
@@ -191,13 +191,17 @@ function Login() {
             <p className="text-gray-300">
               New to Netflix?
               <span>
-                <Link
-                  to="/"
-                  className=" text-white font-semibold hover:underline"
+                <button
+                  onClick={() => {
+                    setTimeout(() => {
+                      navigate("/");
+                    }, 700);
+                  }}
+                  className=" text-white cursor-pointer font-semibold hover:underline"
                 >
                   {" "}
                   Sign Up now.{" "}
-                </Link>
+                </button>
               </span>
             </p>
             <p className="mt-10 text-xs text-gray-400 sm:pr-5">

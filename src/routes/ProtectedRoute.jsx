@@ -18,13 +18,14 @@ const ProtectedRoute = ({ children }) => {
   }, []);
 
   if (checking) return null; // or a spinner
+  if (user && !user.emailVerified) {
+    return <Navigate to="/verify-email" />;
+  }
 
-  // 🔐 Not Logged In → go to landing/login
   if (!user) {
     return <Navigate to="/" />;
   }
 
-  // ✅ If logged in, allow the route to render
   return children;
 };
 

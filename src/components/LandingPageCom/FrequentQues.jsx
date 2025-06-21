@@ -82,7 +82,7 @@ function FrequentQues() {
             </div>
           </details>
         </div>
-        <div className="flex flex-col px-4 bg-[#2d2d2d] hover:bg-[#3b3b3f]]">
+        <div className="flex flex-col px-4 bg-[#2d2d2d] hover:bg-[#3b3b3f] ">
           <details className="group border-b border-gray-700 py-4 cursor-pointer">
             <summary className="text-white h-10 lg:text-2xl text-xl lg:font-semibold  flex justify-between items-center">
               <span>What can I watch on Netflix?</span>

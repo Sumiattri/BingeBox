@@ -1,5 +1,7 @@
 // src/firebase/firestoreUtils.js
-import { db, auth } from "./firebase";
+import app, { auth } from "./firebase";
+import { getFirestore } from "firebase/firestore"; // 👈 Add this
+export const db = getFirestore(app);
 import {
   doc,
   collection,

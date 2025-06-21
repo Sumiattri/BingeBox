@@ -8,6 +8,7 @@ function GtngStrtdForm() {
   const navigate = useNavigate();
   const focusRef = useRef();
   const [emailError, setEmailError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleClick(e) {
     e.preventDefault();
@@ -27,13 +28,17 @@ function GtngStrtdForm() {
       const methods = await checkIfEmailExists(email);
 
       if (methods && methods.length > 0) {
+        setIsLoading(true);
         setTimeout(() => {
           navigate("/login", { state: { email, fromLanding: true } });
-        }, 300);
+          setIsLoading(false);
+        }, 600);
       } else {
+        setIsLoading(true);
         setTimeout(() => {
           navigate("/signup", { state: { email } });
-        }, 200);
+          setIsLoading(false);
+        }, 600);
       }
     } catch (error) {
       console.error("Firebase check error:", error.message);
@@ -67,7 +72,7 @@ function GtngStrtdForm() {
 
         <button
           type="submit"
-          className={`hover:cursor-pointer hover:bg-red-700 active:bg-gray-600 transition-colors duration-300 lg:px-3.5 sm:py-7 py-5 px-2 sm:mx-0 mx-auto max-h-13 sm:mt-0 ${emailError ? "mt-10" : "sm:mt-0"} mt-3  text-white bg-[#e50815] rounded-md lg:font-semibold sm:font-normal text-xs lg:text-sm sm:w-[35%] sm:max-w-60 max-w-55 flex  justify-center items-center lg:gap-2 `}
+          className={` ${isLoading ? "cursor-wait" : "cursor-pointer"} hover:bg-red-700 active:bg-gray-600 transition-colors duration-300 lg:px-3.5 sm:py-7 py-5 px-2 sm:mx-0 mx-auto max-h-13 sm:mt-0 ${emailError ? "mt-10" : "sm:mt-0"} mt-3  text-white bg-[#e50815] rounded-md lg:font-semibold sm:font-normal text-xs lg:text-sm sm:w-[35%] sm:max-w-60 max-w-55 flex  justify-center items-center lg:gap-2 `}
         >
           {" "}
           <span className="text-2xl font-bold">Get started</span>{" "}
