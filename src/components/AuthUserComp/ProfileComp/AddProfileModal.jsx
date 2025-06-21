@@ -20,12 +20,15 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsModalOpen(false);
+
     const profileData = {
       firstName,
       lastName,
       avatar: selectedAvatar,
     };
+    if (!firstName.trim()) {
+      return null;
+    }
 
     try {
       const id = await addProfileToFirestore(profileData);
@@ -36,15 +39,16 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
     } catch (error) {
       console.error("Error creating profile:", error);
     }
+    setIsModalOpen(false);
   };
 
   return (
     <>
       <div
         onClick={() => setIsModalOpen(false)}
-        className=" bg-black absolute inset-0 z-2 "
+        className=" bg-black absolute inset-0 z-20"
       ></div>
-      <div className="sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] sm: w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute top-30 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-10  justify-center">
+      <div className="sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] sm: w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute sm:top-30 top-25 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-10  justify-center">
         <div className="">
           {" "}
           <h1 className="text-white text-3xl font-semibold">Add a profile</h1>
