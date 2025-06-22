@@ -42,6 +42,8 @@ const Profiles = () => {
 
   return (
     <div className="text-center h-full w-full bg-[#141414] text-white   flex  flex-col items-center justify-center relative">
+      <div className="absolute top-0 w-full h-17 bg-gradient-to-b from-[#080808] to-transparent z-10 " />
+
       <div className=" h-[24rem] max-w-full  ">
         <h1 className="lg:text-5xl md:text-4xl sm:text-3xl text-3xl font-medium ">
           Who's Watching?
@@ -69,7 +71,7 @@ const Profiles = () => {
         )}
         <button
           onClick={() => setIsManageMode(!isManageMode)}
-          className={`text-[#808080] ${isManageMode ? "hover:text-white" : "hover:text-white "} border ${isManageMode ? "hover:bg-red-700 hover:text-white" : "hover:border-white"}  border-[#808080] ${isManageMode ? "bg-white text-black" : "bg-none"}  transition-all duration-300 ${isManageMode ? "px-5 py-1" : "px-3 py-1 "} sm:mt-15 mt-8 tracking-widest`}
+          className={`text-[#808080] ${isManageMode ? "hover:text-white" : "hover:text-white "} border ${isManageMode ? "hover:bg-red-700 hover:text-white" : "hover:border-white"}  border-[#808080] ${isManageMode ? "bg-white text-black" : "bg-none"}  transition-colors duration-200 ${isManageMode ? "px-5 py-1" : "px-3 py-1 "} sm:mt-15 mt-8 tracking-widest`}
         >
           {!isManageMode ? "Manage Profiles" : "Done"}
         </button>

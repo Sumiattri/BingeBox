@@ -57,7 +57,7 @@ function ProfileCard({
           onClick={() => setIsModalOpen(true)}
           className="  flex flex-col items-center gap-5 pt-3 justify-center"
         >
-          <IoPersonAddSharp className="text-5xl text-[#808080]" />
+          <IoPersonAddSharp className="text-7xl text-[#808080]" />
           <p className="text-[#808080]">Add Profile</p>
         </div>
       )}

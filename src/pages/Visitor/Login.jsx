@@ -84,16 +84,16 @@ function Login() {
       >
         <button
           onClick={() => setTimeout(() => navigate("/"), 600)}
-          className="md:w-40 w-25 h-20 pt-3 cursor-pointer absolute z-2 top-3 md:left-25 sm:left-15 left-5"
+          className="md:w-40  w-25 h-20 cursor-pointer absolute z-2 sm:top-1 top-0 md:left-39 sm:left-15 left-5"
         >
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
             alt="Netflix Logo"
-            className="w-full h-auto object-contain mt-3 "
+            className="w-full h-auto object-contain sm:mt-1 "
           />
         </button>
         <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1  "></div>
-        <div className="z-2  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-8 sm:px-13 px-7 sm:mt-0 mt-8 gap-2 rounded-md  ">
+        <div className="z-2  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-0 sm:px-13 px-4 sm:mt-0 mt-8 gap-2 rounded-md  ">
           {(fromLanding || fromSignUp) && !isPassWrong && !loginError && (
             <div className="">
               <div className="bg-[#1c4072] text-white px-5 py-3 mb-2 rounded-sm flex items-center gap-2">
@@ -138,11 +138,11 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
-                className={`peer/email  input-autofill-dark text-white bg-transparent  py-4 pl-5 w-full border ${emailError ? "border-red-600" : "border-[#5f5f5e]"} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
+                className={`peer/email  input-autofill-dark text-white bg-[#0f0f0f]  py-4 pl-5 w-full border ${emailError ? "border-red-600" : "border-[#5f5f5e]"} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="email"
-                className="text-gray-400 absolute  left-6  top-7  -translate-y-1/2  transition-all   peer-placeholder-shown/email:top-7  peer-placeholder-shown/email:text-base peer-not-placeholder-shown/email:top-3 peer-not-placeholder-shown/email:left-5 peer-not-placeholder-shown/email:text-xs  peer-placeholder-shown/email:text-white peer-focus/email:top-3   peer-focus/email:left-5 peer-focus/email:text-xs  peer-focus/email:text-gray-300 "
+                className="text-gray-400 absolute  left-6  top-7  -translate-y-1/2  transition-all   peer-placeholder-shown/email:top-7  peer-placeholder-shown/email:text-base peer-not-placeholder-shown/email:top-3 peer-not-placeholder-shown/email:left-5 peer-not-placeholder-shown/email:text-xs  peer-placeholder-shown/email:text-gray-400 peer-focus/email:top-3   peer-focus/email:left-5 peer-focus/email:text-xs  peer-focus/email:text-gray-300 "
               >
                 Email address
               </label>
@@ -161,11 +161,11 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
-                className={`peer  text-white bg-transparent py-4 pl-5  w-full border  ${passError ? "border-red-600" : " border-[#5f5f5e] "} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
+                className={`peer  text-white bg-[#0f0f0f] py-4 pl-5  w-full border  ${passError ? "border-red-600" : " border-[#5f5f5e] "} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
               <label
                 htmlFor="password"
-                className={`text-gray-400 absolute  left-6  top-26  -translate-y-1/2  transition-all  ${emailError ? "peer-placeholder-shown:top-28" : "peer-placeholder-shown:top-25"} peer-placeholder-shown:text-base  peer-placeholder-shown:text-white ${emailError ? "peer-not-placeholder-shown:top-25" : "peer-not-placeholder-shown:top-22"}   peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs ${emailError ? "peer-focus:top-25" : "peer-focus:top-22"} peer-focus:left-5 peer-focus:text-xs   `}
+                className={`text-gray-400 absolute  left-6  top-26  -translate-y-1/2  transition-all  ${emailError ? "peer-placeholder-shown:top-28" : "peer-placeholder-shown:top-25"} peer-placeholder-shown:text-base  peer-placeholder-shown:text-gray-400 ${emailError ? "peer-not-placeholder-shown:top-25" : "peer-not-placeholder-shown:top-22"}   peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs ${emailError ? "peer-focus:top-25" : "peer-focus:top-22"} peer-focus:left-5 peer-focus:text-xs   `}
               >
                 Password
               </label>

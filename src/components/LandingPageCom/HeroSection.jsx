@@ -13,15 +13,18 @@ function HeroSection() {
       }}
     >
       <div className="absolute inset-0 bg-black opacity-80 z-1 "></div>
-      <div className="z-2  lg:max-w-[47rem]   sm:max-w-[40rem] w-full sm:p-16 py-18 px-6 box-border text-center mx-auto ">
+      <div
+        className="z-2  md:-mt-5 -mt-10 lg:max-w-[47rem]   sm:max-w-[40rem] w-full sm:p-16 py-18 px-6 box-border  text-center mx-auto "
+        // style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900 }}
+      >
         <p className="text-white text-3xl font-extrabold lg:text-6xl md:text-4xl lg:leading-18">
           Unlimited {""}
-          <span className="text-white ">movies, TV shows, and more.</span>
+          <span className="text-white ">movies, TV shows and more.</span>
         </p>
         <p className="text-white text-xl font-medium mt-2">
           Watch anywhere. Cancel anytime.
         </p>
-        <p className="text-white text-md font-[300] mt-4  mx-auto flex justify-center max-w-[30rem]">
+        <p className="text-white text-md font-[300] mt-4  mx-auto flex justify-center max-w-[34rem]">
           Ready to watch? Enter your email to create or restart your membership.
         </p>
         <GtngStrtdForm />

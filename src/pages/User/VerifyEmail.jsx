@@ -3,7 +3,7 @@ import { auth } from "../../firebase/firebase";
 import { reload } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+
 import AuthNavbar from "../../components/AuthUserComp/AuthNavbar";
 import SpinnerOverlay from "../../utils/SpinnerOverlay";
 

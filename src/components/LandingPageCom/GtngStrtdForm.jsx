@@ -53,7 +53,7 @@ function GtngStrtdForm() {
       <form
         action=""
         onSubmit={handleClick}
-        className="  mt-5  flex sm:flex-row flex-col justify-between   relative max-h-15"
+        className="  mt-3  flex sm:flex-row flex-col justify-between   relative max-h-15"
       >
         <input
           className={`peer input-autofill-dark text-white bg-black/50 py-4 pl-5 sm:w-[62%] w-full border ${emailError ? "border-red-500" : "border-[#5f5f5e]"} rounded-md placeholder-transparent focus:outline-none focus:ring-2`}

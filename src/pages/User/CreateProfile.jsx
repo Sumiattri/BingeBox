@@ -64,6 +64,7 @@ const CreateProfile = () => {
       <div>
         {isLoading && <SpinnerOverlay />}
         <AuthNavbar />
+        <div className=""></div>
         <hr className="text-gray-200" />
         <div className="h-[80vh] w-full flex justify-center items-center  ">
           <div className=" h-[35rem] w-[35rem] flex flex-col px-10  gap-2">

@@ -11,7 +11,7 @@ function LandingNavbar() {
       {/* <nav className="flex justify-between  items-center px-35  max-h-30 bg-transparent pt-[6px] absolute z-2 w-screen"> */}
       {/* <nav className="flex justify-between  items-center px-35  max-h-30 bg-transparent pt-[6px] relative z-2"> */}
       <nav className="flex justify-between  content-baseline md:px-35 sm:px-20 px-5 max-h-30 bg-transparent pt-[6px] relative z-10 ]">
-        <Link to="/" className="md:w-40 w-25 h-20 pt-3 cursor-auto">
+        <Link to="/" className="md:w-40 w-25 h-20 pt-[7px] cursor-auto">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
             alt="Netflix Logo"
@@ -19,7 +19,7 @@ function LandingNavbar() {
           />
         </Link>
 
-        <div className="flex items-center gap-4.5">
+        <div className="flex items-center md:gap-4.5 gap-2 -mt-2">
           <div className=" relative w-fit">
             <select className="appearance-none border border-[#5f5f5e] bg-transparent  w-26 px-4 py-0.5 pr-5 text-white rounded-sm">
               <option value="" className="">
@@ -41,7 +41,7 @@ function LandingNavbar() {
                 setIsLoading(false);
               }, 600);
             }}
-            className={`py-1.5 px-3.5 text-white bg-[#e50815] ${isLoading ? "cursor-wait" : "cursor-pointer"} rounded-md font-semibold text-sm active:bg-gray-600  hover:bg-red-700 transition-colors duration-300 cursor-pointer`}
+            className={`py-1.5 px-3.5 text-white bg-[#e50815] ${isLoading ? "cursor-wait" : "cursor-pointer"} rounded-sm font-semibold text-sm active:bg-gray-600  hover:bg-red-700 transition-colors cursor-pointer`}
           >
             Sign In
           </button>
