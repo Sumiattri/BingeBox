@@ -33,7 +33,6 @@ function LandingNavbar() {
           </div>
 
           <button
-            disabled={isLoading}
             onClick={() => {
               setIsLoading(true);
               setTimeout(() => {
