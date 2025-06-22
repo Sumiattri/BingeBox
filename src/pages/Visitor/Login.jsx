@@ -50,7 +50,7 @@ function Login() {
       await signIn(email, password);
       console.log("Login successful");
       setTimeout(() => {
-        navigate("/profiles");
+        navigate("/profiles", { replace: true });
       }, 200);
     } catch (error) {
       if (error.code === "auth/user-not-found") {

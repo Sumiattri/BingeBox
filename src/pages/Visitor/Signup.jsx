@@ -40,10 +40,7 @@ function Signup() {
 
     try {
       await signUp(email, password);
-
-      setTimeout(() => {
-        navigate("/verify-email", { replace: true });
-      }, 0);
+      navigate("/verify-email", { replace: true });
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setTimeout(() => {

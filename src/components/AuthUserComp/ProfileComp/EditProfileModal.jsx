@@ -25,13 +25,11 @@ function EditProfileModal({
   const [selectedAvatar, setSelectedAvatar] = useState(selectedProfile.avatar);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const navigate = useNavigate();
-
   const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
 
   const handleUpdate = async () => {
     if (!firstName.trim()) return setErrorMsg("First name is required");
-    if (fullName.length > 13) {
+    if (fullName.length > 20) {
       return setErrorMsg("Name is too long (max 20 characters)");
     }
 

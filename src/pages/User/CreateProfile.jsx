@@ -16,11 +16,17 @@ const CreateProfile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
+  const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (fullName.length > 20) {
+      return setErrorMsg("Name is too long (max 20 characters)");
+    }
     const profileData = {
       firstName,
       lastName,
@@ -73,7 +79,7 @@ const CreateProfile = () => {
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
-
+              {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
               <div>
                 <p className="mb-2">Choose Avatar:</p>
                 <div className="flex gap-4 sm:flex-nowrap flex-wrap max-w-99 ">

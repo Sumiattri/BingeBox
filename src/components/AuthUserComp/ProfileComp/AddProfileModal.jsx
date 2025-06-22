@@ -15,20 +15,25 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
+  const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!firstName.trim()) {
+      return null;
+    }
+    if (fullName.length > 20) {
+      return setErrorMsg("Name is too long (max 20 characters)");
+    }
 
     const profileData = {
       firstName,
       lastName,
       avatar: selectedAvatar,
     };
-    if (!firstName.trim()) {
-      return null;
-    }
 
     try {
       const id = await addProfileToFirestore(profileData);
@@ -74,6 +79,9 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
+              {errorMsg && (
+                <p className="text-red-500 text-sm mb-2">{errorMsg}</p>
+              )}
             </form>
           </div>
           <div className=" md:max-w-[50%] w-full ">
