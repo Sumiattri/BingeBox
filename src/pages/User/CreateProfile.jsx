@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addProfileToFirestore } from "../../firebase/firestoreUtils";
 import { useNavigate } from "react-router-dom";
 import AuthNavbar from "../../components/AuthUserComp/AuthNavbar";
+import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
 const avatars = [
   "image.png",
@@ -17,6 +18,7 @@ const CreateProfile = () => {
   const [lastName, setLastName] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState();
 
   const navigate = useNavigate();
   const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
@@ -43,12 +45,15 @@ const CreateProfile = () => {
     //   const docRef = await addDoc(profilesRef, profileData);
     //   return docRef.id; // Return profile ID for reference
     // };
-
+    setIsLoading(true);
     try {
       const id = await addProfileToFirestore(profileData);
       const profile = { id, ...profileData };
       localStorage.setItem("profile", JSON.stringify(profile));
+
       navigate("/profiles", { replace: true });
+
+      setIsLoading(false);
     } catch (error) {
       console.error("Error creating profile:", error);
     }
@@ -57,6 +62,7 @@ const CreateProfile = () => {
   return (
     <>
       <div>
+        {isLoading && <SpinnerOverlay />}
         <AuthNavbar />
         <hr className="text-gray-200" />
         <div className="h-[80vh] w-full flex justify-center items-center  ">

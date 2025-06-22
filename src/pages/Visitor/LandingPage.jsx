@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { getUserProfiles } from "../../firebase/firestoreUtils";
+import { Navigate } from "react-router-dom";
 
 function LandingPage() {
   const navigate = useNavigate();

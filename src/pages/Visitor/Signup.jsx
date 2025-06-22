@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import Footer from "../../components/LandingPageCom/Footer";
 import Navbar from "../../components/LandingPageCom/Navbar";
-// import { updateProfile } from "firebase/auth";
+import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
 function Signup() {
   const location = useLocation();
@@ -16,6 +16,8 @@ function Signup() {
 
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
+
+  const [isLoading, setIsLoading] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,9 +39,10 @@ function Signup() {
     }
 
     if (hasError) return;
-
+    setIsLoading(true);
     try {
       await signUp(email, password);
+      setIsLoading(false);
       navigate("/verify-email", { replace: true });
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -55,6 +58,7 @@ function Signup() {
 
   return (
     <div className="">
+      {isLoading && <SpinnerOverlay />}
       <Navbar />
       <hr className="text-gray-200" />
       <div className="h-[80vh] w-full flex justify-center items-center ">

@@ -8,31 +8,33 @@ function GtngStrtdForm() {
   const navigate = useNavigate();
   const focusRef = useRef();
   const [emailError, setEmailError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState();
 
   async function handleClick(e) {
     e.preventDefault();
+
     const email = focusRef.current.value.trim();
 
     if (!email) {
       focusRef.current.focus(); // focus the input
       return;
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setEmailError(true);
       return;
     }
     setEmailError(false);
+    setIsLoading(true);
     try {
       const methods = await checkIfEmailExists(email);
 
       if (methods && methods.length > 0) {
-        setIsLoading(true);
         setTimeout(() => {
           navigate("/login", { state: { email, fromLanding: true } });
           setIsLoading(false);
-        }, 600);
+        }, 400);
       } else {
         setIsLoading(true);
         setTimeout(() => {

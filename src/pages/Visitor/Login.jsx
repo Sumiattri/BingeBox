@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Footer from "../../components/LandingPageCom/Footer";
-// footer resloved
+import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
 function Login() {
   const location = useLocation();
@@ -25,6 +25,8 @@ function Login() {
   const [isPassWrong, setIsPassWrong] = useState(false);
 
   const [submittedEmail, setSubmittedEmail] = useState();
+
+  const [isLoading, setIsLoading] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,23 +47,25 @@ function Login() {
       setPassError(false); // reset if valid
     }
     if (hasError) return;
-
+    setIsLoading(true);
     try {
       await signIn(email, password);
       console.log("Login successful");
-      setTimeout(() => {
-        navigate("/profiles", { replace: true });
-      }, 200);
+
+      navigate("/profiles", { replace: true });
+      setIsLoading(false);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         // alert("Invalid Credentials");
         setLoginError("Invalid credentials");
         setIsPassWrong(false);
+        setIsLoading(false);
       } else if (error.code === "auth/wrong-password") {
         console.error("Login failed:", error.message);
         setLoginError();
         setSubmittedEmail(email);
         setIsPassWrong(true);
+        setIsLoading(false);
         setTimeout(3000);
       }
     }
@@ -69,6 +73,7 @@ function Login() {
 
   return (
     <>
+      {isLoading && <SpinnerOverlay />}
       <div
         className="bg-cover relative bg-no-repeat bg-center sm:h-full h-[90vh] w-full overflow-hidden box-border   grid justify-center items-center pt-14 "
         style={{

@@ -9,7 +9,7 @@ const LogoutButton = () => {
     signOut(auth)
       .then(() => {
         console.log("Logged out");
-        navigate("/"); // send user back to landing or login
+        navigate("/", { replace: true }); // send user back to landing or login
       })
       .catch((error) => {
         console.error("Logout error", error);
