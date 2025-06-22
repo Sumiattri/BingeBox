@@ -202,7 +202,7 @@ function Login() {
                       navigate("/");
                     }, 700);
                   }}
-                  className=" text-white cursor-pointer font-semibold hover:underline active:scale-100 transition-all duration-300"
+                  className=" text-white cursor-pointer font-semibold hover:underline active:scale-110 transition-all duration-300"
                 >
                   {" "}
                   Sign Up now.{" "}
