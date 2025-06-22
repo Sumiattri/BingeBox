@@ -216,7 +216,7 @@ function Login() {
               Forgot Password?{" "}
             </p>
           </div>
-          {showModal && <ResetPassModal />}
+          {showModal && <ResetPassModal setShowModal={setShowModal} />}
           <div className=" mt-10">
             <p className="text-gray-300">
               New to Netflix?
