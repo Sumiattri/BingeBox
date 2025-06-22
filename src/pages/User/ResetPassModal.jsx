@@ -22,8 +22,12 @@ const ResetPassModal = ({ setShowModal }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="bg-[#141414] w-[90%] max-w-md p-6 rounded-lg shadow-lg text-white">
+    <div className="absolute inset-0 flex items-center justify-center  ">
+      <div
+        className="bg-black/50 absolute inset-0 z-10"
+        onClick={() => setShowModal(false)}
+      ></div>
+      <div className="bg-[#141414] w-[90%] max-w-md p-6 rounded-lg shadow-lg text-white z-10 ">
         <h2 className="text-xl font-semibold mb-2">Reset your password</h2>
         <p className="mb-4 text-sm text-gray-400">
           Enter your email address and we'll send you a password reset link.
