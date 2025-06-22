@@ -21,8 +21,9 @@ import {
   WelcomePage,
   CreateProfile,
   Profiles,
+  VerifyEmail,
+  ResetPassword,
 } from ".";
-import VerifyEmail from "./pages/User/VerifyEmail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/welcome" element={<WelcomePage />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
 
       <Route
         path="/create-profile"
@@ -99,10 +101,10 @@ function App() {
 
   return (
     <>
-      {/* <div
+      <div
         id="click-effects-container"
         className="pointer-events-none fixed inset-0 z-50"
-      ></div>{" "} */}
+      ></div>{" "}
       <RouterProvider router={router} />
     </>
   );

@@ -19,3 +19,6 @@ export { default as WelcomePage } from "./pages/Visitor/WelcomePage";
 
 export { default as CreateProfile } from "./pages/User/CreateProfile";
 export { default as Profiles } from "./pages/User/Profiles";
+
+export { default as ResetPassword } from "./pages/User/ResetPassword";
+export { default as VerifyEmail } from "./pages/User/VerifyEmail";

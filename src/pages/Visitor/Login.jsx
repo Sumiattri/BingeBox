@@ -8,6 +8,9 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import Footer from "../../components/LandingPageCom/Footer";
 import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+
 function Login() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -70,7 +73,21 @@ function Login() {
       }
     }
   };
+  const handleForgotPassword = async () => {
+    const email = prompt("Enter your email to reset password:");
+    if (!email) return;
 
+    try {
+      const origin = window.location.origin;
+      await sendPasswordResetEmail(auth, email, {
+        url: `${origin}/reset-password`,
+      });
+      alert("✅ Password reset email sent! Please check your inbox.");
+    } catch (error) {
+      console.error("Reset error:", error.message);
+      alert("❌ Couldn't send reset email. Please check the email address.");
+    }
+  };
   return (
     <>
       {isLoading && <SpinnerOverlay />}
@@ -190,7 +207,12 @@ function Login() {
             </form>
           </div>
           <div className="mt-9  text-center">
-            <Link className="text-white underline">Forgot Password? </Link>
+            <p
+              onClick={handleForgotPassword}
+              className="text-white underline hover:cursor-pointer"
+            >
+              Forgot Password?{" "}
+            </p>
           </div>
           <div className=" mt-10">
             <p className="text-gray-300">
