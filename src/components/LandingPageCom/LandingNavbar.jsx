@@ -41,7 +41,7 @@ function LandingNavbar() {
                 setIsLoading(false);
               }, 600);
             }}
-            className={`py-1.5 px-3.5 text-white bg-[#e50815] ${isLoading ? "cursor-wait" : "cursor-pointer"} rounded-sm font-semibold text-sm active:bg-gray-600  hover:bg-red-700 transition-colors cursor-pointer`}
+            className={`py-1.5 px-3.5 text-white bg-[#e50815] ${isLoading ? "cursor-wait" : "cursor-pointer"} rounded-sm font-semibold text-sm active:bg-gray-600 transition-colors duration-300  hover:bg-red-700  cursor-pointer`}
           >
             Sign In
           </button>
