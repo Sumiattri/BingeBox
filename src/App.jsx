@@ -69,40 +69,40 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  useEffect(() => {
-    const container = document.getElementById("click-effects-container");
+  // useEffect(() => {
+  //   const container = document.getElementById("click-effects-container");
 
-    const handleClick = (e) => {
-      const ripple = document.createElement("div");
+  //   const handleClick = (e) => {
+  //     const ripple = document.createElement("div");
 
-      ripple.style.position = "absolute";
-      ripple.style.left = `${e.clientX - 10}px`;
-      ripple.style.top = `${e.clientY - 10}px`;
-      ripple.style.width = `20px`;
-      ripple.style.height = `20px`;
-      ripple.style.border = `2px solid #e50914`;
-      ripple.style.borderRadius = "50%";
-      ripple.style.pointerEvents = "none";
-      ripple.style.animation = "rotate-fade 0.8s ease-out forwards";
-      ripple.style.zIndex = "9999";
+  //     ripple.style.position = "absolute";
+  //     ripple.style.left = `${e.clientX - 10}px`;
+  //     ripple.style.top = `${e.clientY - 10}px`;
+  //     ripple.style.width = `20px`;
+  //     ripple.style.height = `20px`;
+  //     ripple.style.border = `2px solid #e50914`;
+  //     ripple.style.borderRadius = "50%";
+  //     ripple.style.pointerEvents = "none";
+  //     ripple.style.animation = "rotate-fade 0.8s ease-out forwards";
+  //     ripple.style.zIndex = "9999";
 
-      container.appendChild(ripple);
+  //     container.appendChild(ripple);
 
-      setTimeout(() => {
-        ripple.remove();
-      }, 800);
-    };
+  //     setTimeout(() => {
+  //       ripple.remove();
+  //     }, 800);
+  //   };
 
-    window.addEventListener("click", handleClick);
-    return () => window.removeEventListener("click", handleClick);
-  }, []);
+  //   window.addEventListener("click", handleClick);
+  //   return () => window.removeEventListener("click", handleClick);
+  // }, []);
 
   return (
     <>
-      <div
+      {/* <div
         id="click-effects-container"
         className="pointer-events-none fixed inset-0 z-50"
-      ></div>{" "}
+      ></div>{" "} */}
       <RouterProvider router={router} />
     </>
   );
