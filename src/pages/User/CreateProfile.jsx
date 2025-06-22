@@ -42,7 +42,7 @@ const CreateProfile = () => {
       const id = await addProfileToFirestore(profileData);
       const profile = { id, ...profileData };
       localStorage.setItem("profile", JSON.stringify(profile));
-      navigate("/profiles");
+      navigate("/profiles", { replace: true });
     } catch (error) {
       console.error("Error creating profile:", error);
     }
@@ -55,7 +55,7 @@ const CreateProfile = () => {
         <hr className="text-gray-200" />
         <div className="h-[80vh] w-full flex justify-center items-center  ">
           <div className=" h-[35rem] w-[35rem] flex flex-col px-10  gap-2">
-            <p>Step 2 of 2</p>
+            <p>Step 3 of 3</p>
             <h1 className="text-3xl font-bold mb-6">Add Your Profile :</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input

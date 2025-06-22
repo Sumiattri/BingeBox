@@ -42,12 +42,12 @@ function Signup() {
       await signUp(email, password);
 
       setTimeout(() => {
-        navigate("/verify-email");
+        navigate("/verify-email", { replace: true });
       }, 0);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setTimeout(() => {
-          navigate("/login", { state: { fromSignup: true } });
+          navigate("/login", { state: { email, fromSignup: true } });
         }, 200);
       } else {
         alert(error.message);
@@ -62,7 +62,7 @@ function Signup() {
       <hr className="text-gray-200" />
       <div className="h-[80vh] w-full flex justify-center items-center ">
         <div className=" h-[35rem] w-[35rem] flex flex-col pr-20 pl-10  gap-2">
-          <h2>Step 1</h2>
+          <h2>Step 1 of 3 </h2>
           <h1 className="text-3xl font-semibold font-sans">
             Create a password and start your journey
           </h1>
@@ -124,7 +124,9 @@ function Signup() {
                   Please enter a minimum of 6 digit
                 </p>
               )}
-
+              <p className="text-xs text-gray-600">
+                Click on the next to verify your email.
+              </p>
               <button
                 type="submit"
                 className={` py-3.5 ${passError ? "mt-5" : "mt-0"} active:bg-gray-600  text-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center `}

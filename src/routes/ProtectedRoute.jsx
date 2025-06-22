@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (checking) return null; // or a spinner
   if (user && !user.emailVerified) {
-    return <Navigate to="/verify-email" />;
+    return <Navigate to="/verify-email" replace />;
   }
 
   if (!user) {
