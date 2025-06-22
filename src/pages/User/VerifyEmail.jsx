@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import AuthNavbar from "../../components/AuthUserComp/AuthNavbar";
-import { tr } from "framer-motion/client";
+import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
 function VerifyEmail() {
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState();
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -41,15 +42,19 @@ function VerifyEmail() {
     if (!user) return;
 
     await reload(user); // Fetch latest info
-
+    setIsLoading(true);
     if (user.emailVerified) {
-      navigate("/create-profile", { replace: true }); // or "/create-profile"
+      setTimeout(() => {
+        navigate("/create-profile", { replace: true });
+        setIsLoading(false);
+      }, 1000);
     } else {
       setError("Please verify your email before continuing.");
     }
   };
   return (
     <>
+      {isLoading && <SpinnerOverlay />}
       <AuthNavbar />
       <hr className="text-gray-200" />
       <div className="w-full h-[80vh] flex justify-center items-center">
