@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { addProfileToFirestore } from "../../../firebase/firestoreUtils";
 import { useNavigate } from "react-router-dom";
+import SpinnerOverlay2 from "../../../utils/SpinnerOverlay2";
+import { motion } from "framer-motion";
+import { RxCross1 } from "react-icons/rx";
 
 const avatars = [
   "image.png",
@@ -16,6 +19,7 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
   const [lastName, setLastName] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState();
 
   const navigate = useNavigate();
   const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
@@ -34,7 +38,7 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
       lastName,
       avatar: selectedAvatar,
     };
-
+    setIsLoading(true);
     try {
       const id = await addProfileToFirestore(profileData);
       await fetchProfiles(); // ✅ This updates the profiles in pare
@@ -43,17 +47,31 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
       navigate("/profiles");
     } catch (error) {
       console.error("Error creating profile:", error);
+    } finally {
+      setIsLoading(false);
     }
+
     setIsModalOpen(false);
   };
 
   return (
     <>
+      {isLoading && <SpinnerOverlay2 />}
       <div
         onClick={() => setIsModalOpen(false)}
         className=" bg-black absolute inset-0 z-20"
       ></div>
-      <div className="sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] sm: w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute sm:top-30 top-25 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-10  justify-center">
+      <motion.div
+        initial={{ opacity: 0.4, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="  sm:h-[37rem] h-auto lg:max-w-[50rem] md:w-[40rem] w-[90%] bg-[#161616] border border-[#636262] rounded-md absolute sm:top-30 top-25 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-10 justify-center"
+      >
+        <RxCross1
+          className="absolute top-5 right-5 text-2xl"
+          onClick={() => setIsModalOpen(false)}
+        />
         <div className="">
           {" "}
           <h1 className="text-white text-3xl font-semibold">Add a profile</h1>
@@ -67,7 +85,7 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
               <input
                 type="text"
                 placeholder="First Name"
-                className="border border-[#404040] text-white w-full p-2 rounded"
+                className="border border-[#636262] text-white w-full p-2 rounded"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
@@ -75,7 +93,7 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
               <input
                 type="text"
                 placeholder="Last Name"
-                className="border border-[#404040] w-full p-2 rounded"
+                className="border border-[#636262]  w-full p-2 rounded"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -84,8 +102,8 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
               )}
             </form>
           </div>
-          <div className=" md:max-w-[50%] w-full ">
-            <p className="mb-2">Choose Avatar:</p>
+          <div className=" md:max-w-[50%] w-full  ">
+            <p className="mb-3 ">Choose Avatar</p>
             <div className="flex gap-4 justify-center  flex-wrap ">
               {avatars.map((avatar) => (
                 <img
@@ -103,27 +121,29 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
             </div>
           </div>
         </div>
-        <hr className="text-[#404040]" />
+        <hr className="text-[#636262]" />
         <div className=" w-full">
           <button
             onClick={handleSubmit}
             className={` ${
               !firstName || !selectedAvatar
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-700 hover:cursor-pointer"
-            } text-white  transition-colors py-3 w-full rounded`}
+                ? "bg-[#FFFFFF] cursor-not-allowed"
+                : "bg-red-600 hover:bg-red-700 hover:cursor-pointer active:bg-red-700 transition-all duration-300"
+            } text-black font-semibold  transition-colors py-3   w-full rounded`}
           >
             Continue
           </button>{" "}
           <br />
           <button
-            onClick={() => setIsModalOpen(false)}
-            className="text-white text-3xl mt-4 w-full hover:bg-gray-700 py-2 rounded-md"
+            onClick={() => {
+              setTimeout(() => setIsModalOpen(false), 300);
+            }}
+            className="text-white text-xl mt-4 w-full hover:bg-gray-700 active:bg-gray-700 transition-all duration-300 py-2 rounded-md"
           >
             Cancel
           </button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

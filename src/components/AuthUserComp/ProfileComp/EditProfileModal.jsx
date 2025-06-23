@@ -3,8 +3,11 @@ import {
   updateProfileInFirestore,
   deleteUserProfile,
 } from "../../../firebase/firestoreUtils";
-import { useNavigate } from "react-router-dom";
+
 import { RiDeleteBinLine } from "react-icons/ri";
+import SpinnerOverlay2 from "../../../utils/SpinnerOverlay2";
+import { motion } from "framer-motion";
+import { RxCross1 } from "react-icons/rx";
 
 const avatars = [
   "image.png",
@@ -24,6 +27,7 @@ function EditProfileModal({
   const [lastName, setLastName] = useState(selectedProfile.lastName);
   const [selectedAvatar, setSelectedAvatar] = useState(selectedProfile.avatar);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState();
 
   const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
 
@@ -38,17 +42,20 @@ function EditProfileModal({
       lastName: lastName.trim(),
       avatar: selectedAvatar,
     };
-
+    setIsLoading(true);
     try {
       await updateProfileInFirestore(selectedProfile.id, updatedData);
       fetchProfiles();
       setEditModalOpen(false);
     } catch (error) {
       console.error("Error updating profile:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleDelete = async () => {
+    setIsLoading(true);
     try {
       await deleteUserProfile(selectedProfile.id);
       localStorage.removeItem("profile");
@@ -56,16 +63,29 @@ function EditProfileModal({
       setEditModalOpen(false);
     } catch (error) {
       console.error("Error deleting profile:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <>
+      {isLoading && <SpinnerOverlay2 />}
       <div
         onClick={() => setEditModalOpen(false)}
         className=" bg-black absolute inset-0 z-20"
       ></div>
-      <div className=" sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] sm: w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute sm:top-30 top-15 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-6   justify-center">
+      <motion.div
+        initial={{ opacity: 0.4, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0.5, scale: 0.5 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className=" sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute sm:top-30 top-15 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-6   justify-center"
+      >
+        <RxCross1
+          className="absolute top-5 right-5 text-2xl"
+          onClick={() => setEditModalOpen(false)}
+        />
         <div className=" ">
           {" "}
           <h1 className="text-white text-3xl font-semibold">Add a profile</h1>
@@ -122,7 +142,7 @@ function EditProfileModal({
             className={` ${
               !firstName || !selectedAvatar
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-700 hover:cursor-pointer"
+                : "bg-red-600 hover:bg-red-700 hover:cursor-pointer active:bg-red-700 transition-all duration-300"
             } text-white  transition-colors py-3 w-full rounded`}
           >
             Continue
@@ -142,7 +162,7 @@ function EditProfileModal({
           {" "}
           <RiDeleteBinLine className="mx-auto text-4xl text-gray-300" />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

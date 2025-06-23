@@ -5,6 +5,7 @@ import EditProfileModal from "../../components/AuthUserComp/ProfileComp/EditProf
 
 import { useEffect, useState } from "react";
 import { getUserProfiles } from "../../firebase/firestoreUtils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);
@@ -56,6 +57,7 @@ const Profiles = () => {
           setEditModalOpen={setEditModalOpen}
           setSelectedProfile={setSelectedProfile}
         />
+
         {isModalOpen && (
           <AddProfileModal
             setIsModalOpen={setIsModalOpen}

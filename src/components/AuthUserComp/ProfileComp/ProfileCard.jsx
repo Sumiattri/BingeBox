@@ -38,7 +38,7 @@ function ProfileCard({
                 <div className="absolute rounded lg:top-10 md:top-8 sm:top-6 top-6 lg:left-11 md:left-9 left-6   sm:text-white z-10  md:text-3xl text-3xl">
                   <GrEdit
                     onClick={() => {
-                      setEditModalOpen(true);
+                      setTimeout(() => setEditModalOpen(true), 300);
                       setSelectedProfile(profile);
                     }}
                   />
@@ -54,10 +54,12 @@ function ProfileCard({
       ))}
       {profiles.length < 5 && (
         <div
-          onClick={() => setIsModalOpen(true)}
-          className="  flex flex-col items-center gap-5 pt-3 justify-center"
+          onClick={() => {
+            setTimeout(() => setIsModalOpen(true), 400);
+          }}
+          className="  flex flex-col items-center gap-5 pt-3 justify-center   active:scale-90 hover:scale-115 transition-all duration-300"
         >
-          <IoPersonAddSharp className="md:text-8xl sm:text-6xl text-5xl text-[#808080]" />
+          <IoPersonAddSharp className="md:text-7xl sm:text-6xl text-5xl  text-[#808080]" />
           <p className="text-[#808080]">Add Profile</p>
         </div>
       )}
