@@ -21,6 +21,7 @@ function ResetPassword() {
     e.preventDefault();
     if (newPassword.length < 6) {
       setVaildPass("Please enter a minimum of 6 characters");
+      setPassError(false);
       return;
     }
     if (newPassword !== confirmPassword) {
