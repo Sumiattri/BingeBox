@@ -128,14 +128,13 @@ function EditProfileModal({
             Continue
           </button>{" "}
           <br />
-          <div className="active:bg-gray-700 transition-all duration-300">
-            <button
-              onClick={() => setTimeout(() => setEditModalOpen(false), 300)}
-              className="text-white text-3xl mt-2 w-full hover:bg-gray-700  py-2 rounded-sm"
-            >
-              Cancel
-            </button>
-          </div>
+          <div className="active:bg-gray-700 transition-all duration-300"></div>
+          <button
+            onClick={() => setTimeout(() => setEditModalOpen(false), 300)}
+            className="text-white text-3xl mt-2 w-full hover:bg-gray-700  py-2 rounded-sm"
+          >
+            Cancel
+          </button>
         </div>
         <div
           className=" w-full  py-2 rounded-sm  hover:bg-gray-700 -mt-5 active:bg-gray-700 transition-all duration-300"
