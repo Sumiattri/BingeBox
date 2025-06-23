@@ -65,15 +65,15 @@ function EditProfileModal({
         onClick={() => setEditModalOpen(false)}
         className=" bg-black absolute inset-0 z-20"
       ></div>
-      <div className=" sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] sm: w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute sm:top-30 top-25 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-10  justify-center">
-        <div className="">
+      <div className=" sm:h-[37rem] h-auto lg:max-w-[50rem]  md:w-[40rem] sm: w-[90%] bg-[#161616] border  border-[#404040] rounded-md absolute sm:top-30 top-15 left-1/2 -translate-x-1/2 z-50 flex flex-col px-8 sm:py-0 py-5 gap-6   justify-center">
+        <div className=" ">
           {" "}
           <h1 className="text-white text-3xl font-semibold">Add a profile</h1>
           <p className="text-white ">
             Add a profile for another person watching
           </p>
         </div>
-        <div className="  flex items-center justify-between gap-5 md:flex-row flex-col ">
+        <div className="  flex items-center justify-between gap-5 md:flex-row   flex-col ">
           <div className="sm:w-[47%] w-full ">
             <form action="" className="flex flex-col  w-full gap-5">
               <input
@@ -130,13 +130,13 @@ function EditProfileModal({
           <br />
           <button
             onClick={() => setEditModalOpen(false)}
-            className="text-white text-3xl mt-4 w-full hover:bg-gray-700 py-2 rounded-sm"
+            className="text-white text-3xl mt-2 w-full hover:bg-gray-700 py-2 rounded-sm"
           >
             Cancel
           </button>
         </div>
         <div
-          className=" w-full  py-2 rounded-sm hover:bg-gray-700 -mt-4"
+          className=" w-full  py-2 rounded-sm  hover:bg-gray-700 -mt-5"
           onClick={handleDelete}
         >
           {" "}
