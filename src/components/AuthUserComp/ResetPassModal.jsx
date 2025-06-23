@@ -3,6 +3,7 @@ import { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import SpinnerOverlay2 from "../../utils/SpinnerOverlay2";
+import { useEffect } from "react";
 
 const ResetPassModal = ({ setShowModal }) => {
   const [email, setEmail] = useState("");
