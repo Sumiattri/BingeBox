@@ -6,11 +6,9 @@ import { useLocation } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Footer from "../../components/LandingPageCom/Footer";
-import SpinnerOverlay from "../../utils/SpinnerOverlay";
+import SpinnerOverlay2 from "../../utils/SpinnerOverlay2";
 
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
-import ResetPassModal from "../User/ResetPassModal";
+import ResetPassModal from "../../components/AuthUserComp/ResetPassModal";
 
 function Login() {
   const location = useLocation();
@@ -92,7 +90,7 @@ function Login() {
   // };
   return (
     <>
-      {isLoading && <SpinnerOverlay />}
+      {isLoading && <SpinnerOverlay2 />}
       <div
         className="bg-cover relative bg-no-repeat bg-center sm:h-full h-[90vh] w-full overflow-hidden box-border   grid justify-center items-center pt-14 "
         style={{
@@ -210,7 +208,13 @@ function Login() {
           </div>
           <div className="mt-9  text-center">
             <p
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                setIsLoading(true);
+                setTimeout(() => {
+                  setShowModal(true);
+                  setIsLoading(false);
+                }, 600);
+              }}
               className="text-white underline hover:cursor-pointer"
             >
               Forgot Password?{" "}
