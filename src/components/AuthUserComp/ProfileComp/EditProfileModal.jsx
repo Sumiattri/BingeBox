@@ -130,13 +130,13 @@ function EditProfileModal({
           <br />
           <button
             onClick={() => setEditModalOpen(false)}
-            className="text-white text-3xl mt-2 w-full hover:bg-gray-700 py-2 rounded-sm"
+            className="text-white text-3xl mt-2 w-full hover:bg-gray-700 active:bg-gray-700 transition-all duration-300 py-2 rounded-sm"
           >
             Cancel
           </button>
         </div>
         <div
-          className=" w-full  py-2 rounded-sm  hover:bg-gray-700 -mt-5"
+          className=" w-full  py-2 rounded-sm  hover:bg-gray-700 -mt-5 active:bg-gray-700 transition-all duration-300"
           onClick={handleDelete}
         >
           {" "}

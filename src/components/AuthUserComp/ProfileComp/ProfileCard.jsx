@@ -35,7 +35,7 @@ function ProfileCard({
                 <div className="bg-black/50 inset-0 z-5 absolute  rounded-full"></div>
               )}
               {isManageMode && (
-                <div className="absolute rounded lg:top-10 md:top-8 sm:top-6 top-6 lg:left-11 md:left-9 left-6   sm:text-white z-10  md:text-3xl text-2xl">
+                <div className="absolute rounded lg:top-10 md:top-8 sm:top-6 top-6 lg:left-11 md:left-9 left-6   sm:text-white z-10  md:text-3xl text-3xl">
                   <GrEdit
                     onClick={() => {
                       setEditModalOpen(true);
