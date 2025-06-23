@@ -9,6 +9,17 @@ const ResetPassModal = ({ setShowModal }) => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState();
+  const [keepModalOpen, setKeepModalOpen] = useState();
+
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setShowModal(false);
+      }, 3000);
+
+      return () => clearTimeout(timer); // cleanup if modal unmounts early
+    }
+  }, [message]);
 
   const handleReset = async () => {
     if (!email) return setError("Please enter your email.");
