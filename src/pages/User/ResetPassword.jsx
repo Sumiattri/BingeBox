@@ -72,9 +72,6 @@ function ResetPassword() {
                 >
                   NewPassword
                 </label>
-                {validPass && (
-                  <p className="text-red-600 text-sm">{validPass}</p>
-                )}
                 <input
                   type="text"
                   id="confirmPassword"
@@ -93,6 +90,9 @@ function ResetPassword() {
                   <p className="text-red-500 text-sm">
                     Enter the same password in both the fields.
                   </p>
+                )}
+                {validPass && (
+                  <p className="text-red-600 text-sm mt-1">{validPass}</p>
                 )}
                 <button
                   type="submit"
