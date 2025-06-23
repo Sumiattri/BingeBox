@@ -16,6 +16,7 @@ function EmailVerified() {
     setTimeout(() => setShowSpinner(false), 400);
     const verifyLink = async () => {
       try {
+        setTimeout(400);
         // 1. Check if the oobCode is valid
         await checkActionCode(auth, oobCode);
 
@@ -41,12 +42,16 @@ function EmailVerified() {
       {showSpinner && <SpinnerOverlay />}
       <div className="h-screen w-screen flex flex-col items-center justify-center text-white">
         {status === "checking" && (
-          <p className="text-xl font-semibold">Verifying your email...</p>
+          <p className="text-xl font-semibold text-black">
+            Verifying your email...
+          </p>
         )}
 
         {status === "valid" && (
           <>
-            <h1 className="text-3xl font-semibold mb-2">🎉 Email Verified!</h1>
+            <h1 className="text-3xl font-semibold mb-2 text-black">
+              🎉 Email Verified!
+            </h1>
             <p className="mb-6">You can now continue to the app.</p>
             <button
               onClick={() => navigate("/create-profile", { replace: true })}
