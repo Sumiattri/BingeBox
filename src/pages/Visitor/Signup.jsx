@@ -125,12 +125,14 @@ function Signup() {
                   Please enter a minimum of 6 digit
                 </p>
               )}
-              <p className="text-xs text-gray-600">
+              <p
+                className={`text-sm ${passError ? "mt-3" : "mt-0"} text-gray-600`}
+              >
                 Click on the next to verify your email.
               </p>
               <button
                 type="submit"
-                className={` py-3.5 ${passError ? "mt-5" : "mt-0"} active:bg-gray-600  text-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center `}
+                className={` py-3.5 ${passError ? "mt-2" : "mt-0"} active:bg-gray-600  text-xl cursor-pointer hover:bg-red-700 transition-colors duration-300 text-white bg-[#e50815] rounded-md  flex  justify-center items-center `}
               >
                 {" "}
                 Next
