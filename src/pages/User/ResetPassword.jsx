@@ -33,7 +33,7 @@ function ResetPassword() {
     try {
       await confirmPasswordReset(auth, oobCode, newPassword);
       alert("Password successfully reset! Please log in.");
-      navigate("/login");
+      navigate("/login", { replace: true });
     } catch (error) {
       console.error("Error resetting password:", error);
       alert("Reset failed. Please try again.");
