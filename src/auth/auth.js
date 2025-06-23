@@ -27,7 +27,10 @@ export async function signUp(email, password) {
     email: user.email,
     createdAt: serverTimestamp(),
   });
-  await sendEmailVerification(user);
+  await sendEmailVerification(user, {
+    url: "https://netflix-tau-murex.vercel.app/email-verified",
+    handleCodeInApp: true,
+  });
 
   return userCredential; // or userCredential, depending on your use-case
 }

@@ -14,7 +14,10 @@ const ResetPassModal = ({ setShowModal }) => {
     if (!email) return setError("Please enter your email.");
     setIsLoading(true);
     try {
-      await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email, {
+        url: "https://netflix-tau-murex.vercel.app/reset-password",
+        handleCodeInApp: true,
+      });
       setMessage("Reset link sent! Check your inbox.");
       setError("");
     } catch (err) {

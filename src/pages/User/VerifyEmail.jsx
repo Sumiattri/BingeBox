@@ -33,7 +33,10 @@ function VerifyEmail() {
   const handleResend = async () => {
     const user = auth.currentUser;
     if (user && !user.emailVerified) {
-      await sendEmailVerification(user);
+      await sendEmailVerification(user, {
+        url: "https://netflix-tau-murex.vercel.app/email-verified",
+        handleCodeInApp: true,
+      });
       alert("Verification email sent again!");
     }
   };
@@ -50,6 +53,7 @@ function VerifyEmail() {
       }, 1000);
     } else {
       setError("Please verify your email before continuing.");
+      setIsLoading(false);
     }
   };
   return (

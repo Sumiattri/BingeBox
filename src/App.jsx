@@ -23,7 +23,9 @@ import {
   Profiles,
   VerifyEmail,
   ResetPassword,
+  EmailVerified,
 } from ".";
+import FirebaseActionRouter from "./pages/User/FirebaseActionRouter.";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +45,9 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route path="/email-verified" element={<EmailVerified />} />
+      <Route path="/auth-action" element={<FirebaseActionRouter />} />
+
       <Route
         path="/profiles"
         element={
