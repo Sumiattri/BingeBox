@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { checkActionCode, applyActionCode, auth } from "firebase/auth";
+import { checkActionCode, applyActionCode } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
 function EmailVerified() {
