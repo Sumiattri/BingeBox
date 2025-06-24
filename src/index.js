@@ -16,7 +16,6 @@ export { default as ProtectedRoute } from "./routes/ProtectedRoute";
 
 //layout
 export { default as HomeLayout } from "./Layout/HomeLayout";
-// export { default as WelcomePage } from "./pages/Visitor/WelcomePage";
 
 export { default as CreateProfile } from "./pages/User/CreateProfile";
 export { default as Profiles } from "./pages/User/Profiles";

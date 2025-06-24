@@ -19,7 +19,6 @@ import {
   Signup,
   ProtectedRoute,
   HomeLayout,
-  WelcomePage,
   CreateProfile,
   Profiles,
   VerifyEmail,
@@ -33,10 +32,8 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/welcome" element={<WelcomePage />} />
+      <Route path="/signup" element={<Signup />} />o
       <Route path="/reset-password" element={<ResetPassword />} />
-
       <Route
         path="/create-profile"
         element={
@@ -48,7 +45,6 @@ const router = createBrowserRouter(
       <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/email-verified" element={<EmailVerified />} />
       <Route path="/auth-action" element={<FirebaseActionRouter />} />
-
       <Route
         path="/profiles"
         element={
@@ -57,7 +53,6 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/home"
         element={
