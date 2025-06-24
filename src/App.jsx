@@ -11,8 +11,9 @@ import {
   Home,
   Movies,
   TvShows,
-  Games,
   MyList,
+  NewPopular,
+  Account,
   LandingPage,
   Login,
   Signup,
@@ -68,8 +69,9 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="tv-shows" element={<TvShows />} />
         <Route path="movies" element={<Movies />} />
+        <Route path="new-popular" element={<NewPopular />} />
         <Route path="my-list" element={<MyList />} />
-        <Route path="games" element={<Games />} />
+        <Route path="account" element={<Account />} />
       </Route>
     </>
   )
