@@ -34,30 +34,20 @@ const ProtectedRoute = ({ children }) => {
         return;
       }
 
-      try {
-        const profiles = await fetchProfiles(user.uid);
-        if (profiles.length > 0) {
-          navigate("/profiles", { replace: true });
-        } else {
-          navigate("/create-profile", { replace: true });
-        }
-      } catch (error) {
-        console.error("Error checking profiles:", error);
+      const profiles = await fetchProfiles(user.uid);
+      if (profiles.length < 1) {
         navigate("/create-profile", { replace: true });
-      } finally {
-        setChecking(false); // ✅ always stop checking!
       }
+
+      // ✅ Add this to ensure checking ends if user is verified
+      setChecking(false);
     });
 
     return () => unsubscribe();
   }, []);
 
-  if (checking) {
-    return <SpinnerOverlay />;
-  }
-
-  // if (!user) {
-  //   return <Navigate to="/" />;
+  // if (checking) {
+  //   return <SpinnerOverlay />;
   // }
 
   return children;

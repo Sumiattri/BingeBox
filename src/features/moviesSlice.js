@@ -1,7 +1,9 @@
 // features/movieSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+// "https://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.deschttps://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.desc&primary_release_date.gte=2024-04-18",
+//https://api.themoviedb.org/3/discover/movie
 const BASE_URL = "https://api.themoviedb.org/3";
 
 // 🔁 Utility function to generate discover movie URLs
@@ -12,10 +14,97 @@ const discoverUrl = (type = "movie", params = "") =>
 export const fetchTrending = createAsyncThunk(
   "movies/fetchTrending",
   async () => {
-    const res = await axios.get(
-      `${BASE_URL}/trending/all/week?api_key=${API_KEY}`
+    const options = {
+      method: "GET",
+      // url: "https://api.themoviedb.org/3/trending/all/week",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+      },
+    };
+
+    const response = await fetch(
+      "https://api.themoviedb.org/3/trending/all/week?&region=IN",
+      options
     );
-    return res.data.results;
+    const data = await response.json();
+
+    return data.results; // Only return array of movies
+  }
+);
+
+export const fetchTvDrama = createAsyncThunk(
+  "movies/fetchTvDrama",
+  async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+      },
+    };
+
+    const response = await fetch(
+      "https://api.themoviedb.org/3/discover/tv?&with_original_language=en",
+      options
+    );
+    const data = await response.json();
+
+    return data.results; // Only return array of movies
+  }
+);
+
+export const fetchPopular = createAsyncThunk(
+  "movies/fetchPopular",
+  async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+      },
+    };
+
+    const response = await fetch(
+      "https://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.deschttps://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.desc&primary_release_date.gte=2024-04-18",
+      options
+    );
+    const data = await response.json();
+
+    return data.results; // Only return array of movies
+  }
+);
+
+export const fetchDiscover = createAsyncThunk(
+  "movies/fetchDiscover",
+  async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+      },
+    };
+
+    const response = await fetch(
+      "https://api.themoviedb.org/3/discover/movie",
+      options
+    );
+    const data = await response.json();
+
+    return data.results; // Only return array of movies
+  }
+);
+
+//browse-by-languages
+export const fetchMoviesByLanguage = createAsyncThunk(
+  "movies/fetchByLanguage",
+  async (languageCode) => {
+    const res = await fetch(
+      `${BASE_URL}/discover/movie?with_original_language=${languageCode}&api_key=${API_KEY}`
+    );
+    const data = await res.json();
+    return { languageCode, movies: data.results };
   }
 );
 
@@ -153,7 +242,9 @@ const movieSlice = createSlice({
     horror: [],
     kDrama: [],
     tvDrama: [],
+    discover: [],
     searchResults: [],
+    moviesByLanguage: {},
     status: "idle",
     error: null,
   },
@@ -162,8 +253,11 @@ const movieSlice = createSlice({
       .addCase(fetchTrending.fulfilled, (state, action) => {
         state.trending = action.payload;
       })
-      .addCase(fetchPopularMovies.fulfilled, (state, action) => {
+      .addCase(fetchPopular.fulfilled, (state, action) => {
         state.popularMovies = action.payload;
+      })
+      .addCase(fetchDiscover.fulfilled, (state, action) => {
+        state.discover = action.payload;
       })
       .addCase(fetchPopularTV.fulfilled, (state, action) => {
         state.popularTV = action.payload;
@@ -201,11 +295,15 @@ const movieSlice = createSlice({
       .addCase(fetchKDrama.fulfilled, (state, action) => {
         state.kDrama = action.payload;
       })
-      .addCase(fetchTVDrama.fulfilled, (state, action) => {
+      .addCase(fetchTvDrama.fulfilled, (state, action) => {
         state.tvDrama = action.payload;
       })
       .addCase(fetchSearchResults.fulfilled, (state, action) => {
         state.searchResults = action.payload;
+      })
+      .addCase(fetchMoviesByLanguage.fulfilled, (state, action) => {
+        const { languageCode, movies } = action.payload;
+        state.moviesByLanguage[languageCode] = movies;
       });
   },
 });

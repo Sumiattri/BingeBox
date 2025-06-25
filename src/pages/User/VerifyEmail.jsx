@@ -58,7 +58,7 @@ function VerifyEmail() {
   };
   return (
     <>
-      {isLoading && <SpinnerOverlay />}
+      {/* {isLoading && <SpinnerOverlay />} */}
       <AuthNavbar />
       <hr className="text-gray-200" />
       <div className="w-full h-[80vh] flex justify-center items-center">

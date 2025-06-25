@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { GrEdit } from "react-icons/gr";
+import { useDispatch } from "react-redux";
+import { setActiveProfile } from "../../../features/profileSlice";
 
 function ProfileCard({
   setIsModalOpen,
@@ -10,6 +12,7 @@ function ProfileCard({
   setSelectedProfile,
 }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="flex justify-center max-w-[50rem] md:flex-nowrap flex-wrap  sm:gap-10 gap-5 mt-10 ">
@@ -18,8 +21,9 @@ function ProfileCard({
           key={profile.id}
           onClick={() => {
             if (!isManageMode) {
-              localStorage.setItem("profile", JSON.stringify(profile));
-              navigate("/home");
+              localStorage.setItem("activeProfile", JSON.stringify(profile));
+              dispatch(setActiveProfile(profile));
+              navigate("/home", { replace: true });
             }
           }}
           className="text-center cursor-pointer z-1   relative "

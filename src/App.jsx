@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-import { useEffect } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -24,8 +22,17 @@ import {
   VerifyEmail,
   ResetPassword,
   EmailVerified,
+  BrowseByLanguages,
 } from ".";
+
 import FirebaseActionRouter from "./pages/User/FirebaseActionRouter.";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setAllProfiles } from "./features/profileSlice";
+import { setActiveProfile } from "./features/profileSlice";
+import { getUserProfiles } from "./firebase/firestoreUtils";
+import { auth } from "./firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -66,6 +73,7 @@ const router = createBrowserRouter(
         <Route path="movies" element={<Movies />} />
         <Route path="new-popular" element={<NewPopular />} />
         <Route path="my-list" element={<MyList />} />
+        <Route path="browse-by-languages" element={<BrowseByLanguages />} />
         <Route path="account" element={<Account />} />
       </Route>
     </>
@@ -100,6 +108,28 @@ function App() {
   //   window.addEventListener("click", handleClick);
   //   return () => window.removeEventListener("click", handleClick);
   // }, []);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const storedProfile = localStorage.getItem("activeProfile");
+        if (storedProfile) {
+          dispatch(setActiveProfile(JSON.parse(storedProfile)));
+        }
+
+        const fetchProfiles = async () => {
+          const profiles = await getUserProfiles();
+          dispatch(setAllProfiles(profiles));
+        };
+
+        fetchProfiles();
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup on unmount
+  }, []);
 
   return (
     <>

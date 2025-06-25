@@ -15,15 +15,6 @@ const Profiles = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
 
-  // export const getUserProfiles = async () => {
-  //   const user = auth.currentUser;
-  //   if (!user) throw new Error("User not logged in");
-
-  //   const profilesRef = collection(doc(db, "users", user.uid), "profiles");
-  //   const snapshot = await getDocs(profilesRef);
-  //   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  // };
-
   const fetchProfiles = async () => {
     try {
       const data = await getUserProfiles();

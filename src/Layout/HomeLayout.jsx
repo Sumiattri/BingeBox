@@ -4,8 +4,11 @@ import Navbar from "../components/AuthUserComp/HomePageComp/Navbar";
 
 function HomeLayout() {
   return (
-    <div className="h-screen w-screen bg-gray-700">
-      <Navbar />
+    <div className="h-screen w-screen ">
+      <div className="relative z-100">
+        {" "}
+        <Navbar />
+      </div>
       <Outlet />
     </div>
   );
