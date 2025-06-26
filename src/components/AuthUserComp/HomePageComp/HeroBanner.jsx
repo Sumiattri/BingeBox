@@ -21,36 +21,13 @@ const HeroBanner = () => {
 
   useEffect(() => {
     if (!heroMovie || movieLogo) return;
-    if (heroMovie) {
-      console.log("Hero Movie:", heroMovie);
-      console.log("Movie ID:", heroMovie.id); // This will no longer throw
 
-      const options = {
-        method: "GET",
-        url: `https://api.themoviedb.org/3/movie/${heroMovie.id}/images`,
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
-        },
-      };
-
-      axios
-        .request(options)
-        .then((res) => {
-          const logos = res.data.logos;
-
-          // Choose the first English logo (or fallback to the first available)
-          const logo =
-            logos.find((l) => l.iso_639_1 === "en") || logos[0] || null;
-
-          if (logo) {
-            setMovieLogo(logo.file_path); // just store file_path
-          } else {
-            setMovieLogo(null);
-          }
-        })
-        .catch((err) => console.error(err));
-    }
+    axios
+      .get(`/api/movie-logos/${heroMovie.id}`)
+      .then((res) => {
+        setMovieLogo(res.data.logo || null);
+      })
+      .catch((err) => console.error("Logo fetch failed:", err));
   }, [heroMovie]);
 
   if (!heroMovie) return null;
