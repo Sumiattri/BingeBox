@@ -7,6 +7,7 @@ const HeroBanner = () => {
   const trendingMovies = useSelector((state) => state.movie.trending);
   const [heroMovie, setHeroMovie] = useState(null);
   const [movieLogo, setMovieLogo] = useState(null);
+  console.log("hrfjrsfjsfjfjdsjfbdjsfbjs");
 
   useEffect(() => {
     // Don't set again if already set
@@ -29,8 +30,7 @@ const HeroBanner = () => {
         url: `https://api.themoviedb.org/3/movie/${heroMovie.id}/images`,
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YWI5YmRiMWVjODc3NzBmZTVmNWRiYjU2ZmVkNjFmMyIsIm5iZiI6MTc1MDY5NTEwOC4xODcsInN1YiI6IjY4NTk3Y2M0Y2JmZTNkZjcwNmQxNTFmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6q2iEgHbOvkITLJLqJG0nssjY0Xiu_xeA1gCo5JQx9k",
+          Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
         },
       };
 
