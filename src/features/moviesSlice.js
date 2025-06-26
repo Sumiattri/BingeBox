@@ -118,7 +118,7 @@ export const fetchDiscover = createAsyncThunk(
 );
 
 export const fetchTvDrama = createAsyncThunk("movie/fetchTvDrama", async () => {
-  const res = await axios.get("/api/tv");
+  const res = await axios.get("/api/tvDrama");
   return res.data.results;
 });
 
