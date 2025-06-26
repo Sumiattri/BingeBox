@@ -13,6 +13,8 @@ export default async function handler(req, res) {
     );
 
     const data = await response.json();
+    console.log(data);
+
     const logos = data.logos;
     const enLogo =
       logos.find((logo) => logo.iso_639_1 === "en") || logos[0] || null;
