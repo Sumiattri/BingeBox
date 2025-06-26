@@ -28,11 +28,11 @@ function Home() {
           <div className="absolute sm:block hidden bottom-0 h-32 w-full bg-gradient-to-b from-transparent to-[#141414] pointer-events-none z-11 "></div>
           <div className=" "></div>
         </div>
-        {/* <div className="md:-mt-33 mt-10 flex flex-col gap-9">
+        <div className="md:-mt-33 mt-10 flex flex-col gap-9">
           <MovieRow title="Popular Around You" movies={popularMovies} />
           <MovieRow title="TV-Shows" movies={TvDrama} />
           <MovieRow title="Discover Movies" movies={discoverMovies} />
-        </div> */}
+        </div>
       </div>
     </div>
   );
