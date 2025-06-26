@@ -11,90 +11,116 @@ const discoverUrl = (type = "movie", params = "") =>
   `${BASE_URL}/discover/${type}?api_key=${API_KEY}&${params}`;
 
 // 🔥 Trending All (for hero)
+// export const fetchTrending = createAsyncThunk(
+//   "movies/fetchTrending",
+//   async () => {
+//     const options = {
+//       method: "GET",
+//       // url: "https://api.themoviedb.org/3/trending/all/week",
+//       headers: {
+//         accept: "application/json",
+//         Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+//       },
+//     };
+
+//     const response = await fetch(
+//       "https://api.themoviedb.org/3/trending/all/week?&region=IN",
+//       options
+//     );
+//     const data = await response.json();
+
+//     return data.results; // Only return array of movies
+//   }
+// );
+
+// export const fetchTvDrama = createAsyncThunk(
+//   "movies/fetchTvDrama",
+//   async () => {
+//     const options = {
+//       method: "GET",
+//       headers: {
+//         accept: "application/json",
+//         Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+//       },
+//     };
+
+//     const response = await fetch(
+//       "https://api.themoviedb.org/3/discover/tv?&with_original_language=en",
+//       options
+//     );
+//     const data = await response.json();
+
+//     return data.results; // Only return array of movies
+//   }
+// );
+
+// export const fetchPopular = createAsyncThunk(
+//   "movies/fetchPopular",
+//   async () => {
+//     const options = {
+//       method: "GET",
+//       headers: {
+//         accept: "application/json",
+//         Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+//       },
+//     };
+
+//     const response = await fetch(
+//       "https://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.deschttps://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.desc&primary_release_date.gte=2024-04-18",
+//       options
+//     );
+//     const data = await response.json();
+
+//     return data.results; // Only return array of movies
+//   }
+// );
+
+// export const fetchDiscover = createAsyncThunk(
+//   "movies/fetchDiscover",
+//   async () => {
+//     const options = {
+//       method: "GET",
+//       headers: {
+//         accept: "application/json",
+//         Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
+//       },
+//     };
+
+//     const response = await fetch(
+//       "https://api.themoviedb.org/3/discover/movie",
+//       options
+//     );
+//     const data = await response.json();
+
+//     return data.results; // Only return array of movies
+//   }
+// );
+
 export const fetchTrending = createAsyncThunk(
-  "movies/fetchTrending",
+  "movie/fetchTrending",
   async () => {
-    const options = {
-      method: "GET",
-      // url: "https://api.themoviedb.org/3/trending/all/week",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
-      },
-    };
-
-    const response = await fetch(
-      "https://api.themoviedb.org/3/trending/all/week?&region=IN",
-      options
-    );
-    const data = await response.json();
-
-    return data.results; // Only return array of movies
+    const res = await axios.get("/api/trending");
+    return res.data.results;
   }
 );
 
-export const fetchTvDrama = createAsyncThunk(
-  "movies/fetchTvDrama",
-  async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
-      },
-    };
-
-    const response = await fetch(
-      "https://api.themoviedb.org/3/discover/tv?&with_original_language=en",
-      options
-    );
-    const data = await response.json();
-
-    return data.results; // Only return array of movies
-  }
-);
-
-export const fetchPopular = createAsyncThunk(
-  "movies/fetchPopular",
-  async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
-      },
-    };
-
-    const response = await fetch(
-      "https://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.deschttps://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.desc&primary_release_date.gte=2024-04-18",
-      options
-    );
-    const data = await response.json();
-
-    return data.results; // Only return array of movies
-  }
-);
+export const fetchPopular = createAsyncThunk("movie/fetchPopular", async () => {
+  const res = await axios.get("/api/popular");
+  return res.data.results;
+});
 
 export const fetchDiscover = createAsyncThunk(
-  "movies/fetchDiscover",
+  "movie/fetchDiscover",
   async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
-      },
-    };
-
-    const response = await fetch(
-      "https://api.themoviedb.org/3/discover/movie",
-      options
-    );
-    const data = await response.json();
-
-    return data.results; // Only return array of movies
+    const res = await axios.get("/api/discover");
+    return res.data.results;
   }
 );
+
+export const fetchTvDrama = createAsyncThunk("movie/fetchTvDrama", async () => {
+  const res = await axios.get("/api/tv");
+  return res.data.results;
+});
 
 //browse-by-languages
 export const fetchMoviesByLanguage = createAsyncThunk(
