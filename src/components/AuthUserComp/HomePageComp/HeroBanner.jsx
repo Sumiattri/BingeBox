@@ -26,7 +26,7 @@ const HeroBanner = () => {
       .get(`/api/movie-logos/${heroMovie.id}`)
       .then((res) => {
         setMovieLogo(res.data.logo || null);
-        console.log(res.data);
+        console.log(res);
         console.log("HIii");
       })
       .catch((err) => console.error("Logo fetch failed:", err));
