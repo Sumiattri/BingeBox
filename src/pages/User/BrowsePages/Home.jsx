@@ -7,10 +7,18 @@ import {
   fetchThriller,
   fetchTrending,
   fetchComedy,
+  fetchSciFi,
+  fetchTvDrama,
+  fetchPopular,
+  fetchDiscover,
+  fetchFamily,
+  fetchDocumentary,
+  fetchAnimation,
+  fetchRomance,
+  fetchWebSeries,
+  fetchHorror,
 } from "../../../features/moviesSlice";
-import { fetchTvDrama } from "../../../features/moviesSlice";
-import { fetchPopular } from "../../../features/moviesSlice";
-import { fetchDiscover } from "../../../features/moviesSlice";
+
 import MovieRow from "../../../components/AuthUserComp/HomePageComp/MovieRow";
 
 function Home() {
@@ -22,6 +30,13 @@ function Home() {
   const kDrama = useSelector((state) => state.movie.kDrama);
   const comedy = useSelector((state) => state.movie.comedy);
   const thriller = useSelector((state) => state.movie.thriller);
+  const scifi = useSelector((state) => state.movie.scifi);
+  const family = useSelector((state) => state.movie.family);
+  const documentary = useSelector((state) => state.movie.documentary);
+  const animation = useSelector((state) => state.movie.animation);
+  const romance = useSelector((state) => state.movie.romance);
+  const webseries = useSelector((state) => state.movie.webseries);
+  const horror = useSelector((state) => state.movie.horror);
 
   useEffect(() => {
     dispatch(fetchTrending());
@@ -32,6 +47,13 @@ function Home() {
     dispatch(fetchKDrama());
     dispatch(fetchThriller());
     dispatch(fetchComedy());
+    dispatch(fetchSciFi());
+    dispatch(fetchFamily());
+    dispatch(fetchDocumentary());
+    dispatch(fetchAnimation());
+    dispatch(fetchRomance());
+    dispatch(fetchWebSeries());
+    dispatch(fetchHorror());
   }, [dispatch]);
 
   return (
@@ -50,6 +72,15 @@ function Home() {
           <MovieRow title="Action " movies={actionMovies} />
           <MovieRow title="Movies That Will Make You Laugh " movies={comedy} />
           <MovieRow title="Thrillers " movies={thriller} />
+          <MovieRow title="Family Watch " movies={family} />
+          {/* <MovieRow title="Horror Movies " movies={horror} /> */}
+
+          <MovieRow title="Popular Documentories" movies={documentary} />
+          <MovieRow title="Science Fiction Based Movies " movies={scifi} />
+          <MovieRow title="Hearfelt Romance" movies={romance} />
+          <MovieRow title="Indian Series" movies={webseries} />
+
+          <MovieRow title="Award Winning Animated Movies" movies={animation} />
         </div>
       </div>
     </div>

@@ -6,7 +6,6 @@ const genreMap = {
   comedy: 35,
   romance: 10749,
   thriller: 53,
-  documentary: 99,
   animation: 16,
   family: 10751,
   scifi: 878,

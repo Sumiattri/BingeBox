@@ -133,6 +133,43 @@ export const fetchComedy = createAsyncThunk("movie/fetchComedy", async () => {
   const res = await axios.get("/api/category/comedy");
   return res.data.results;
 });
+export const fetchSciFi = createAsyncThunk("movie/fetchSciFi", async () => {
+  const res = await axios.get("/api/category/scifi");
+  return res.data.results;
+});
+export const fetchFamily = createAsyncThunk("movie/fetchFamily", async () => {
+  const res = await axios.get("/api/category/family");
+  return res.data.results;
+});
+export const fetchDocumentary = createAsyncThunk(
+  "movie/fetchDocumentary",
+  async () => {
+    const res = await axios.get("/api/documentary");
+    return res.data.results;
+  }
+);
+export const fetchAnimation = createAsyncThunk(
+  "movie/fetchAnimation",
+  async () => {
+    const res = await axios.get("/api/category/animation");
+    return res.data.results;
+  }
+);
+export const fetchRomance = createAsyncThunk("movie/fetchRomance", async () => {
+  const res = await axios.get("/api/romance");
+  return res.data.results;
+});
+export const fetchWebSeries = createAsyncThunk(
+  "movie/fetchWebSeries",
+  async () => {
+    const res = await axios.get("/api/webseries");
+    return res.data.results;
+  }
+);
+export const fetchHorror = createAsyncThunk("movie/fetchHorror", async () => {
+  const res = await axios.get("/api/category/horror");
+  return res.data.results;
+});
 
 //browse-by-languages
 export const fetchMoviesByLanguage = createAsyncThunk(
@@ -163,8 +200,8 @@ const movieSlice = createSlice({
     trending: [],
     popularMovies: [],
     popularTV: [],
-    topIndia: [],
-    sciFi: [],
+    webseries: [],
+    scifi: [],
     romance: [],
     action: [],
     thriller: [],
@@ -177,6 +214,7 @@ const movieSlice = createSlice({
     tvDrama: [],
     discover: [],
     searchResults: [],
+
     moviesByLanguage: {},
     status: "idle",
     error: null,
@@ -195,18 +233,16 @@ const movieSlice = createSlice({
       .addCase(fetchAction.fulfilled, (state, action) => {
         state.action = action.payload;
       })
-      // .addCase(fetchPopularTV.fulfilled, (state, action) => {
-      //   state.popularTV = action.payload;
-      // })
-      // .addCase(fetchTopIndia.fulfilled, (state, action) => {
-      //   state.topIndia = action.payload;
-      // })
-      // .addCase(fetchSciFi.fulfilled, (state, action) => {
-      //   state.sciFi = action.payload;
-      // })
-      // .addCase(fetchRomance.fulfilled, (state, action) => {
-      //   state.romance = action.payload;
-      // })
+      .addCase(fetchWebSeries.fulfilled, (state, action) => {
+        state.webseries = action.payload;
+      })
+
+      .addCase(fetchSciFi.fulfilled, (state, action) => {
+        state.scifi = action.payload;
+      })
+      .addCase(fetchRomance.fulfilled, (state, action) => {
+        state.romance = action.payload;
+      })
 
       .addCase(fetchThriller.fulfilled, (state, action) => {
         state.thriller = action.payload;
@@ -214,18 +250,18 @@ const movieSlice = createSlice({
       .addCase(fetchComedy.fulfilled, (state, action) => {
         state.comedy = action.payload;
       })
-      // .addCase(fetchDocumentary.fulfilled, (state, action) => {
-      //   state.documentary = action.payload;
-      // })
-      // .addCase(fetchFamily.fulfilled, (state, action) => {
-      //   state.family = action.payload;
-      // })
-      // .addCase(fetchAnimation.fulfilled, (state, action) => {
-      //   state.animation = action.payload;
-      // })
-      // .addCase(fetchHorror.fulfilled, (state, action) => {
-      //   state.horror = action.payload;
-      // })
+      .addCase(fetchDocumentary.fulfilled, (state, action) => {
+        state.documentary = action.payload;
+      })
+      .addCase(fetchFamily.fulfilled, (state, action) => {
+        state.family = action.payload;
+      })
+      .addCase(fetchAnimation.fulfilled, (state, action) => {
+        state.animation = action.payload;
+      })
+      .addCase(fetchHorror.fulfilled, (state, action) => {
+        state.horror = action.payload;
+      })
       .addCase(fetchKDrama.fulfilled, (state, action) => {
         state.kDrama = action.payload;
       })
