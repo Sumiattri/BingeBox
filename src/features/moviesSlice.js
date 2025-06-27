@@ -2,14 +2,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// "https://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.deschttps://api.themoviedb.org/3/discover/movie?with_original_language=hi&sort_by=popularity.desc&primary_release_date.gte=2024-04-18",
-//https://api.themoviedb.org/3/discover/movie
-const BASE_URL = "https://api.themoviedb.org/3";
-
-// 🔁 Utility function to generate discover movie URLs
-const discoverUrl = (type = "movie", params = "") =>
-  `${BASE_URL}/discover/${type}?api_key=${API_KEY}&${params}`;
-
 // 🔥 Trending All (for hero)
 // export const fetchTrending = createAsyncThunk(
 //   "movies/fetchTrending",
