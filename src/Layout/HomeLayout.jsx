@@ -4,9 +4,9 @@ import Navbar from "../components/AuthUserComp/HomePageComp/Navbar";
 
 function HomeLayout() {
   return (
-    <div className="min-h-screen w-screen">
+    <div className="min-h-screen w-screen bg-[#141414]">
+      <div className="absolute top-0 w-full h-[70px] bg-gradient-to-b from-black/50 via-black/40  to-[#141414] "></div>
       <Navbar />
-
       <Outlet />
     </div>
   );

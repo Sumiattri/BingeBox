@@ -152,6 +152,7 @@ function Login() {
               <input
                 type="text"
                 id="email"
+                autoComplete="username"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=""
@@ -176,6 +177,7 @@ function Login() {
                 type="password"
                 id="password"
                 value={password}
+                autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
                 className={`peer  text-white bg-[#0f0f0f] py-4 pl-5  w-full border  ${passError ? "border-red-600" : " border-[#5f5f5e] "} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}

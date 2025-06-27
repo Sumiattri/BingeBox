@@ -1,7 +1,7 @@
 import HeroBanner from "../../../components/AuthUserComp/HomePageComp/HeroBanner";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTrending } from "../../../features/moviesSlice";
+import { fetchAction, fetchTrending } from "../../../features/moviesSlice";
 import { fetchTvDrama } from "../../../features/moviesSlice";
 import { fetchPopular } from "../../../features/moviesSlice";
 import { fetchDiscover } from "../../../features/moviesSlice";
@@ -12,12 +12,14 @@ function Home() {
   const TvDrama = useSelector((state) => state.movie.tvDrama);
   const popularMovies = useSelector((state) => state.movie.popularMovies);
   const discoverMovies = useSelector((state) => state.movie.discover);
+  const actionMovies = useSelector((state) => state.movie.action);
 
   useEffect(() => {
     dispatch(fetchTrending());
     dispatch(fetchTvDrama());
     dispatch(fetchPopular());
     dispatch(fetchDiscover());
+    dispatch(fetchAction());
   }, [dispatch]);
 
   return (
@@ -32,6 +34,7 @@ function Home() {
           <MovieRow title="Popular Around You" movies={popularMovies} />
           <MovieRow title="TV-Shows" movies={TvDrama} />
           <MovieRow title="Discover Movies" movies={discoverMovies} />
+          <MovieRow title="Action " movies={actionMovies} />
         </div>
       </div>
     </div>

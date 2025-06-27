@@ -7,7 +7,8 @@ const HeroBanner = () => {
   const trendingMovies = useSelector((state) => state.movie.trending);
   const [heroMovie, setHeroMovie] = useState(null);
   const [movieLogo, setMovieLogo] = useState(null);
-  console.log("hrfjrsfjsfjfjdsjfbdjsfbjs");
+  const [logoLoading, setLogoLoading] = useState(true);
+  console.log("hii");
 
   useEffect(() => {
     // Don't set again if already set
@@ -22,20 +23,24 @@ const HeroBanner = () => {
   useEffect(() => {
     if (!heroMovie || movieLogo) return;
 
+    setLogoLoading(true); // Start loading
     axios
       .get(`/api/movie-logos/${heroMovie.id}`)
       .then((res) => {
         setMovieLogo(res.data.logo || null);
-        console.log(res);
-        console.log("HIii");
       })
-      .catch((err) => console.error("Logo fetch failed:", err));
+      .catch((err) => {
+        console.error("Logo fetch failed:", err);
+      })
+      .finally(() => {
+        setLogoLoading(false); // Done loading
+      });
   }, [heroMovie]);
 
   if (!heroMovie) return null;
 
   return (
-    <div className="w-[100vw] flex justify-center   ">
+    <div className="w-[100vw] min-h-[50%] flex justify-center   ">
       <div
         className={`relative md:w-full w-[100%]  bg-cover bg-center text-white sm:border-none  border border-b-gray-700 border-b-[0.1px] border-t-0 border-r-0 border-l-0 
     h-[56vh] sm:h-[80vh] md:h-[90vh] lg:h-[88vh] md:mt-0 mt-37  md:mx-0 mx-6 md:rounded-none rounded-xl  flex items-center justify-center px-4`}
@@ -50,30 +55,36 @@ const HeroBanner = () => {
         {/* Content Container (vertical card on small screens) */}
         <div
           className={` z-10 
-      max-w-[250px] w-full  rounded-lg 
+      max-w-[350px] w-full  rounded-lg 
   
-      absolute md:left-6 left-3 md:top-60 sm:bottom-15 bottom-5 sm:max-w-xl  bg-transparent  sm:px-8 px-2`}
+      absolute md:left-6 left-3 md:top-45 sm:bottom-15 bottom-5 sm:max-w-xl  bg-transparent  sm:px-8 px-2`}
         >
           {/* <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
             {heroMovie.title || heroMovie.name}
           </h1> */}
-          {movieLogo ? (
-            <img
-              src={`https://image.tmdb.org/t/p/original${movieLogo}`}
-              alt={`${heroMovie.title || heroMovie.name} logo`}
-              className=" w-[75%] sm:w-[40%] md:w-[50%] md:max-h-[20%] max-h-[10%] lg:w-[60%] object-contain mb-4  "
-            />
-          ) : (
-            <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-4">
-              {heroMovie.title || heroMovie.name}
-            </h1>
-          )}
+
+          <div className="md:h-30 h-20 w-full ">
+            {" "}
+            {logoLoading ? null : movieLogo ? (
+              <img
+                src={`https://image.tmdb.org/t/p/original${movieLogo}`}
+                alt={`${heroMovie.title || heroMovie.name} logo`}
+                onLoad={(e) => (e.target.style.opacity = 1)}
+                className=" w-[100%] sm:w-[40%] md:w-[60%] md:max-h-[90%] max-h-[100%] lg:w-[80%] object-contain mb-4 transition-opacity duration-500 opacity-0"
+              />
+            ) : (
+              <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-4">
+                {heroMovie.title || heroMovie.name}
+              </h1>
+            )}{" "}
+          </div>
+
           <p className="text-xs sm:text-base sm:block hidden text-gray-200 sm:font-light font-extralight line-clamp-4">
             {heroMovie.overview}
           </p>
 
-          <div className="mt-4 flex gap-4 ">
-            <button className="bg-white text-black sm:text-[17px] text-xs font-semibold px-4 sm:py-2 py-0 rounded hover:bg-opacity-80 transition-all">
+          <div className="mt-4 flex gap-5 sm:justify-start justify-center  ">
+            <button className="bg-white text-black sm:text-[17px] text-xs font-semibold px-5 sm:py-2 py-0 rounded hover:bg-opacity-80 transition-all">
               ▶ Play
             </button>
             <button className="bg-gray-700 bg-opacity-70 text-white font-semibold px-4 py-1 rounded hover:bg-opacity-50 transition-all">

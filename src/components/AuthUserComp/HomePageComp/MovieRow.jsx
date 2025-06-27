@@ -16,7 +16,7 @@ const MovieRow = ({ title, movies }) => {
   if (!movies || movies.length === 0) return null;
 
   return (
-    <div className=" px-5 z-12 relative">
+    <div className=" sm:px-10 px-5 z-12 relative ">
       <h2 className="text-white text-xl font-semibold mb-2">{title}</h2>
       <div className="relative group">
         {/* Scroll Left Button */}
@@ -28,14 +28,14 @@ const MovieRow = ({ title, movies }) => {
         {/* Movie Posters */}
         <div
           ref={rowRef}
-          className="flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex gap-2 overflow-x-auto overflow-y-visible scrollbar-hide  scroll-smooth "
         >
           {movies.map((movie) => (
             <img
               key={movie.id}
               src={`${baseImgUrl}${movie.poster_path}`}
               alt={movie.title || movie.name}
-              className="w-[140px] sm:w-[160px] md:w-[500px] sm:h-[200px] h-[170px] object-cover rounded-md hover:scale-105 transition-all duration-200"
+              className="w-[140px] sm:w-[160px] md:w-[500px] sm:h-[190px] h-[170px] object-cover rounded-md hover:scale-105  transition-all duration-200"
             />
           ))}
         </div>
