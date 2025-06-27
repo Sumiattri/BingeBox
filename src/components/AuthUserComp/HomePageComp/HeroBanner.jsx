@@ -23,7 +23,7 @@ const HeroBanner = () => {
     if (!heroMovie || movieLogo) return;
 
     axios
-      .get(`/api/${heroMovie.id}`)
+      .get(`/api/movielogos/${heroMovie.id}`)
       .then((res) => {
         setMovieLogo(res.data.logo || null);
         console.log(res.data);
