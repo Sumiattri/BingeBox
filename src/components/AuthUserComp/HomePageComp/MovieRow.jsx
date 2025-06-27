@@ -16,7 +16,7 @@ const MovieRow = ({ title, movies }) => {
   if (!movies || movies.length === 0) return null;
 
   return (
-    <div className=" px-12 z-12 relative">
+    <div className=" px-5 z-12 relative">
       <h2 className="text-white text-xl font-semibold mb-2">{title}</h2>
       <div className="relative group">
         {/* Scroll Left Button */}
@@ -35,7 +35,7 @@ const MovieRow = ({ title, movies }) => {
               key={movie.id}
               src={`${baseImgUrl}${movie.poster_path}`}
               alt={movie.title || movie.name}
-              className="w-[140px] sm:w-[160px] md:w-[500px] h-[200px] object-cover rounded-md hover:scale-105 transition-all duration-200"
+              className="w-[140px] sm:w-[160px] md:w-[500px] sm:h-[200px] h-[170px] object-cover rounded-md hover:scale-105 transition-all duration-200"
             />
           ))}
         </div>

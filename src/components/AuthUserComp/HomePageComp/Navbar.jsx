@@ -1,11 +1,20 @@
 // src/components/Navbar.jsx
 import { Link, NavLink } from "react-router-dom";
 import NavbarSearch from "./NavbarSearch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfileBtn from "./ProfileBtn";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Navbar = () => {
-  const [showBrowse, setShowBrowse] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10); // becomes true after scrolling 10px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", path: "/home" },
@@ -18,8 +27,12 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-transparent  py-5 flex items-center  sticky top-0 z-50  relaltive  ">
-        <div className="bg-transparent  flex items-center gap-8  lg:px-13 px-10">
+      <nav
+        className={`  sm:py-5 py-5 flex items-center  sticky top-0 z-50  relaltive  ${
+          scrolled ? "sm:bg-black/80 bg-black" : "bg-transparent"
+        } `}
+      >
+        <div className="bg-transparent  flex items-center gap-8  lg:px-13 sm:px-10 px-5">
           <Link to="/" className="">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
@@ -42,13 +55,43 @@ const Navbar = () => {
               </NavLink>
             ))}
           </div>
-          <div className="lg:hidden flex text-white">Browse</div>
+          <div className="lg:hidden  hidden absolute  md:top-17 top-15 sm:left-11 left-6 md:flex gap-6 text-white">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                className={({ isActive }) =>
+                  `text-white text-[14px]  tracking-wider hover:text-gray-300 hover:scale-96 transition-all duration-200 ${
+                    isActive ? "font-semibold" : "font-light"
+                  }`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
+          </div>
+          <div
+            className={`md:hidden  ${
+              scrolled ? "hidden" : "flex "
+            }  absolute  top-17  gap-5 text-white text-sm font-extralight   `}
+          >
+            <div className="border px-[13px] py-[4px] rounded-xl border-gray-400">
+              <NavLink to="/home/tv-shows">TV-Shows</NavLink>
+            </div>
+            <div className="border px-2 py-[2px] rounded-xl border-gray-400">
+              <NavLink to="/home/movies">Movies</NavLink>
+            </div>
+            <div className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400">
+              <NavLink>Categories</NavLink>
+              <RiArrowDropDownLine className="text-xl" />
+            </div>
+          </div>
         </div>
 
-        <div className="absolute lg:right-44 md:right-35 sm:right-30 right-30">
+        <div className="absolute lg:right-44 md:right-30 sm:right-30 right-28">
           <NavbarSearch />
         </div>
-        <div className="absolute right-10">
+        <div className="absolute sm:right-10 right-5">
           <ProfileBtn />
         </div>
       </nav>

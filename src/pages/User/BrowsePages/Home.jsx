@@ -22,10 +22,10 @@ function Home() {
 
   return (
     <div>
-      <div className="lg:-mt-18 -mt-25 bg-[#141414]">
+      <div className="lg:-mt-18 -mt-25 bg-[#141414] ">
         <div className="relative">
           <HeroBanner />
-          <div className="absolute sm:block hidden bottom-0 h-32 w-full bg-gradient-to-b from-transparent to-[#141414] pointer-events-none z-11 "></div>
+          <div className="absolute sm:block  hidden bottom-0 h-32 w-full bg-gradient-to-b from-transparent via-black/5 to-[#141414]  pointer-events-none z-11 "></div>
           <div className=" "></div>
         </div>
         <div className="md:-mt-33 mt-10 flex flex-col gap-9">
