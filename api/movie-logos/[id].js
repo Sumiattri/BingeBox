@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   console.log("🔍 Movie ID:", id);
   console.log("🔐 Token:", process.env.TMDB_TOKEN?.slice(0, 20)); // log part of token to check
-
+  console.log("🔥 Vercel, pick me up! This is a live function.");
   if (!id || isNaN(Number(id))) {
     return res.status(400).json({ error: "Invalid or missing movie ID" });
   }
