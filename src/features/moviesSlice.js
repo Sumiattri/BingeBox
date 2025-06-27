@@ -115,7 +115,22 @@ export const fetchTvDrama = createAsyncThunk("movie/fetchTvDrama", async () => {
 });
 
 export const fetchAction = createAsyncThunk("movie/fetchAction", async () => {
-  const res = await axios.get("/api/action");
+  const res = await axios.get("/api/category/action");
+  return res.data.results;
+});
+export const fetchKDrama = createAsyncThunk("movie/fetchKDrama", async () => {
+  const res = await axios.get("/api/kdrama");
+  return res.data.results;
+});
+export const fetchThriller = createAsyncThunk(
+  "movie/fetchThriller",
+  async () => {
+    const res = await axios.get("/api/category/thriller");
+    return res.data.results;
+  }
+);
+export const fetchComedy = createAsyncThunk("movie/fetchComedy", async () => {
+  const res = await axios.get("/api/category/comedy");
   return res.data.results;
 });
 
@@ -192,15 +207,13 @@ const movieSlice = createSlice({
       // .addCase(fetchRomance.fulfilled, (state, action) => {
       //   state.romance = action.payload;
       // })
-      // .addCase(fetchAction.fulfilled, (state, action) => {
-      //   state.action = action.payload;
-      // })
-      // .addCase(fetchThriller.fulfilled, (state, action) => {
-      //   state.thriller = action.payload;
-      // })
-      // .addCase(fetchComedy.fulfilled, (state, action) => {
-      //   state.comedy = action.payload;
-      // })
+
+      .addCase(fetchThriller.fulfilled, (state, action) => {
+        state.thriller = action.payload;
+      })
+      .addCase(fetchComedy.fulfilled, (state, action) => {
+        state.comedy = action.payload;
+      })
       // .addCase(fetchDocumentary.fulfilled, (state, action) => {
       //   state.documentary = action.payload;
       // })
@@ -213,9 +226,9 @@ const movieSlice = createSlice({
       // .addCase(fetchHorror.fulfilled, (state, action) => {
       //   state.horror = action.payload;
       // })
-      // .addCase(fetchKDrama.fulfilled, (state, action) => {
-      //   state.kDrama = action.payload;
-      // })
+      .addCase(fetchKDrama.fulfilled, (state, action) => {
+        state.kDrama = action.payload;
+      })
       .addCase(fetchTvDrama.fulfilled, (state, action) => {
         state.tvDrama = action.payload;
       })
