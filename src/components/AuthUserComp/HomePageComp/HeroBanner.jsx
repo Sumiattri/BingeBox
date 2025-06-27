@@ -61,7 +61,7 @@ const HeroBanner = () => {
             <img
               src={`https://image.tmdb.org/t/p/original${movieLogo}`}
               alt={`${heroMovie.title || heroMovie.name} logo`}
-              className=" w-[75%] sm:w-[40%] md:w-[50%] max-h-[10%] lg:w-[60%] object-contain mb-4  "
+              className=" w-[75%] sm:w-[40%] md:w-[50%] md:max-h-[20%] max-h-[10%] lg:w-[60%] object-contain mb-4  "
             />
           ) : (
             <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-4">
