@@ -96,7 +96,7 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
               src={`https://image.tmdb.org/t/p/original${movieLogo}`}
               alt={`${selectedMovie.title || selectedMovie.name} logo`}
               onLoad={(e) => (e.target.style.opacity = 1)}
-              className=" absolute bottom-4 left-1/2 -translate-x-1/2  w-[60%] sm:w-[60%] sm:max-w-[300px] sm:max-h-[200px] object-contain mb-4 transition-opacity duration-500 opacity-0 z-200"
+              className=" absolute bottom-4 left-1/2 -translate-x-1/2  w-[60%] sm:w-[60%] sm:max-w-[300px] sm:max-h-[200px] max-h-[150px] object-contain mb-4 transition-opacity duration-500 opacity-0 z-200"
             />
             <div className="absolute -bottom-1 left-0 w-full h-[180px] bg-blend-darken bg-gradient-to-b from-transparent via-[#141414]/60 to-[#141414] pointer-events-none z-10"></div>
           </div>
