@@ -49,8 +49,8 @@ const HeroBanner = () => {
         }}
       >
         {/* Overlay Gradient */}
-        <div className="absolute   inset-0 bg-gradient-to-r sm:from-black/80 from-black/80 sm:via-black/60 via-black/40 to-transparent md:rounded-none rounded-xl "></div>
-        <div className="absolute sm:hidden block inset-0  bg-gradient-to-b from-transparent   via-black/10 to-black/80 md:rounded-none rounded-2xl  "></div>
+        <div className="absolute block   inset-0 bg-gradient-to-r sm:from-black/80 from-black/40 sm:via-black/60 via-black/30 to-transparent md:rounded-none rounded-xl "></div>
+        <div className="absolute sm:hidden block inset-0  bg-gradient-to-b from-transparent   via-black/10 to-black/90 md:rounded-none rounded-xl  "></div>
 
         {/* Content Container (vertical card on small screens) */}
         <div

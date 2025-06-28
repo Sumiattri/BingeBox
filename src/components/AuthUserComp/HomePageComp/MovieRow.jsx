@@ -1,8 +1,9 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { baseImgUrl } from "../../../utils/constants";
+import { div } from "framer-motion/client";
 
-const MovieRow = ({ title, movies }) => {
+const MovieRow = ({ title, movies, handleOpenModal }) => {
   const rowRef = useRef();
 
   const scrollLeft = () => {
@@ -18,7 +19,7 @@ const MovieRow = ({ title, movies }) => {
   return (
     <div className=" sm:px-10 px-5 z-12 relative ">
       <h2 className="text-white text-xl font-semibold mb-2">{title}</h2>
-      <div className="relative group">
+      <div className="relative group overflow-visible">
         {/* Scroll Left Button */}
         <ChevronLeft
           onClick={scrollLeft}
@@ -28,14 +29,15 @@ const MovieRow = ({ title, movies }) => {
         {/* Movie Posters */}
         <div
           ref={rowRef}
-          className="flex gap-2 overflow-x-auto overflow-y-visible scrollbar-hide  scroll-smooth "
+          className="flex gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth"
         >
           {movies.map((movie) => (
             <img
               key={movie.id}
+              onClick={() => handleOpenModal(movie)}
               src={`${baseImgUrl}${movie.poster_path}`}
               alt={movie.title || movie.name}
-              className="w-[140px] sm:w-[160px] md:w-[500px] sm:h-[190px] h-[170px] object-cover rounded-md hover:scale-105  transition-all duration-200"
+              className="w-[140px] sm:w-[160px] md:w-[500px] sm:h-[190px] h-[170px] object-cover rounded-md hover:scale-105 cursor-pointer transition-all duration-200"
             />
           ))}
         </div>

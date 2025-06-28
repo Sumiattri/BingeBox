@@ -88,7 +88,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="absolute lg:right-44 md:right-30 sm:right-30 right-28">
+        <div className="absolute lg:right-44 md:right-30 sm:right-30 right-28 ">
           <NavbarSearch />
         </div>
         <div className="absolute sm:right-10 right-5">

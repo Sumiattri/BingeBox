@@ -63,7 +63,7 @@ function ProfileBtn() {
         <img
           src={activeProfile.avatar}
           alt=""
-          className="w-10 h-10 rounded-full cursor-pointer"
+          className="sm:w-11 sm:h-11 w-10 h-10 rounded-full cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         />
 

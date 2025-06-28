@@ -17,7 +17,7 @@ function NavbarSearch() {
   return (
     <div className={`  relative h-7 w-62`} ref={inputRef}>
       <FiSearch
-        className={`text-white text-2xl  cursor-pointer shrink-0 absolute right-0 top-1 ${!slideLeft ? "" : "transform -translate-x-55 "} transition-transform duration-200 ease-in-out z-10`}
+        className={`text-white sm:text-[28px] text-xl cursor-pointer shrink-0 absolute right-0 top-1 ${!slideLeft ? "" : "transform -translate-x-55 "} transition-transform duration-200 ease-in-out z-10`}
         onClick={() => setSlideLeft(!slideLeft)}
       />
       <input
