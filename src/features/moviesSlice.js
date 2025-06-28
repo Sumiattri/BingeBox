@@ -159,13 +159,13 @@ export const fetchRomance = createAsyncThunk("movie/fetchRomance", async () => {
   const res = await axios.get("/api/romance");
   return res.data.results;
 });
-export const fetchWebSeries = createAsyncThunk(
-  "movie/fetchWebSeries",
-  async () => {
-    const res = await axios.get("/api/webseries");
-    return res.data.results;
-  }
-);
+// export const fetchWebSeries = createAsyncThunk(
+//   "movie/fetchWebSeries",
+//   async () => {
+//     const res = await axios.get("/api/webseries");
+//     return res.data.results;
+//   }
+// );
 export const fetchHorror = createAsyncThunk("movie/fetchHorror", async () => {
   const res = await axios.get("/api/category/horror");
   return res.data.results;
@@ -233,9 +233,9 @@ const movieSlice = createSlice({
       .addCase(fetchAction.fulfilled, (state, action) => {
         state.action = action.payload;
       })
-      .addCase(fetchWebSeries.fulfilled, (state, action) => {
-        state.webseries = action.payload;
-      })
+      // .addCase(fetchWebSeries.fulfilled, (state, action) => {
+      //   state.webseries = action.payload;
+      // })
 
       .addCase(fetchSciFi.fulfilled, (state, action) => {
         state.scifi = action.payload;

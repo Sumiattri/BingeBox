@@ -1,7 +1,8 @@
 export default async function handler(req, res) {
   try {
     const response = await fetch(
-      "https://api.themoviedb.org/3/discover/tv?&with_original_language=en",
+      // "https://api.themoviedb.org/3/discover/tv?&with_original_language=en",
+      "https://api.themoviedb.org/3/trending/tv/day",
       {
         headers: {
           accept: "application/json",

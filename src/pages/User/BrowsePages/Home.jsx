@@ -14,7 +14,6 @@ import {
   fetchDocumentary,
   fetchAnimation,
   fetchRomance,
-  fetchWebSeries,
   fetchHorror,
 } from "../../../features/moviesSlice";
 
@@ -36,11 +35,12 @@ function Home() {
   const documentary = useSelector((state) => state.movie.documentary);
   const animation = useSelector((state) => state.movie.animation);
   const romance = useSelector((state) => state.movie.romance);
-  const webseries = useSelector((state) => state.movie.webseries);
-  const horror = useSelector((state) => state.movie.horror);
+  // const webseries = useSelector((state) => state.movie.webseries);
+  // const horror = useSelector((state) => state.movie.horror);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState();
+
   const handleOpenModal = (movie) => {
     setIsModalOpen(true);
     setSelectedMovie(movie);
@@ -60,7 +60,7 @@ function Home() {
     dispatch(fetchDocumentary());
     dispatch(fetchAnimation());
     dispatch(fetchRomance());
-    dispatch(fetchWebSeries());
+
     dispatch(fetchHorror());
   }, [dispatch]);
 
@@ -133,11 +133,11 @@ function Home() {
             title="Hearfelt Romance"
             movies={romance}
           />
-          <MovieRow
+          {/* <MovieRow
             handleOpenModal={handleOpenModal}
             title="Indian Series"
             movies={webseries}
-          />
+          /> */}
 
           <MovieRow
             handleOpenModal={handleOpenModal}

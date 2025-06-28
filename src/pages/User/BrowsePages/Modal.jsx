@@ -15,6 +15,9 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
   const [loading, setLoading] = useState(false);
   const [movieLogo, setMovieLogo] = useState();
 
+  const isMovie = !!selectedMovie.title; // if title exists, it's a movie
+  const type = isMovie ? "movie" : "tv";
+
   if (!selectedMovie) return null;
 
   useEffect(() => {
@@ -28,7 +31,7 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
     if (!selectedMovie) return;
     setLoading(true);
     axios
-      .get(`/api/movie-details/${selectedMovie.id}`)
+      .get(`/api/details/${type}/${selectedMovie.id}`)
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -51,7 +54,7 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
   useEffect(() => {
     if (!selectedMovie || movieLogo) return;
     axios
-      .get(`/api/movie-logos/${selectedMovie.id}`)
+      .get(`/api/logos/${type}/${selectedMovie.id}`)
       .then((res) => {
         setMovieLogo(res.data.logo || null);
       })
@@ -110,8 +113,8 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
             >
               <div className=" flex flex-col gap-5 ">
                 <div className="text-[#808080] text-md flex gap-5">
-                  <h2> {moviedata.releaseDate}</h2>
-                  <h2>{moviedata.runtime} mins</h2>
+                  {moviedata.releaseDate && <h2> {moviedata.releaseDate}</h2>}
+                  {moviedata.runtime && <h2>{moviedata.runtime} mins</h2>}
                 </div>
                 <div className="text-[#ffffff] text-[14px] font-light tracking-wide">
                   {moviedata.overView}
