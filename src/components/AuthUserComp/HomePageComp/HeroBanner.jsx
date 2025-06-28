@@ -40,7 +40,7 @@ const HeroBanner = () => {
   if (!heroMovie) return null;
 
   return (
-    <div className="w-[100vw] min-h-[50%] flex justify-center   ">
+    <div className="w-[100vw] min-h-[90vh] flex justify-center   ">
       <div
         className={`relative md:w-full w-[100%]  bg-cover bg-center text-white sm:border-none  border border-b-gray-700 border-b-[0.1px] border-t-0 border-r-0 border-l-0 
     h-[56vh] sm:h-[80vh] md:h-[90vh] lg:h-[88vh] md:mt-0 mt-37  md:mx-0 mx-6 md:rounded-none rounded-xl  flex items-center justify-center px-4`}
