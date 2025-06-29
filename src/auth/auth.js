@@ -27,10 +27,15 @@ export async function signUp(email, password) {
     email: user.email,
     createdAt: serverTimestamp(),
   });
-  await sendEmailVerification(user, {
-    url: "https://netflix-tau-murex.vercel.app/email-verified",
-    handleCodeInApp: true,
-  });
+  try {
+    await sendEmailVerification(user, {
+      url: "https://netflix-clone-iota-eight-99.vercel.app/email-verified",
+      handleCodeInApp: true,
+    });
+    console.log("Verification email sent");
+  } catch (error) {
+    console.error("Failed to send verification email:", error.message);
+  }
 
   return userCredential; // or userCredential, depending on your use-case
 }
