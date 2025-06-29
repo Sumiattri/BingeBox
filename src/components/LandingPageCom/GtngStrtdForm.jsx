@@ -28,7 +28,9 @@ function GtngStrtdForm() {
     setEmailError(false);
     setIsLoading(true);
     try {
-      const methods = await checkIfEmailExists(email);
+      const cleanedEmail = email.trim().toLowerCase();
+      const methods = await checkIfEmailExists(cleanedEmail);
+      console.log(methods);
 
       if (methods && methods.length > 0) {
         setTimeout(() => {

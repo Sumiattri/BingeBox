@@ -34,7 +34,7 @@ function VerifyEmail() {
     const user = auth.currentUser;
     if (user && !user.emailVerified) {
       await sendEmailVerification(user, {
-        url: "https://netflix-tau-murex.vercel.app/email-verified",
+        url: "https://netflix-clone-iota-eight-99.vercel.app/auth-action",
         handleCodeInApp: true,
       });
       alert("Verification email sent again!");
