@@ -70,6 +70,9 @@ function Login() {
         setIsPassWrong(true);
         setIsLoading(false);
         setTimeout(3000);
+      } else {
+        console.error("Login error:", error.message);
+        setLoginError("Something went wrong. Please try again.");
       }
     }
   };
