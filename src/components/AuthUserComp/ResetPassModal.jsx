@@ -27,7 +27,7 @@ const ResetPassModal = ({ setShowModal }) => {
     setIsLoading(true);
     try {
       await sendPasswordResetEmail(auth, email, {
-        url: "https://netflix-clone-iota-eight-99.vercel.app/reset-password",
+        url: "https://netflix-clone-iota-eight-99.vercel.app/auth-action",
         handleCodeInApp: true,
       });
       setMessage("Reset link sent! Check your inbox.");
