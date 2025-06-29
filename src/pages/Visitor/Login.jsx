@@ -72,6 +72,7 @@ function Login() {
         setTimeout(3000);
       } else {
         console.error("Login error:", error.message);
+        setIsLoading(false);
         setLoginError("Something went wrong. Please try again.");
       }
     }
