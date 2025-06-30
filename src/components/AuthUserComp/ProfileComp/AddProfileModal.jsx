@@ -42,6 +42,7 @@ function AddProfileModal({ setIsModalOpen, fetchProfiles }) {
     try {
       const id = await addProfileToFirestore(profileData);
       await fetchProfiles(); // ✅ This updates the profiles in pare
+      // setChange(true);
       const profile = { id, ...profileData };
       localStorage.setItem("profile", JSON.stringify(profile));
       navigate("/profiles");

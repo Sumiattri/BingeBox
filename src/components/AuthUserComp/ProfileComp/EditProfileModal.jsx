@@ -46,6 +46,7 @@ function EditProfileModal({
     try {
       await updateProfileInFirestore(selectedProfile.id, updatedData);
       fetchProfiles();
+      // setChange(true);
       setEditModalOpen(false);
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -60,6 +61,7 @@ function EditProfileModal({
       await deleteUserProfile(selectedProfile.id);
       localStorage.removeItem("profile");
       fetchProfiles();
+      // setChange(true);
       setEditModalOpen(false);
     } catch (error) {
       console.error("Error deleting profile:", error);

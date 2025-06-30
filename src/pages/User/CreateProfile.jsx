@@ -35,16 +35,6 @@ const CreateProfile = () => {
       avatar: selectedAvatar,
     };
 
-    //     export const addProfileToFirestore = async (profileData) => {
-    //   const user = auth.currentUser;
-
-    //   if (!user) throw new Error("User not logged in");
-
-    //   const profilesRef = collection(doc(db, "users", user.uid), "profiles");
-
-    //   const docRef = await addDoc(profilesRef, profileData);
-    //   return docRef.id; // Return profile ID for reference
-    // };
     setIsLoading(true);
     try {
       const id = await addProfileToFirestore(profileData);

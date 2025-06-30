@@ -5,7 +5,10 @@ import EditProfileModal from "../../components/AuthUserComp/ProfileComp/EditProf
 
 import { useEffect, useState } from "react";
 import { getUserProfiles } from "../../firebase/firestoreUtils";
-import { motion, AnimatePresence } from "framer-motion";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import SpinnerOverlay from "../../utils/SpinnerOverlay";
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);
@@ -15,22 +18,33 @@ const Profiles = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
 
-  const fetchProfiles = async () => {
-    try {
-      const data = await getUserProfiles();
-      setProfiles(data);
-    } catch (error) {
-      console.error("Failed to load profiles", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  function fetchProfiles() {
+    return onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const userProfiles = await getUserProfiles(user.uid);
+          setProfiles(userProfiles);
+        } catch (err) {
+          console.error("Error fetching user profiles:", err);
+          setError("Failed to load profiles. Please try again.");
+          setProfiles([]);
+        } finally {
+          setLoading(false);
+        }
+      }
+    });
+  }
 
+  // In useEffect
   useEffect(() => {
-    fetchProfiles();
-  }, []);
+    const unsubscribe = fetchProfiles();
 
-  if (loading) return <p className="text-center text-white">Loading...</p>;
+    return () => {
+      unsubscribe();
+    };
+  }, [auth]);
+
+  if (loading) return <SpinnerOverlay />;
 
   return (
     <div className="text-center h-full w-full bg-[#141414] text-white   flex  flex-col items-center justify-center relative">
