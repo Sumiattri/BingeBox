@@ -118,13 +118,10 @@ function App() {
         if (storedProfile) {
           dispatch(setActiveProfile(JSON.parse(storedProfile)));
         }
-
-        const fetchProfiles = async () => {
-          const profiles = await getUserProfiles();
-          dispatch(setAllProfiles(profiles));
-        };
-
-        fetchProfiles();
+        const profiles = localStorage.getItem("allprofiles");
+        if (profiles) {
+          dispatch(setAllProfiles(JSON.parse(profiles)));
+        }
       }
     });
 

@@ -9,6 +9,8 @@ import { getUserProfiles } from "../../firebase/firestoreUtils";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import SpinnerOverlay from "../../utils/SpinnerOverlay";
+import { useDispatch } from "react-redux";
+import { setAllProfiles } from "../../features/profileSlice";
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);
@@ -18,12 +20,16 @@ const Profiles = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
 
+  const dispatch = useDispatch();
+
   function fetchProfiles() {
     return onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
           const userProfiles = await getUserProfiles(user.uid);
           setProfiles(userProfiles);
+          localStorage.setItem("allprofiles", JSON.stringify(userProfiles));
+          dispatch(setAllProfiles(userProfiles));
         } catch (err) {
           console.error("Error fetching user profiles:", err);
           setError("Failed to load profiles. Please try again.");

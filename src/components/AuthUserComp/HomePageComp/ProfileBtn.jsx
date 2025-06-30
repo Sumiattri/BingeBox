@@ -12,7 +12,11 @@ function ProfileBtn() {
   const dropdownRef = useRef();
   const navigate = useNavigate();
 
-  const activeProfile = useSelector((state) => state.profile.activeProfile);
+  // const activeProfile = useSelector((state) => state.profile.activeProfile);
+  const activeProfile1 = localStorage.getItem("activeProfile");
+  const activeProfile = JSON.parse(activeProfile1);
+  console.log(activeProfile.avatar);
+
   const allProfiles = useSelector((state) => state.profile.allProfiles);
 
   useEffect(() => {
@@ -32,12 +36,6 @@ function ProfileBtn() {
     navigate("/home", { replace: true });
   };
 
-  //   const handleLogout = () => {
-  //     dispatch(setActiveProfile(null));
-  //     localStorage.removeItem("activeProfile");
-  //     setIsOpen(false);
-  //     navigate("/");
-  //   };
   const handleLogout = () => {
     dispatch(setActiveProfile(null));
     localStorage.removeItem("activeProfile");
@@ -61,8 +59,8 @@ function ProfileBtn() {
         // onMouseLeave={() => setIsOpen(false)}
       >
         <img
-          src={activeProfile?.avatar}
-          alt=""
+          src={`/${activeProfile.avatar}`}
+          alt="image"
           className="sm:w-11 sm:h-11 w-10 h-10 rounded-full cursor-pointer "
           onClick={() => setIsOpen(!isOpen)}
         />
@@ -86,7 +84,7 @@ function ProfileBtn() {
                   className="flex items-center gap-3 px-2 py-2 hover:bg-zinc-700 rounded cursor-pointer transition"
                 >
                   <img
-                    src={profile?.avatar || "/default-avatar.png"}
+                    src={`/${profile.avatar}` || "/default-avatar.png"}
                     alt={profile.firstName}
                     className="w-8 h-8 rounded-full"
                   />
