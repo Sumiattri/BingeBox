@@ -8,10 +8,8 @@ const TvShowsBanner = () => {
   const [heroMovie, setHeroMovie] = useState(null);
   const [movieLogo, setMovieLogo] = useState(null);
   const [logoLoading, setLogoLoading] = useState(true);
-  console.log("hii");
 
   useEffect(() => {
-    // Don't set again if already set
     if (!heroMovie && trendingMovies?.length > 0) {
       const randomIndex = Math.floor(Math.random() * trendingMovies.length);
       const selectedMovie = trendingMovies[randomIndex];
@@ -19,9 +17,6 @@ const TvShowsBanner = () => {
       console.log("Hero Movie selected:", selectedMovie);
     }
   }, [trendingMovies, heroMovie]);
-
-  //   const isMovie = !!; // if title exists, it's a movie
-  //   const type = heroMovie.title ? "movie" : "tv";
 
   useEffect(() => {
     if (!heroMovie || movieLogo) return;
