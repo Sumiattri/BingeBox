@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { fetchTvDrama } from "../../../features/moviesSlice";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+
 import TvShowsBanner from "../../../components/AuthUserComp/HomePageComp/TvShowsBanner";
 import { baseImgUrl } from "../../../utils/constants";
 import Modal from "./Modal";
 
 function TvShows() {
-  const dispatch = useDispatch();
-  const tvShows = useSelector((state) => state.movie.tvDrama);
   const TvDrama = useSelector((state) => state.movie.tvDrama);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState();

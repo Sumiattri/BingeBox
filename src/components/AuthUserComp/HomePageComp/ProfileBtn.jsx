@@ -61,9 +61,9 @@ function ProfileBtn() {
         // onMouseLeave={() => setIsOpen(false)}
       >
         <img
-          src={activeProfile?.avatar || "/default-avatar.png"}
+          src={activeProfile?.avatar}
           alt=""
-          className="sm:w-11 sm:h-11 w-10 h-10 rounded-full cursor-pointer"
+          className="sm:w-11 sm:h-11 w-10 h-10 rounded-full cursor-pointer "
           onClick={() => setIsOpen(!isOpen)}
         />
 

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const TvShowsBanner = () => {
-  const trendingMovies = useSelector((state) => state.movie.tvDrama);
+const MoviesBanner = () => {
+  const trendingMovies = useSelector((state) => state.movie.popularMovies);
   const [heroMovie, setHeroMovie] = useState(null);
   const [movieLogo, setMovieLogo] = useState(null);
   const [logoLoading, setLogoLoading] = useState(true);
@@ -28,7 +28,7 @@ const TvShowsBanner = () => {
 
     setLogoLoading(true); // Start loading
     axios
-      .get(`/api/logos/tv/${heroMovie.id}`)
+      .get(`/api/logos/movie/${heroMovie.id}`)
       .then((res) => {
         setMovieLogo(res.data.logo || null);
       })
@@ -60,7 +60,7 @@ const TvShowsBanner = () => {
           className={` z-10 
       max-w-[350px] w-full  rounded-lg 
   
-      absolute md:left-6 left-3 md:top-45 sm:bottom-15 bottom-5 sm:max-w-xl  bg-transparent   sm:px-8 px-2`}
+      absolute md:left-6 left-3 md:top-45 sm:bottom-15 bottom-5 sm:max-w-xl  bg-transparent  sm:px-8 px-2`}
         >
           {/* <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
             {heroMovie.title || heroMovie.name}
@@ -100,4 +100,4 @@ const TvShowsBanner = () => {
   );
 };
 
-export default TvShowsBanner;
+export default MoviesBanner;
