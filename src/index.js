@@ -2,7 +2,7 @@
 export { default as Home } from "./pages/User/BrowsePages/Home";
 export { default as TvShows } from "./pages/User/BrowsePages/TvShows";
 export { default as Movies } from "./pages/User/BrowsePages/Movies";
-export { default as MyList } from "./pages/User/BrowsePages/MyList";
+export { default as MyListPage } from "./pages/User/BrowsePages/MyListPage";
 export { default as NewPopular } from "./pages/User/BrowsePages/NewPopular";
 export { default as Account } from "./pages/User/BrowsePages/Account";
 export { default as BrowseByLanguages } from "./pages/User/BrowsePages/BrowseByLanguages";

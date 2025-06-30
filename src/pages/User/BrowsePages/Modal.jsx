@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
 import { IoMdArrowBack } from "react-icons/io";
+import { GoCheck } from "react-icons/go";
+import { GoPlus } from "react-icons/go";
+import { addToList, removeFromList, IsInList } from "../../../firebase/myList";
+import { useSelector } from "react-redux";
+import { auth } from "../../../firebase/firebase";
 
 const Modal = ({ selectedMovie, setIsModalOpen }) => {
   const [moviedata, setMovieData] = useState({
@@ -14,11 +19,32 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
   });
   const [loading, setLoading] = useState(false);
   const [movieLogo, setMovieLogo] = useState();
+  const [isInList, setIsInList] = useState(false);
+  const activeProfile = useSelector((state) => state.profile.activeProfile);
+  const user = auth.currentUser;
 
   const isMovie = !!selectedMovie.title; // if title exists, it's a movie
   const type = isMovie ? "movie" : "tv";
 
   if (!selectedMovie) return null;
+
+  useEffect(() => {
+    if (user && activeProfile) {
+      IsInList(user.uid, activeProfile.id, selectedMovie.id).then(setIsInList);
+    }
+  }, [user, activeProfile, selectedMovie.id]);
+
+  const handleToggle = async () => {
+    if (!user || !activeProfile) return;
+
+    if (isInList) {
+      await removeFromList(user.uid, activeProfile.id, selectedMovie.id);
+      setIsInList(false);
+    } else {
+      await addToList(user.uid, activeProfile.id, selectedMovie);
+      setIsInList(true);
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -109,12 +135,23 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0.5, scale: 0.5 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="sm:h-[calc(94vh-470px)] h-[calc(68vh-300px)] w-full sm:bg-[#141414] bg-black overflow-y-auto grid sm:grid-cols-2 grid-cols-1 sm:px-10 px-4 pt-3 sm:gap-15 gap-8 "
+              className="sm:h-[calc(94vh-470px)] h-full w-full sm:bg-[#141414] bg-black overflow-y-auto grid sm:grid-cols-2 grid-cols-1 sm:px-10 px-4 pt-3 sm:gap-15 gap-8 "
             >
               <div className=" flex flex-col gap-5 ">
-                <div className="text-[#808080] text-md flex gap-5">
+                <div className="text-[#808080] text-md flex gap-5 items-center">
                   {moviedata.releaseDate && <h2> {moviedata.releaseDate}</h2>}
                   {moviedata.runtime && <h2>{moviedata.runtime} mins</h2>}
+                  <div className=" relative group inline-block">
+                    <button
+                      onClick={handleToggle}
+                      className="text-[26px] sm:ml-7 ml-4 text-white border-[1.5px] p-[5px] border-[#808080] hover:scale-110 transition-all duration-200 active:scale-90 rounded-full"
+                    >
+                      {isInList ? <GoCheck /> : <GoPlus />}
+                    </button>
+                    <span className="absolute  left-full mt-2 ml-1 font-medium sm:text-sm text-xs bg-white text-black  px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none z-50 whitespace-nowrap">
+                      {isInList ? "Remove from My List" : "Add to My List"}
+                    </span>
+                  </div>
                 </div>
                 <div className="text-[#ffffff] text-[14px] font-light tracking-wide">
                   {moviedata.overView}
