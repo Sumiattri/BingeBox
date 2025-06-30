@@ -30,7 +30,7 @@ function Movies() {
         <div className="absolute sm:block   hidden bottom-0 h-32 w-full bg-gradient-to-b from-transparent via-black/5 to-[#141414]  pointer-events-none z-11 "></div>
       </div>
 
-      <div className="relative flex flex-row flex-wrap  sm:px-11 px-8 sm:gap-5 gap-2  sm:-mt-25 mt-15 z-120">
+      <div className="relative flex flex-row flex-wrap  lg:px-13 md:px-7 sm:  px-8 lg::gap-5  gap-2  md:-mt-25 mt-15 z-120">
         {thriller.map((movie) => (
           <img
             key={movie.id}

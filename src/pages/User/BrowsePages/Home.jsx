@@ -1,21 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchAction,
-  fetchKDrama,
-  fetchThriller,
-  fetchTrending,
-  fetchComedy,
-  fetchSciFi,
-  fetchTvDrama,
-  fetchPopular,
-  fetchDiscover,
-  fetchFamily,
-  fetchDocumentary,
-  fetchAnimation,
-  fetchRomance,
-  fetchHorror,
-} from "../../../features/moviesSlice";
 
 import HeroBanner from "../../../components/AuthUserComp/HomePageComp/HeroBanner";
 import MovieRow from "../../../components/AuthUserComp/HomePageComp/MovieRow";
@@ -45,24 +29,6 @@ function Home() {
     setIsModalOpen(true);
     setSelectedMovie(movie);
   };
-
-  useEffect(() => {
-    dispatch(fetchTrending());
-    dispatch(fetchTvDrama());
-    dispatch(fetchPopular());
-    dispatch(fetchDiscover());
-    dispatch(fetchAction());
-    dispatch(fetchKDrama());
-    dispatch(fetchThriller());
-    dispatch(fetchComedy());
-    dispatch(fetchSciFi());
-    dispatch(fetchFamily());
-    dispatch(fetchDocumentary());
-    dispatch(fetchAnimation());
-    dispatch(fetchRomance());
-
-    dispatch(fetchHorror());
-  }, [dispatch]);
 
   return (
     <div className="">

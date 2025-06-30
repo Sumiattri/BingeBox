@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`  sm:py-5 py-5 flex items-center  sticky top-0 z-50  relaltive  ${
+        className={`  sm:py-5 py-5 flex items-center  sticky top-0 z-500  relaltive  ${
           scrolled ? "sm:bg-black/80 bg-black" : "bg-transparent"
         } `}
       >
