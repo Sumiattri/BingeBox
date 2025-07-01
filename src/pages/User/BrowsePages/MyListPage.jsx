@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { auth } from "../../../firebase/firebase";
 import { useSelector } from "react-redux";
 import { getMyList } from "../../../firebase/myList";
+import SpinnerOverlay from "../../../utils/SpinnerOverlay";
+import Modal from "./Modal";
+import { baseImgUrl } from "../../../utils/constants";
 
 export default function MyListPage() {
   const [myList, setMyList] = useState([]);
@@ -9,6 +12,14 @@ export default function MyListPage() {
 
   const activeProfile = useSelector((state) => state.profile.activeProfile);
   const user = auth.currentUser;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState();
+
+  const handleOpenModal = (movie) => {
+    setIsModalOpen(true);
+    setSelectedMovie(movie);
+  };
 
   useEffect(() => {
     const fetchMyList = async () => {
@@ -20,24 +31,32 @@ export default function MyListPage() {
     };
 
     fetchMyList();
-  }, [user, activeProfile]);
+  }, [user, activeProfile, isModalOpen]);
 
-  if (loading) return <div>Loading your list...</div>;
+  if (loading) return <SpinnerOverlay />;
 
   return (
-    <div className="p-10">
-      <h1 className="text-2xl font-bold mt-5 ml-2 mb-4 text-white">My List</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {myList.map((item) => (
-          <div key={item.id} className="bg-zinc-800 p-2 rounded-xl">
+    <div className="lg:mt-10 sm:mt-15 mt-15 bg-[#141414] flex flex-col gap-5 lg:pl-13 sm:pl-10 pl-6 ">
+      <div className="text-white text-2xl font-bold ">My List </div>
+      <div>
+        {" "}
+        {isModalOpen && (
+          <Modal
+            selectedMovie={selectedMovie}
+            setIsModalOpen={setIsModalOpen}
+          />
+        )}
+        <div className="relative flex flex-row flex-wrap   sm:gap-5 gap-4  ">
+          {myList.map((movie) => (
             <img
-              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-              alt={item.title || item.name}
-              className="rounded-md"
+              key={movie.id}
+              onClick={() => handleOpenModal(movie)}
+              src={`${baseImgUrl}${movie.poster_path}`}
+              alt={movie.title || movie.name}
+              className="w-[110px] sm:w-[160px] md:w-[130px] sm:h-[190px] h-[150px] object-cover rounded-md hover:scale-105 cursor-pointer transition-all duration-200"
             />
-            <p className="mt-2 text-sm text-white">{item.title || item.name}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

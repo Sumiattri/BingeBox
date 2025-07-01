@@ -1,12 +1,16 @@
 // src/components/Navbar.jsx
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NavbarSearch from "./NavbarSearch";
 import { useState, useEffect } from "react";
 import ProfileBtn from "./ProfileBtn";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import CategoryModal from "./CategoryModal";
 
-const Navbar = () => {
+const Navbar = ({ categoryOpen, setCategoryOpen }) => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10); // becomes true after scrolling 10px
@@ -32,15 +36,15 @@ const Navbar = () => {
           scrolled ? "sm:bg-black/80 bg-black" : "bg-transparent"
         } `}
       >
-        <div className="bg-transparent  flex items-center gap-8  lg:px-13 sm:px-10 px-5">
-          <Link to="/" className="">
+        <div className="bg-transparent  flex items-center gap-8  lg:px-13 sm:px-10 px-5 ">
+          <button className="" onClick={() => navigate("/home")}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
               alt="Netflix Logo"
               className="w-25  object-contain"
             />
-          </Link>
-          <div className="hidden lg:flex gap-6 ml-2 ">
+          </button>
+          <div className="hidden  lg:flex gap-6 ml-2 ">
             {navItems.map((item) => (
               <NavLink
                 key={item.name}
@@ -81,8 +85,11 @@ const Navbar = () => {
             <div className="border px-2 py-[2px] rounded-xl border-gray-400">
               <NavLink to="/home/movies">Movies</NavLink>
             </div>
-            <div className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400">
-              <NavLink>Categories</NavLink>
+            <div
+              className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400"
+              onClick={() => setCategoryOpen(!categoryOpen)}
+            >
+              <button>Categories</button>
               <RiArrowDropDownLine className="text-xl" />
             </div>
           </div>

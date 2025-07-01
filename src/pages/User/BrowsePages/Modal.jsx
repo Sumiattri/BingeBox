@@ -38,11 +38,11 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
     if (!user || !activeProfile) return;
 
     if (isInList) {
-      await removeFromList(user.uid, activeProfile.id, selectedMovie.id);
       setIsInList(false);
+      await removeFromList(user.uid, activeProfile.id, selectedMovie.id);
     } else {
-      await addToList(user.uid, activeProfile.id, selectedMovie);
       setIsInList(true);
+      await addToList(user.uid, activeProfile.id, selectedMovie);
     }
   };
 
@@ -100,7 +100,6 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0.5, scale: 0.5 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        style={{}}
         className=" sm:top-1/2 sm:-translate-y-1/2  sm:left-1/2 sm:-translate-x-1/2  sm:rounded absolute sm:bg-[#141414] bg-black sm:h-[94vh] h-[100vh] sm:w-[63vw] w-[100vw] z-21 overflow-y-auto  "
       >
         <div className="sm:hidden block h-15 bg-black relative">

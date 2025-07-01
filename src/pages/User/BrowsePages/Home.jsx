@@ -35,7 +35,7 @@ function Home() {
       {isModalOpen && (
         <Modal selectedMovie={selectedMovie} setIsModalOpen={setIsModalOpen} />
       )}
-      <div className="lg:-mt-18 -mt-25 bg-[#141414] ">
+      <div className="lg:-mt-18 -mt-25 bg-[#141414]  ">
         <div className="relative">
           <div className=" lg:min-h-[88vh] md:min-h-[90vh] sm:min-h-[80vh] min-h[56dvh]">
             <HeroBanner />
