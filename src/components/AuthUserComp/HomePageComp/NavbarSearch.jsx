@@ -45,13 +45,13 @@ function NavbarSearch({ setFullScreenSearch, fullScreenSearch }) {
       ref={inputRef}
     >
       <FiSearch
-        className={`text-white sm:text-[28px] text-xl cursor-pointer shrink-0 absolute 
+        className={`text-white sm:text-[28px]  cursor-pointer shrink-0 absolute 
            ${
              fullScreenSearch
-               ? " top-13 left-1"
+               ? " top-15 left-3 text-2xl"
                : !slideLeft
-                 ? "right-0 top-1"
-                 : "transform sm:-translate-x-62 -translate-x-39 right-0 top-1"
+                 ? "right-0 top-1 text-2xl"
+                 : "transform sm:-translate-x-62 -translate-x-39 right-0 top-1 text-xl"
            }
          transition-transform duration-200 ease-in-out z-10`}
         onClick={() => {
@@ -71,27 +71,28 @@ function NavbarSearch({ setFullScreenSearch, fullScreenSearch }) {
 
       {fullScreenSearch && (
         <RxCross2
-          className="absolute right-4  top-12  text-white z-10 text-2xl"
+          className="absolute right-4  top-15  text-white z-10 text-3xl"
           onClick={() => setQuery("")}
         />
       )}
       {fullScreenSearch && (
         <IoArrowBackSharp
-          className="absolute top-3  left-2 text-white text-2xl"
+          className="absolute top-3  left-3 text-white text-3xl"
           onClick={() => {
             navigate("/home", { replace: true });
             setFullScreenSearch(false);
+            setQuery("");
           }}
         />
       )}
       <input
-        className={` sm:py-[6px]  text-white pl-8   pb-2 absolute
+        className={` sm:py-[6px]  text-white    pb-2 absolute 
     ${
       fullScreenSearch
-        ? "w-full bg-[#808080] opacity-100 pointer-events-auto top-10 py-2 "
+        ? "w-full bg-[#252529] opacity-100 pointer-events-auto top-13 h-12 pl-12"
         : slideLeft
-          ? "w-full bg-black opacity-100 pointer-events-auto  right-0 border border-white"
-          : "w-0 opacity-0 pointer-events-none bg-transparent  right-0 border border-white"
+          ? "w-full bg-black opacity-100 pointer-events-auto  right-0 border border-white pl-8 "
+          : "w-0 opacity-0 pointer-events-none bg-transparent  right-0 border border-white pl-8"
     }
     transition-all duration-200 outline-0 ease-in-out placeholder:text-sm`}
         type="text"

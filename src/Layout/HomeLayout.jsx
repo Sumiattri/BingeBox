@@ -54,13 +54,13 @@ function HomeLayout() {
   return (
     <div className="min-h-screen relative w-screen bg-[#141414] ">
       {fullScreenSearch && !isSearchPage && (
-        <div className="bg-black fixed inset-0 z-502"></div>
+        <div className="bg-black fixed inset-0 h-[200vh] z-502"></div>
       )}
       <div className="absolute  top-0 w-full h-[70px] bg-gradient-to-b from-black/50 via-black/40  to-[#141414]  "></div>
       <div className="absolute  top-0 w-full h-[70px] bg-gradient-to-b from-black/60 via-black/40  to-transparent z-500  "></div>
 
       <div
-        className={`  fixed  z-503  ${fullScreenSearch ? " w-screen top-0  " : "  lg:right-44 md:right-30 sm:right-30 right-20 top-5 "}  `}
+        className={`  fixed  z-503  ${fullScreenSearch ? " w-screen top-0  " : "  lg:right-44 md:right-30 sm:right-30 right-28 top-5 "}  `}
       >
         <NavbarSearch
           fullScreenSearch={fullScreenSearch}

@@ -55,8 +55,8 @@ function SearchPage() {
           />
         )}
         <div className={`${fullScreenSearch ? "pt-30" : "mt-0"}`}>
-          <div className="md:pb-17 pb-10 text-[#808080]">
-            Search results for <span className="text-white">"{query}"</span>
+          <div className="md:pb-17 pb-7 text-white text-xl font-bold">
+            Top Results
           </div>
           {results.length > 0 ? (
             <div className="flex flex-row flex-wrap sm:gap-x-4 gap-x-2 md:gap-y-15 gap-y-2">
