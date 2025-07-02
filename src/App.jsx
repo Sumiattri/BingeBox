@@ -33,6 +33,7 @@ import { setActiveProfile } from "./features/profileSlice";
 import { getUserProfiles } from "./firebase/firestoreUtils";
 import { auth } from "./firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import SearchPage from "./pages/User/BrowsePages/SearchPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -74,6 +75,7 @@ const router = createBrowserRouter(
         <Route path="new-popular" element={<NewPopular />} />
         <Route path="my-list" element={<MyListPage />} />
         <Route path="browse-by-languages" element={<BrowseByLanguages />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="account" element={<Account />} />
       </Route>
     </>

@@ -91,7 +91,7 @@ import axios from "axios";
 export const fetchTrending = createAsyncThunk(
   "movie/fetchTrending",
   async () => {
-    const res = await axios.get("/api/trending");
+    const res = await axios.get("/api/trending?category=trending");
     return res.data.results;
   }
 );
@@ -104,7 +104,7 @@ export const fetchPopular = createAsyncThunk("movie/fetchPopular", async () => {
 export const fetchDiscover = createAsyncThunk(
   "movie/fetchDiscover",
   async () => {
-    const res = await axios.get("/api/discover");
+    const res = await axios.get("/api/trending?category=discover");
     return res.data.results;
   }
 );

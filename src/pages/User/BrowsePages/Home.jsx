@@ -6,7 +6,6 @@ import MovieRow from "../../../components/AuthUserComp/HomePageComp/MovieRow";
 import Modal from "./Modal";
 
 function Home() {
-  const dispatch = useDispatch();
   const TvDrama = useSelector((state) => state.movie.tvDrama);
   const popularMovies = useSelector((state) => state.movie.popularMovies);
   const discoverMovies = useSelector((state) => state.movie.discover);

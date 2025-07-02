@@ -50,7 +50,7 @@ function HomeLayout() {
     <div className="min-h-screen relative w-screen bg-[#141414] ">
       <div className="absolute  top-0 w-full h-[70px] bg-gradient-to-b from-black/50 via-black/40  to-[#141414]  "></div>
       <Navbar categoryOpen={categoryOpen} setCategoryOpen={setCategoryOpen} />
-      <div clasName="">
+      <div>
         {" "}
         {categoryOpen && (
           <CategoryModal
