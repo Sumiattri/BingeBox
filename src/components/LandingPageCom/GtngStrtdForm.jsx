@@ -78,8 +78,7 @@ function GtngStrtdForm() {
           type="submit"
           className={` ${isLoading ? "cursor-wait" : "cursor-pointer"} hover:bg-red-700 active:bg-gray-600 transition-colors duration-300 lg:px-3.5 sm:py-7 py-5 px-2 sm:mx-0 mx-auto max-h-13 sm:mt-0 ${emailError ? "mt-10" : "sm:mt-0"} mt-3  text-white bg-[#e50815] rounded-md lg:font-semibold sm:font-normal text-xs lg:text-sm sm:w-[35%] sm:max-w-60 max-w-55 flex  justify-center items-center lg:gap-2 `}
         >
-          {" "}
-          <span className="text-2xl font-bold">Get started</span>{" "}
+          <span className="text-2xl font-bold">Get started</span>
           <IoIosArrowForward className="text-3xl" />
         </button>
         {emailError && (

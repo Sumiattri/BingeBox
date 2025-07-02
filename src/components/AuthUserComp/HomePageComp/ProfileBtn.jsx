@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { setActiveProfile } from "../../../features/profileSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
+import SpinnerOverlay from "../../../utils/SpinnerOverlay";
 
 function ProfileBtn() {
   const [isOpen, setIsOpen] = useState();
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const dropdownRef = useRef();
   const navigate = useNavigate();
@@ -30,26 +32,38 @@ function ProfileBtn() {
   }, []);
 
   const handleProfileChange = (profile) => {
+    setLoading(true);
     dispatch(setActiveProfile(profile));
     localStorage.setItem("activeProfile", JSON.stringify(profile));
     setIsOpen(false);
-    navigate("/home", { replace: true });
+    setTimeout(() => {
+      navigate("/home", { replace: true });
+      setLoading(false);
+    }, 1200);
   };
 
   const handleLogout = () => {
-    dispatch(setActiveProfile(null));
-    localStorage.removeItem("activeProfile");
-    setIsOpen(false);
-    signOut(auth)
-      .then(() => {
-        console.log("Logged out");
-        navigate("/", { replace: true }); // send user back to landing or login
-      })
-      .catch((error) => {
-        console.error("Logout error", error);
-      });
-  };
+    setLoading(true);
 
+    setIsOpen(false);
+    setTimeout(() => {
+      signOut(auth)
+        .then(() => {
+          console.log("Logged out");
+
+          navigate("/", { replace: true });
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Logout error", error);
+        });
+      dispatch(setActiveProfile(null));
+      localStorage.removeItem("activeProfile");
+    }, 1200);
+  };
+  if (loading) {
+    return <SpinnerOverlay />;
+  }
   return (
     <div>
       <div

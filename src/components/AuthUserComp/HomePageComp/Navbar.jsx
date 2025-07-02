@@ -83,19 +83,23 @@ const Navbar = ({
               scrolled ? "hidden" : "flex "
             }  absolute  top-17  gap-5 text-white text-sm font-extralight   `}
           >
-            <div className="border px-[13px] py-[4px] rounded-xl border-gray-400">
+            <div className="border px-[13px] py-[4px] rounded-xl border-gray-400 active:bg-gray-600 transition-colors duration-300">
               <NavLink to="/home/tv-shows">TV-Shows</NavLink>
             </div>
-            <div className="border px-2 py-[2px] rounded-xl border-gray-400">
+            <div className="border px-2 py-[2px] rounded-xl border-gray-400 active:bg-gray-600 transition-colors duration-300">
               <NavLink to="/home/movies">Movies</NavLink>
             </div>
-            <div
-              className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400"
-              onClick={() => setCategoryOpen(!categoryOpen)}
+            <button
+              className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400 active:bg-gray-500 transition-colors duration-300"
+              onClick={() =>
+                setTimeout(() => {
+                  setCategoryOpen(!categoryOpen);
+                }, 200)
+              }
             >
-              <button>Categories</button>
+              <button className="cursor-pointer">Categories</button>
               <RiArrowDropDownLine className="text-xl" />
-            </div>
+            </button>
           </div>
         </div>
 

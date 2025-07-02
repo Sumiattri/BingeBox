@@ -5,6 +5,7 @@ import { getMyList } from "../../../firebase/myList";
 import SpinnerOverlay from "../../../utils/SpinnerOverlay";
 import Modal from "./Modal";
 import { baseImgUrl } from "../../../utils/constants";
+import { div } from "framer-motion/client";
 
 export default function MyListPage() {
   const [myList, setMyList] = useState([]);
@@ -38,6 +39,11 @@ export default function MyListPage() {
   return (
     <div className="lg:mt-10 sm:mt-15 mt-15 bg-[#141414] flex flex-col gap-5 lg:pl-13 sm:pl-10 pl-6 ">
       <div className="text-white text-2xl font-bold ">My List </div>
+      {!myList.length > 0 && (
+        <div className="text-[#808080] text-2xl font-semibold mx-auto mt-30 tracking-wider ">
+          Nothing in My List!
+        </div>
+      )}
       <div>
         {" "}
         {isModalOpen && (

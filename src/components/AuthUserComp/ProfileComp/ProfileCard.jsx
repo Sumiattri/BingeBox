@@ -3,6 +3,8 @@ import { IoPersonAddSharp } from "react-icons/io5";
 import { GrEdit } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { setActiveProfile } from "../../../features/profileSlice";
+import { useState } from "react";
+import SpinnerOverlay from "../../../utils/SpinnerOverlay";
 
 function ProfileCard({
   setIsModalOpen,
@@ -13,18 +15,26 @@ function ProfileCard({
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
+  if (loading) {
+    return <SpinnerOverlay />;
+  }
   return (
     <div className="flex justify-center max-w-[50rem] md:flex-nowrap flex-wrap  sm:gap-10 gap-5 mt-10 ">
       {profiles.map((profile) => (
         <div
           key={profile.id}
           onClick={() => {
-            if (!isManageMode) {
-              localStorage.setItem("activeProfile", JSON.stringify(profile));
-              dispatch(setActiveProfile(profile));
-              navigate("/home", { replace: true });
-            }
+            setLoading(true);
+            setTimeout(() => {
+              if (!isManageMode) {
+                setLoading(false);
+                localStorage.setItem("activeProfile", JSON.stringify(profile));
+                dispatch(setActiveProfile(profile));
+                navigate("/home", { replace: true });
+              }
+            }, 1200);
           }}
           className="text-center cursor-pointer z-1   relative "
         >
