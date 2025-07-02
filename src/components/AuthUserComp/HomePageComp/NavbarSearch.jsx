@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../../utils/useDebounce";
 import { useLocation } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
+import { IoArrowBackSharp } from "react-icons/io5";
 
-function NavbarSearch() {
+function NavbarSearch({ setFullScreenSearch, fullScreenSearch }) {
   const inputRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,10 +40,27 @@ function NavbarSearch() {
   }, [location]);
 
   return (
-    <div className={`  relative h-7 sm:w-63 w-45`} ref={inputRef}>
+    <div
+      className={`   relative h-7  ${fullScreenSearch ? "h-25 w-screen bg-black" : "sm:w-70 w-45"}  `}
+      ref={inputRef}
+    >
       <FiSearch
-        className={`text-white sm:text-[28px] text-xl cursor-pointer shrink-0 absolute right-0 top-1 ${!slideLeft ? "" : "transform sm:-translate-x-55 -translate-x-39 "} transition-transform duration-200 ease-in-out z-10`}
-        onClick={() => setSlideLeft(!slideLeft)}
+        className={`text-white sm:text-[28px] text-xl cursor-pointer shrink-0 absolute 
+           ${
+             fullScreenSearch
+               ? " top-13 left-1"
+               : !slideLeft
+                 ? "right-0 top-1"
+                 : "transform sm:-translate-x-62 -translate-x-39 right-0 top-1"
+           }
+         transition-transform duration-200 ease-in-out z-10`}
+        onClick={() => {
+          if (window.innerWidth <= 640) {
+            setFullScreenSearch(true);
+          } else {
+            setSlideLeft(!slideLeft);
+          }
+        }}
       />
       {slideLeft && (
         <RxCross2
@@ -50,8 +68,32 @@ function NavbarSearch() {
           onClick={() => setQuery("")}
         />
       )}
+
+      {fullScreenSearch && (
+        <RxCross2
+          className="absolute right-4  top-12  text-white z-10 text-2xl"
+          onClick={() => setQuery("")}
+        />
+      )}
+      {fullScreenSearch && (
+        <IoArrowBackSharp
+          className="absolute top-3  left-2 text-white text-2xl"
+          onClick={() => {
+            navigate("/home", { replace: true });
+            setFullScreenSearch(false);
+          }}
+        />
+      )}
       <input
-        className={`border sm:py-1 py-[2px] text-white pl-8 border-white absolute right-0 pb-2 ${!slideLeft ? "opacity-0 w-0 pointer-events-none bg-transparent" : "opacity-100 w-full bg-black"} transition-all duration-200 outline-0 ease-in-out placeholder:text-sm `}
+        className={` sm:py-[6px]  text-white pl-8   pb-2 absolute
+    ${
+      fullScreenSearch
+        ? "w-full bg-[#808080] opacity-100 pointer-events-auto top-10 py-2 "
+        : slideLeft
+          ? "w-full bg-black opacity-100 pointer-events-auto  right-0 border border-white"
+          : "w-0 opacity-0 pointer-events-none bg-transparent  right-0 border border-white"
+    }
+    transition-all duration-200 outline-0 ease-in-out placeholder:text-sm`}
         type="text"
         placeholder="Search"
         value={query}

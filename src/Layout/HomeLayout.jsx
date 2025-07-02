@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import CategoryModal from "../components/AuthUserComp/HomePageComp/CategoryModal";
 import { useState } from "react";
+import NavbarSearch from "../components/AuthUserComp/HomePageComp/NavbarSearch";
+import { useLocation } from "react-router-dom";
 
 import {
   fetchAction,
@@ -27,6 +29,9 @@ import {
 function HomeLayout() {
   const dispatch = useDispatch();
   const [categoryOpen, setCategoryOpen] = useState(false);
+  const [fullScreenSearch, setFullScreenSearch] = useState(false);
+  const location = useLocation();
+  const isSearchPage = location.pathname.startsWith("/home/search");
 
   useEffect(() => {
     dispatch(fetchTrending());
@@ -48,8 +53,28 @@ function HomeLayout() {
 
   return (
     <div className="min-h-screen relative w-screen bg-[#141414] ">
+      {fullScreenSearch && !isSearchPage && (
+        <div className="bg-black fixed inset-0 z-502"></div>
+      )}
       <div className="absolute  top-0 w-full h-[70px] bg-gradient-to-b from-black/50 via-black/40  to-[#141414]  "></div>
-      <Navbar categoryOpen={categoryOpen} setCategoryOpen={setCategoryOpen} />
+      <div className="absolute  top-0 w-full h-[70px] bg-gradient-to-b from-black/60 via-black/40  to-transparent z-500  "></div>
+
+      <div
+        className={`  fixed  z-503  ${fullScreenSearch ? " w-screen top-0  " : "  lg:right-44 md:right-30 sm:right-30 right-20 top-5 "}  `}
+      >
+        <NavbarSearch
+          fullScreenSearch={fullScreenSearch}
+          setFullScreenSearch={setFullScreenSearch}
+        />
+      </div>
+      {!fullScreenSearch && (
+        <Navbar
+          categoryOpen={categoryOpen}
+          setCategoryOpen={setCategoryOpen}
+          setFullScreenSearch={setFullScreenSearch}
+          fullScreenSearch={fullScreenSearch}
+        />
+      )}
       <div>
         {" "}
         {categoryOpen && (
@@ -59,8 +84,8 @@ function HomeLayout() {
           />
         )}
       </div>
-      <div className="min-h-[100vh]">
-        <Outlet />
+      <div className="min-h-[100vh] ">
+        <Outlet context={{ fullScreenSearch, setFullScreenSearch }} />
       </div>
       <Footer />
     </div>

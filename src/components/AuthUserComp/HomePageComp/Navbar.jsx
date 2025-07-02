@@ -5,9 +5,13 @@ import { useState, useEffect } from "react";
 import ProfileBtn from "./ProfileBtn";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import CategoryModal from "./CategoryModal";
 
-const Navbar = ({ categoryOpen, setCategoryOpen }) => {
+const Navbar = ({
+  categoryOpen,
+  setCategoryOpen,
+  fullScreenSearch,
+  setFullScreenSearch,
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -95,9 +99,6 @@ const Navbar = ({ categoryOpen, setCategoryOpen }) => {
           </div>
         </div>
 
-        <div className="absolute lg:right-44 md:right-30 sm:right-30 right-20 ">
-          <NavbarSearch />
-        </div>
         <div className="absolute sm:right-10 right-5">
           <ProfileBtn />
         </div>
