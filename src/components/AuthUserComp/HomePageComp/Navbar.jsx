@@ -84,10 +84,26 @@ const Navbar = ({
             }  absolute  top-17  gap-5 text-white text-sm font-extralight   `}
           >
             <div className="border px-[13px] py-[4px] rounded-xl border-gray-400 active:bg-gray-600 transition-colors duration-300">
-              <NavLink to="/home/tv-shows">TV-Shows</NavLink>
+              <button
+                onClick={() => {
+                  setTimeout(() => {
+                    navigate("/home/tv-shows");
+                  }, 400);
+                }}
+              >
+                TV-Shows
+              </button>
             </div>
             <div className="border px-2 py-[2px] rounded-xl border-gray-400 active:bg-gray-600 transition-colors duration-300">
-              <NavLink to="/home/movies">Movies</NavLink>
+              <button
+                onClick={() => {
+                  setTimeout(() => {
+                    navigate("/home/movies");
+                  }, 400);
+                }}
+              >
+                Movies
+              </button>
             </div>
             <button
               className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400 active:bg-gray-500 transition-colors duration-300"
