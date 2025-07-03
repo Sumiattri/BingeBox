@@ -36,7 +36,7 @@ function Home() {
       )}
       <div className="lg:-mt-18 -mt-25 bg-[#141414]  ">
         <div className="relative">
-          <div className=" lg:min-h-[88vh] md:min-h-[90vh] sm:min-h-[80vh] min-h[56dvh]">
+          <div className=" lg:min-h-[88vh] md:min-h-[90vh] sm:min-h-[80vh] min-h-[80dvh]">
             <HeroBanner />
           </div>
           <div className="absolute sm:block   hidden bottom-0 h-32 w-full bg-gradient-to-b from-transparent via-black/5 to-[#141414]  pointer-events-none z-11 "></div>

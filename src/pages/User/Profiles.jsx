@@ -14,7 +14,7 @@ import { setAllProfiles } from "../../features/profileSlice";
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isManageMode, setIsManageMode] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -23,6 +23,7 @@ const Profiles = () => {
   const dispatch = useDispatch();
 
   function fetchProfiles() {
+    setLoading(true);
     return onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
@@ -84,7 +85,7 @@ const Profiles = () => {
         )}
         <button
           onClick={() => setIsManageMode(!isManageMode)}
-          className={`text-[#808080] ${isManageMode ? "hover:text-white" : "hover:text-white "} border ${isManageMode ? "hover:bg-red-700 hover:text-white" : "hover:border-white"}  border-[#808080] ${isManageMode ? "bg-white text-black" : "bg-none"}  transition-colors duration-200 ${isManageMode ? "px-5 py-1" : "px-3 py-1 "} sm:mt-15 mt-8 tracking-widest`}
+          className={`text-[#808080] cursor-pointer ${isManageMode ? "hover:text-white" : "hover:text-white "} border ${isManageMode ? "hover:bg-red-700 hover:text-white" : "hover:border-white"}  border-[#808080] ${isManageMode ? "bg-white text-black" : "bg-none"}  transition-colors duration-200 ${isManageMode ? "px-5 py-1" : "px-3 py-1 "} sm:mt-15 mt-8 tracking-widest`}
         >
           {!isManageMode ? "Manage Profiles" : "Done"}
         </button>

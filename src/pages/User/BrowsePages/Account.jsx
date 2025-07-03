@@ -148,9 +148,9 @@ function Account() {
                     className="flex items-center gap-3 px-2 py-2 hover:bg-gray-200 rounded cursor-pointer transition "
                   >
                     <img
-                      src={`/${profile.avatar}` || "/default-avatar.png"}
+                      src={profile.avatar || "/default-avatar.png"}
                       alt={profile.firstName}
-                      className="w-12 h-12 rounded-full"
+                      className="w-12 h-12 rounded"
                     />
                     <span>{profile.firstName}</span>
                   </div>

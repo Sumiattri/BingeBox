@@ -8,6 +8,7 @@ import CategoryModal from "../components/AuthUserComp/HomePageComp/CategoryModal
 import { useState } from "react";
 import NavbarSearch from "../components/AuthUserComp/HomePageComp/NavbarSearch";
 import { useLocation } from "react-router-dom";
+import SpinnerOverlay from "../utils/SpinnerOverlay";
 
 import {
   fetchAction,
@@ -25,14 +26,15 @@ import {
   fetchRomance,
   fetchHorror,
 } from "../features/moviesSlice";
-import { div } from "framer-motion/client";
 
 function HomeLayout() {
   const dispatch = useDispatch();
-  const [categoryOpen, setCategoryOpen] = useState(false);
-  const [fullScreenSearch, setFullScreenSearch] = useState(false);
   const location = useLocation();
   const isSearchPage = location.pathname.startsWith("/home/search");
+
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [fullScreenSearch, setFullScreenSearch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchTrending());
@@ -54,6 +56,11 @@ function HomeLayout() {
 
   return (
     <div className="min-h-screen relative w-screen bg-[#141414] ">
+      {isLoading && (
+        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-80 flex justify-center items-center">
+          <SpinnerOverlay />
+        </div>
+      )}
       {fullScreenSearch && !isSearchPage && (
         <div className="bg-black fixed inset-0 h-[200vh] z-502"></div>
       )}
@@ -61,7 +68,7 @@ function HomeLayout() {
       <div className="absolute  top-0 w-full h-[70px] bg-gradient-to-b from-black/60 via-black/40  to-transparent z-500  "></div>
 
       <div
-        className={`  fixed  z-503  ${fullScreenSearch ? " w-screen top-0  " : "  lg:right-44 md:right-30 sm:right-30 right-28 top-5 "}  `}
+        className={`  fixed  z-503  ${fullScreenSearch ? " w-screen top-0  " : "  lg:right-40 md:right-30 sm:right-30 right-28 top-4 "}  `}
       >
         <NavbarSearch
           fullScreenSearch={fullScreenSearch}
@@ -74,6 +81,7 @@ function HomeLayout() {
           setCategoryOpen={setCategoryOpen}
           setFullScreenSearch={setFullScreenSearch}
           fullScreenSearch={fullScreenSearch}
+          setIsLoading={setIsLoading}
         />
       )}
       <div>

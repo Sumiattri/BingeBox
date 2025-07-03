@@ -5,20 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { setActiveProfile } from "../../../features/profileSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
-import SpinnerOverlay from "../../../utils/SpinnerOverlay";
+import { IoPersonOutline } from "react-icons/io5";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io";
 
-function ProfileBtn() {
+function ProfileBtn({ setIsLoading }) {
   const [isOpen, setIsOpen] = useState();
-  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const dropdownRef = useRef();
   const navigate = useNavigate();
+  const closeTimeoutRef = useRef(null);
+  const [arrowFlip, setArrowFlip] = useState(false);
 
-  // const activeProfile = useSelector((state) => state.profile.activeProfile);
   const activeProfile1 = localStorage.getItem("activeProfile");
   const activeProfile = JSON.parse(activeProfile1);
-  console.log(activeProfile.avatar);
-
   const allProfiles = useSelector((state) => state.profile.allProfiles);
 
   useEffect(() => {
@@ -32,18 +33,18 @@ function ProfileBtn() {
   }, []);
 
   const handleProfileChange = (profile) => {
-    setLoading(true);
+    setIsLoading(true);
     dispatch(setActiveProfile(profile));
     localStorage.setItem("activeProfile", JSON.stringify(profile));
     setIsOpen(false);
     setTimeout(() => {
       navigate("/home", { replace: true });
-      setLoading(false);
+      setIsLoading(false);
     }, 1200);
   };
 
   const handleLogout = () => {
-    setLoading(true);
+    setIsLoading(true);
 
     setIsOpen(false);
     setTimeout(() => {
@@ -52,7 +53,7 @@ function ProfileBtn() {
           console.log("Logged out");
 
           navigate("/", { replace: true });
-          setLoading(false);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Logout error", error);
@@ -61,69 +62,93 @@ function ProfileBtn() {
       localStorage.removeItem("activeProfile");
     }, 1200);
   };
-  if (loading) {
-    return <SpinnerOverlay />;
-  }
+  // if (loading) {
+  //   return <SpinnerOverlay />;
+  // }
   return (
     <div>
       <div
-        className="relative"
+        className="relative  "
         ref={dropdownRef}
-        onMouseEnter={() => setIsOpen(true)}
-        // onMouseLeave={() => setIsOpen(false)}
+        onMouseEnter={() => {
+          setIsOpen(true);
+          setArrowFlip(true);
+        }}
+        onMouseLeave={() => {
+          closeTimeoutRef.current = setTimeout(() => {
+            setIsOpen(false);
+            setArrowFlip(false);
+          }, 200);
+        }}
       >
-        <img
-          src={`/${activeProfile.avatar}`}
-          alt="image"
-          className="sm:w-11 sm:h-11 w-10 h-10 rounded-full cursor-pointer "
-          onClick={() => setIsOpen(!isOpen)}
-        />
-
+        <div className="flex items-center gap-1 ">
+          <img
+            src={activeProfile.avatar}
+            alt="image"
+            className="sm:w-9 sm:h-9 w-8 h-8 rounded  cursor-pointer shadow-sm shadow-black "
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          <IoMdArrowDropdown
+            className={`text-white text-xl ${arrowFlip ? "rotate-180" : ""} transition-all duration-200 `}
+          />
+        </div>
         <div
-          className={`absolute right-0 mt-4 w-50 bg-zinc-900 text-white rounded-md shadow-lg transition-all duration-200 origin-top ${
+          onMouseEnter={() => {
+            clearTimeout(closeTimeoutRef.current);
+            setIsOpen(true); // optional, to be safe
+            setArrowFlip(true);
+          }}
+          className={`absolute right-0 mt-4 w-50 bg-black/80 text-white border border-[#282726] rounded-md shadow-lg transition-all duration-200 origin-top ${
             isOpen
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 pointer-events-none"
           } z-50`}
         >
-          <div className="p-3">
-            <p className="text-sm text-gray-400 mb-1 px-2">Switch Profile</p>
+          <IoMdArrowDropup className="text-3xl absolute top-0 right-7 -mt-5" />
 
+          <div className="p-1">
             {allProfiles
               .filter((p) => p.id !== activeProfile?.id)
               .map((profile) => (
                 <div
                   key={profile.id}
                   onClick={() => handleProfileChange(profile)}
-                  className="flex items-center gap-3 px-2 py-2 hover:bg-zinc-700 rounded cursor-pointer transition"
+                  className="flex items-center gap-3 px-1 py-2 hover:bg-zinc-700 rounded cursor-pointer transition "
                 >
                   <img
-                    src={`/${profile.avatar}` || "/default-avatar.png"}
+                    src={profile.avatar}
                     alt={profile.firstName}
-                    className="w-8 h-8 rounded-full"
+                    className="sm:w-8 sm:h-8 w-6 h-6 rounded"
                   />
-                  <span>{profile.firstName}</span>
+                  <span className="text-[12px] font-light">
+                    {profile.firstName}
+                  </span>
                 </div>
               ))}
           </div>
+          {/* <hr className="border-gray-700" /> */}
+          <div className="p-1">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate("/account");
+              }}
+              className="w-full text-left rounded px-1 py-2 hover:bg-zinc-700 transition flex items-center gap-3"
+            >
+              <IoPersonOutline className="text-3xl text-gray-400" />
 
-          <hr className="border-gray-700" />
-
-          <button
-            onClick={() => {
-              setIsOpen(false);
-              navigate("/account");
-            }}
-            className="w-full text-left px-4 py-2 hover:bg-zinc-800 transition"
-          >
-            Account Settings
-          </button>
-          <button
-            onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-red-400 hover:bg-zinc-800 transition"
-          >
-            Logout
-          </button>
+              <span className="text-[12px]">Account</span>
+            </button>
+          </div>
+          <hr className="text-gray-700" />
+          <div className="flex justify-center px-2 py-2">
+            <button
+              onClick={handleLogout}
+              className="flex justify-center px-2 rounded w-full   text-center py-4 text-[12px]  hover:bg-zinc-700 transition"
+            >
+              Sign out of Netflix
+            </button>
+          </div>
         </div>
       </div>
     </div>

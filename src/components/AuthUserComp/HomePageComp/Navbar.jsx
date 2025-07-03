@@ -6,7 +6,7 @@ import ProfileBtn from "./ProfileBtn";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ categoryOpen, setCategoryOpen }) => {
+const Navbar = ({ categoryOpen, setCategoryOpen, setIsLoading }) => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -114,8 +114,8 @@ const Navbar = ({ categoryOpen, setCategoryOpen }) => {
           </div>
         </div>
 
-        <div className="absolute sm:right-10 right-5">
-          <ProfileBtn />
+        <div className="absolute lg:right-17 md:right-15 right-7">
+          <ProfileBtn setIsLoading={setIsLoading} />
         </div>
       </nav>
     </>

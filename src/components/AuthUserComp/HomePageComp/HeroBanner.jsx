@@ -8,7 +8,6 @@ const HeroBanner = () => {
   const [heroMovie, setHeroMovie] = useState(null);
   const [movieLogo, setMovieLogo] = useState(null);
   const [logoLoading, setLogoLoading] = useState(true);
-  console.log("hii");
 
   useEffect(() => {
     // Don't set again if already set
@@ -43,12 +42,15 @@ const HeroBanner = () => {
   if (!heroMovie) return null;
 
   return (
-    <div className="w-[100vw]   flex justify-center   ">
+    <div className="w-[100vw]  flex justify-center   ">
       <div
         className={`relative md:w-full  w-[100%]  bg-cover bg-center text-white sm:border-none  border border-b-gray-700 border-b-[0.1px] border-t-0 border-r-0 border-l-0 
     h-[56vh] sm:h-[80vh] md:h-[90vh] lg:h-[88vh] md:mt-0 mt-37  md:mx-0 mx-6 md:rounded-none rounded-xl  flex items-center justify-center px-4`}
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${heroMovie.backdrop_path})`,
+          backgroundImage: heroMovie?.backdrop_path
+            ? `url(https://image.tmdb.org/t/p/original${heroMovie.backdrop_path})`
+            : "none",
+          backgroundColor: "#111", // fallback background
         }}
       >
         {/* Overlay Gradient */}
