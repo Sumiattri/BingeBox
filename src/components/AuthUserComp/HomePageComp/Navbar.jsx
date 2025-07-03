@@ -6,12 +6,7 @@ import ProfileBtn from "./ProfileBtn";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = ({
-  categoryOpen,
-  setCategoryOpen,
-  fullScreenSearch,
-  setFullScreenSearch,
-}) => {
+const Navbar = ({ categoryOpen, setCategoryOpen }) => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -105,7 +100,7 @@ const Navbar = ({
                 Movies
               </button>
             </div>
-            <button
+            <div
               className="border flex items-center  px-2 py-[2px] rounded-xl border-gray-400 active:bg-gray-500 transition-colors duration-300"
               onClick={() =>
                 setTimeout(() => {
@@ -115,7 +110,7 @@ const Navbar = ({
             >
               <button className="cursor-pointer">Categories</button>
               <RiArrowDropDownLine className="text-xl" />
-            </button>
+            </div>
           </div>
         </div>
 

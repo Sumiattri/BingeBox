@@ -76,8 +76,8 @@ const router = createBrowserRouter(
         <Route path="my-list" element={<MyListPage />} />
         <Route path="browse-by-languages" element={<BrowseByLanguages />} />
         <Route path="search" element={<SearchPage />} />
-        <Route path="account" element={<Account />} />
       </Route>
+      <Route path="account" element={<Account />} />
     </>
   )
 );

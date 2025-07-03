@@ -25,6 +25,7 @@ import {
   fetchRomance,
   fetchHorror,
 } from "../features/moviesSlice";
+import { div } from "framer-motion/client";
 
 function HomeLayout() {
   const dispatch = useDispatch();
