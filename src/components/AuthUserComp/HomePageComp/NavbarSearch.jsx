@@ -80,6 +80,7 @@ function NavbarSearch({ setFullScreenSearch, fullScreenSearch }) {
           className="absolute top-3  left-3 text-white text-3xl"
           onClick={() => {
             navigate("/home", { replace: true });
+            window.location.replace("/home");
             setFullScreenSearch(false);
             setQuery("");
           }}

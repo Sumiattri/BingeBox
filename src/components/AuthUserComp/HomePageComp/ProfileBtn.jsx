@@ -48,11 +48,13 @@ function ProfileBtn({ setIsLoading }) {
 
     setIsOpen(false);
     setTimeout(() => {
+      localStorage.removeItem("activeProfile");
       signOut(auth)
         .then(() => {
           console.log("Logged out");
 
           navigate("/", { replace: true });
+          window.location.replace("/");
           setIsLoading(false);
         })
         .catch((error) => {
@@ -98,7 +100,7 @@ function ProfileBtn({ setIsLoading }) {
             setIsOpen(true); // optional, to be safe
             setArrowFlip(true);
           }}
-          className={`absolute right-0 mt-4 w-50 bg-black/80 text-white border border-[#282726] rounded-md shadow-lg transition-all duration-200 origin-top ${
+          className={`absolute right-0 mt-4 w-50 sm:bg-black/80 bg-black/90 text-white border border-[#282726] rounded-md shadow-lg transition-all duration-200 origin-top ${
             isOpen
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 pointer-events-none"

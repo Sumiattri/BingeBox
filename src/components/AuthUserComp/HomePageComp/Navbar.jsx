@@ -114,7 +114,7 @@ const Navbar = ({ categoryOpen, setCategoryOpen, setIsLoading }) => {
           </div>
         </div>
 
-        <div className="absolute lg:right-17 md:right-15 right-7">
+        <div className="absolute lg:right-17  right-7">
           <ProfileBtn setIsLoading={setIsLoading} />
         </div>
       </nav>

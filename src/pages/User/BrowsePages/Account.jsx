@@ -73,7 +73,7 @@ function Account() {
               onClick={() => {
                 setTimeout(() => {
                   console.log("Now navigating");
-                  navigate("/home");
+                  navigate("/home", { replace: true });
                 }, 500);
               }}
             >
