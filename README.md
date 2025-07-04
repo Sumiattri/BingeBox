@@ -4,35 +4,138 @@ A fully responsive Netflix UI clone built with React, Tailwind CSS, Redux Toolki
 
 ## 🚀 Features
 
-- 🔥 Modern Landing Page with scrollable UI
-- 🔐 User Authentication using Firebase (Login & Signup)
-- 🎞️ Dynamic movie sections using TMDB API
-- ⭐️ Add to "My List" feature
-- 🎨 Responsive design with Tailwind CSS
-- 🍿 Hover previews and modals (like Netflix!)
+-	🔥 Modern Landing Page with animated sections and smooth scroll
+-	🎨 Fully responsive UI built with Tailwind CSS
+-	🔐 Firebase Authentication (Signup, Login, Email Verification, Password Reset)
+-	👤 Multi-profile support with Add/Edit/Delete functionality
+-	🧠 Profile-based personalized experience
+-	🎞️ Dynamic Movies/TV Shows sections using TMDB API
+-	🆕 “New & Popular” and “Browse by Languages” pages
+-	⭐ Add to / Remove from “My List” (stored in Firestore)
+-	🔎 Search functionality with real-time filtering
+-	🎬 Movie Detail Modal with cast, genres, and description
+-	🎭 Hover previews and interactive modals (Netflix-style)
+-	🌐 Protected Routes and Auth-aware Navigation
+-	🧩 Redux Toolkit for global state management
+-	⚡ Deployed using Vercel with Serverless Functions (for secure API requests)
 
 ## 🛠️ Tech Stack
 
 - React + Vite
 - Tailwind CSS
 - Redux Toolkit
-- Firebase Auth
 - React Router DOM
+- Firebase Authentication
+- FireStore Database
+- Firebase Email Verification & Password Reset
 - TMDB API
+- Vercel Serverless Functions
+- Vercel Deployment
 
 ## 📷 Screenshots
 
-_Add screenshots here once you finish!_
+### Landing Page
+<img width="1440" alt="Screenshot 2025-07-04 at 10 33 07" src="https://github.com/user-attachments/assets/abfe0889-a22d-4610-9b05-bd151afa7043" />
+
+### Home Page
+<img width="1440" alt="Screenshot 2025-07-04 at 10 33 42" src="https://github.com/user-attachments/assets/1849f162-8389-4a7d-b4b6-fce0edf2aa0d" />
+
 
 ## 📁 Folder Structure
+```
+src/
+├── assets/
+├── auth/
+│   └── auth.js
+├── components/
+│   ├── AuthUserComp/
+│   │   ├── HomePageComp/
+│   │   │   ├── CategoryModal.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── HeroBanner.jsx
+│   │   │   ├── MovieCard.jsx
+│   │   │   ├── MovieRow.jsx
+│   │   │   ├── MoviesBanner.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── NavbarSearch.jsx
+│   │   │   ├── NewPopularBanner.jsx
+│   │   │   ├── ProfileBtn.jsx
+│   │   │   └── TVShowsBanner.jsx
+│   │   ├── ProfileComp/
+│   │   │   ├── AddProfileModal.jsx
+│   │   │   ├── EditProfileModal.jsx
+│   │   │   ├── ProfileCard.jsx
+│   │   ├── AuthNavbar.jsx
+│   │   ├── HomeNavbar.jsx
+│   │   ├── LogoutBtn.jsx
+│   │   └── ResetPassModal.jsx
+│   └── LandingPageCom/
+│       ├── Footer.jsx
+│       ├── FrequentQues.jsx
+│       ├── GtngSttdForm.jsx
+│       ├── HeroSection.jsx
+│       ├── JoinReasons.jsx
+│       ├── LandingFooter.jsx
+│       ├── LandingNavbar.jsx
+│       ├── Navbar1.jsx
+│       └── TrendingSection.jsx
+├── features/
+│   ├── moviesSlice.js
+│   └── profileSlice.js
+├── firebase/
+│   ├── firebase.js
+│   ├── firestoreUtils.js
+│   └── myList.js
+├── Layout/
+│   └── HomeLayout.jsx
+├── pages/
+│   ├── User/
+│   │   ├── BrowsePages/
+│   │   │   ├── Account.jsx
+│   │   │   ├── BrowseByLanguages.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── Movies.jsx
+│   │   │   ├── MyListPage.jsx
+│   │   │   ├── NewPopular.jsx
+│   │   │   ├── SearchPage.jsx
+│   │   │   └── TVShows.jsx
+│   │   ├── CreateProfile.jsx
+│   │   ├── EmailVerified.jsx
+│   │   ├── FirebaseActionRouter.jsx
+│   │   ├── Profiles.jsx
+│   │   ├── ResetPassword.jsx
+│   │   └── VerifyEmail.jsx
+│   └── Visitor/
+│       ├── LandingPage.jsx
+│       ├── Login.jsx
+│       ├── Signup.jsx
+│       └── WelcomePage.jsx
+├── redux/
+│   └── store.js
+├── routes/
+├── utils/
+│   ├── constants.js
+│   ├── SpinnerOverlay.jsx
+│   ├── SpinnerOverlay2.jsx
+│   ├── SpinnerOverlay3.jsx
+│   └── useDebounce.js
+├── App.jsx
+├── constants.js
+├── index.css
+├── index.js
+├── main.jsx
+├── .env
+├── .env.local
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+└── README.md
 
-/src
-  /assets         # Images, icons, etc.
-  /components     # Reusable UI components
-  /context        # Firebase Auth Context
-  /pages          # Page components like Login, Signup, Browse
-  /redux          # Redux store and slices
-  /utils          # Helper functions, API configs
+```
+
 
 ## Contact
 
