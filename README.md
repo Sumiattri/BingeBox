@@ -34,7 +34,12 @@ A fully responsive Netflix UI clone built with React, Tailwind CSS, Redux Toolki
 
 ## 📷 Screenshots
 
-_Add screenshots here once you finish!_
+### Landing Page
+<img width="1440" alt="Screenshot 2025-07-04 at 10 33 07" src="https://github.com/user-attachments/assets/abfe0889-a22d-4610-9b05-bd151afa7043" />
+
+### Home Page
+<img width="1440" alt="Screenshot 2025-07-04 at 10 33 42" src="https://github.com/user-attachments/assets/1849f162-8389-4a7d-b4b6-fce0edf2aa0d" />
+
 
 ## 📁 Folder Structure
 ```
