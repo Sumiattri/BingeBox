@@ -22,6 +22,7 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
   const [isInList, setIsInList] = useState(false);
   const activeProfile = useSelector((state) => state.profile.activeProfile);
   const user = auth.currentUser;
+  const [showFeedback, setShowFeedback] = useState(false);
 
   const isMovie = !!selectedMovie.title; // if title exists, it's a movie
   const type = isMovie ? "movie" : "tv";
@@ -36,6 +37,7 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
 
   const handleToggle = async () => {
     if (!user || !activeProfile) return;
+    setShowFeedback(true);
 
     if (isInList) {
       setIsInList(false);
@@ -44,6 +46,9 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
       setIsInList(true);
       await addToList(user.uid, activeProfile.id, selectedMovie);
     }
+    setTimeout(() => {
+      setShowFeedback(false);
+    }, 1200);
   };
 
   useEffect(() => {
@@ -147,8 +152,13 @@ const Modal = ({ selectedMovie, setIsModalOpen }) => {
                     >
                       {isInList ? <GoCheck /> : <GoPlus />}
                     </button>
-                    <span className="absolute  left-full mt-2 ml-1 font-medium sm:text-sm text-xs bg-white text-black  px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none z-50 whitespace-nowrap">
+                    {/* <span className="absolute  left-full mt-2 ml-1 font-medium sm:text-sm text-xs bg-white text-black  px-2 py-1 rounded opacity-0 group-hover:opacity-100  transition pointer-events-none z-50 whitespace-nowrap">
                       {isInList ? "Remove from My List" : "Add to My List"}
+                    </span> */}
+                    <span
+                      className={`absolute  left-full mt-2 ml-1 font-medium sm:text-sm text-xs bg-white text-black  px-2 py-1 rounded ${showFeedback ? "opacity-100" : "opacity-0"}   transition-all duration-900  pointer-events-none z-50 whitespace-nowrap`}
+                    >
+                      {isInList ? "Added to My List" : "Removed from My List"}
                     </span>
                   </div>
                 </div>

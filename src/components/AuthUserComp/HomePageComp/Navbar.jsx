@@ -25,7 +25,7 @@ const Navbar = ({ categoryOpen, setCategoryOpen, setIsLoading }) => {
     { name: "Movies", path: "/home/movies" },
     { name: "New & Popular", path: "/home/new-popular" },
     { name: "My List", path: "/home/my-list" },
-    { name: "Browse by Languages", path: "/home/browse-by-languages" },
+    { name: "Browse by Languages", path: "/home/rolling" },
   ];
 
   return (
@@ -36,7 +36,7 @@ const Navbar = ({ categoryOpen, setCategoryOpen, setIsLoading }) => {
         } `}
       >
         <div className="bg-transparent  flex items-center gap-8  lg:px-13 sm:px-10 px-5 ">
-          <button className="" onClick={() => navigate("/home")}>
+          <button className="cursor-pointer" onClick={() => navigate("/home")}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
               alt="Netflix Logo"

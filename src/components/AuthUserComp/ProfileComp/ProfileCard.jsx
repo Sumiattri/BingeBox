@@ -43,7 +43,7 @@ function ProfileCard({
               <img
                 src={profile.avatar}
                 alt={profile.firstName}
-                className="lg:w-30 md:w-25 sm:w-20 w-20 rounded lg:h-30 md:h-25 sm:h-20 h-20   mx-auto border-2 hover:border-white hover:scale-105 transition-transform"
+                className="lg:w-30 md:w-25 sm:w-20 w-20 rounded lg:h-30 md:h-25 sm:h-20 h-20   mx-auto  hover:border-white hover:scale-105 transition-transform"
               />
               {isManageMode && (
                 <div className="bg-black/50 inset-0 z-5 absolute  "></div>

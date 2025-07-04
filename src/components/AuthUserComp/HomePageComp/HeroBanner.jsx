@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const HeroBanner = () => {
+const HeroBanner = ({ handleOpenModal }) => {
   const trendingMovies = useSelector((state) => state.movie.trending);
   const [heroMovie, setHeroMovie] = useState(null);
   const [movieLogo, setMovieLogo] = useState(null);
   const [logoLoading, setLogoLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Don't set again if already set
@@ -89,10 +91,20 @@ const HeroBanner = () => {
           </p>
 
           <div className="mt-4 flex gap-5 sm:justify-start justify-center  ">
-            <button className="bg-white text-black sm:text-[17px] text-xs font-semibold px-5 sm:py-2 py-0 rounded hover:bg-opacity-80 transition-all">
+            <button
+              onClick={() =>
+                setTimeout(() => {
+                  navigate("/home/rolling");
+                }, 400)
+              }
+              className="bg-white text-black sm:text-[17px] text-xs font-semibold px-5 sm:py-2 py-0 rounded hover:bg-opacity-80 transition-all cursor-pointer"
+            >
               ▶ Play
             </button>
-            <button className="bg-gray-700 bg-opacity-70 text-white font-semibold px-4 py-1 rounded hover:bg-opacity-50 transition-all">
+            <button
+              className="bg-gray-700 bg-opacity-70 text-white font-semibold px-4 py-1 rounded hover:bg-opacity-50 transition-all cursor-pointer"
+              onClick={() => handleOpenModal(heroMovie)}
+            >
               More Info
             </button>
           </div>

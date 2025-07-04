@@ -38,10 +38,7 @@ function CategoryModal({ categoryOpen, setCategoryOpen }) {
         <NavLink onClick={() => setCategoryOpen(false)} to="/home/my-list">
           Mylist
         </NavLink>
-        <NavLink
-          onClick={() => setCategoryOpen(false)}
-          to="/home/browse-by-languages"
-        >
+        <NavLink onClick={() => setCategoryOpen(false)} to="/home/rolling">
           Browse by Languages
         </NavLink>
       </motion.div>

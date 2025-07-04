@@ -5,7 +5,6 @@ export { default as Movies } from "./pages/User/BrowsePages/Movies";
 export { default as MyListPage } from "./pages/User/BrowsePages/MyListPage";
 export { default as NewPopular } from "./pages/User/BrowsePages/NewPopular";
 export { default as Account } from "./pages/User/BrowsePages/Account";
-export { default as BrowseByLanguages } from "./pages/User/BrowsePages/BrowseByLanguages";
 
 // Visitor Pages
 export { default as LandingPage } from "./pages/Visitor/LandingPage";

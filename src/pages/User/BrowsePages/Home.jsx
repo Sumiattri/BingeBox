@@ -18,8 +18,6 @@ function Home() {
   const documentary = useSelector((state) => state.movie.documentary);
   const animation = useSelector((state) => state.movie.animation);
   const romance = useSelector((state) => state.movie.romance);
-  // const webseries = useSelector((state) => state.movie.webseries);
-  // const horror = useSelector((state) => state.movie.horror);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState();
@@ -37,7 +35,7 @@ function Home() {
       <div className="lg:-mt-18 -mt-25 bg-[#141414]  ">
         <div className="relative">
           <div className=" lg:min-h-[88vh] md:min-h-[90vh] sm:min-h-[80vh] min-h-[80dvh]">
-            <HeroBanner />
+            <HeroBanner handleOpenModal={handleOpenModal} />
           </div>
           <div className="absolute sm:block   hidden bottom-0 h-32 w-full bg-gradient-to-b from-transparent via-black/5 to-[#141414]  pointer-events-none z-11 "></div>
         </div>
@@ -98,12 +96,6 @@ function Home() {
             title="Hearfelt Romance"
             movies={romance}
           />
-          {/* <MovieRow
-            handleOpenModal={handleOpenModal}
-            title="Indian Series"
-            movies={webseries}
-          /> */}
-
           <MovieRow
             handleOpenModal={handleOpenModal}
             title="Award Winning Animated Movies"

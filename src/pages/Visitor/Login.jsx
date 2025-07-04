@@ -7,6 +7,8 @@ import { RxCrossCircled } from "react-icons/rx";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Footer from "../../components/LandingPageCom/Footer";
 import SpinnerOverlay2 from "../../utils/SpinnerOverlay2";
+import { IoEyeSharp } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 
 import ResetPassModal from "../../components/AuthUserComp/ResetPassModal";
 
@@ -30,6 +32,7 @@ function Login() {
 
   const [isLoading, setIsLoading] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -151,7 +154,7 @@ function Login() {
             <form
               onSubmit={handleSubmit}
               action=""
-              className={`flex flex-col ${emailError ? "gap-7" : "gap-4"}   relative`}
+              className={`flex flex-col ${emailError ? "gap-7" : "gap-4"}   relative `}
             >
               <input
                 type="text"
@@ -178,7 +181,7 @@ function Login() {
                 </p>
               )}
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 value={password}
                 autoComplete="current-password"
@@ -186,6 +189,18 @@ function Login() {
                 placeholder=""
                 className={`peer  text-white bg-[#0f0f0f] py-4 pl-5  w-full border  ${passError ? "border-red-600" : " border-[#5f5f5e] "} rounded-md  placeholder-transparent focus:outline-nonefocus:ring-2 focus:ring-red-600`}
               />
+
+              {showPassword ? (
+                <IoEyeOffOutline
+                  className={`text-white absolute  right-3 text-xl  ${passError ? "top-45/100" : "top-1/2"}  cursor-pointer`}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              ) : (
+                <IoEyeSharp
+                  className={`text-white absolute  right-3 text-xl ${passError ? "top-45/100" : "top-1/2"} cursor-pointer`}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              )}
               <label
                 htmlFor="password"
                 className={`text-gray-400 absolute  left-6  top-26  -translate-y-1/2  transition-all  ${emailError ? "peer-placeholder-shown:top-28" : "peer-placeholder-shown:top-25"} peer-placeholder-shown:text-base  peer-placeholder-shown:text-gray-400 ${emailError ? "peer-not-placeholder-shown:top-25" : "peer-not-placeholder-shown:top-22"}   peer-not-placeholder-shown:left-5 peer-not-placeholder-shown:text-xs ${emailError ? "peer-focus:top-25" : "peer-focus:top-22"} peer-focus:left-5 peer-focus:text-xs   `}
