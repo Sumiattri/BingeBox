@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BsFillPlayFill } from "react-icons/bs";
 
 const HeroBanner = ({ handleOpenModal }) => {
   const trendingMovies = useSelector((state) => state.movie.trending);
@@ -97,9 +98,9 @@ const HeroBanner = ({ handleOpenModal }) => {
                   navigate("/home/rolling");
                 }, 400)
               }
-              className="bg-white text-black sm:text-[17px] text-xs font-semibold px-5 sm:py-2 py-0 rounded hover:bg-opacity-80 transition-all cursor-pointer"
+              className="bg-white flex justify-center items-center gap-1 text-black sm:text-[17px] text-xs font-semibold px-5 sm:py-2 py-0 rounded hover:bg-opacity-80 transition-all cursor-pointer"
             >
-              ▶ Play
+              <BsFillPlayFill className="text-xl" /> <span>Play</span>
             </button>
             <button
               className="bg-gray-700 bg-opacity-70 text-white font-semibold px-4 py-1 rounded hover:bg-opacity-50 transition-all cursor-pointer"

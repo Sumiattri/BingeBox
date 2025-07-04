@@ -36,13 +36,11 @@ body {
   -webkit-text-fill-color: black !important;
 }
 
-/* @keyframes rotate-fade {
-  0% {
-    opacity: 0.8;
-    transform: scale(1) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(2.5) rotate(360deg);
-  }
-} */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

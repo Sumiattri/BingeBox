@@ -29,7 +29,7 @@ const MovieRow = ({ title, movies, handleOpenModal }) => {
         {/* Movie Posters */}
         <div
           ref={rowRef}
-          className="flex gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth"
+          className="flex gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth hide-scrollbar"
         >
           {movies.map((movie) => (
             <img
