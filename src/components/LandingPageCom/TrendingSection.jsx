@@ -44,7 +44,7 @@ function TrendingSection() {
         </h2>
       </div>
 
-      <div className="relative group:">
+      <div className="  relative group:">
         {!atStart && (
           <button
             onClick={scrollLeft}
@@ -55,7 +55,7 @@ function TrendingSection() {
         )}
         <div
           ref={rowRef}
-          className="overflow-x-auto whitespace-nowrap py-7 px-6 "
+          className="overflow-x-auto whitespace-nowrap py-7 px-6 scrollbar-hide scroll-smooth hide-scrollbar "
         >
           <div
             className="inline-block  h-45 lg:h-65 w-35 lg:w-45 mr-6 lg:mr-12 rounded-xl hover:scale-108 transform transition-transform duration-300 ease-in-out "
