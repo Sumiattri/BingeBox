@@ -61,6 +61,11 @@ function Signup() {
       {isLoading && <SpinnerOverlay />}
       <Navbar />
       <hr className="text-gray-200" />
+      <div className="sm:bg-red-500 bg-[#1c4072] sm:text-black text-white text-center">
+        ⚠️ <span className="font-bold">IMPORTANT</span>: This is a DEMO project
+        for resume purposes only. It is <span className="font-bold">NOT</span>{" "}
+        the official Netflix website.{" "}
+      </div>
       <div className="h-[80vh] w-full flex justify-center items-center ">
         <div className=" h-[35rem] w-[35rem] flex flex-col pr-20 pl-10  gap-2">
           <h2>Step 1 of 3 </h2>

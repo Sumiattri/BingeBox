@@ -117,7 +117,14 @@ function Login() {
           />
         </button>
         <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1  "></div>
-        <div className="z-2  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-0 sm:px-13 px-4 sm:mt-0 mt-8 gap-2 rounded-md  ">
+        <div className="z-2 relative  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-10 sm:px-13 px-4 sm:mt-0 mt-8 gap-2 rounded-md  ">
+          <div className="text-white text-xs absolute -top-2 sm:left-0 px-1  sm:bg-[#e50815] bg-[#1c4072] py-1 text- font-medium sm:w-auto w-[92%] mx-auto">
+            ⚠️ <span className="font-bold px-1">IMPORTANT</span>: This is a DEMO
+            project for resume <span className="sm:pl-0 pl-5">purposes</span>{" "}
+            only. It is <span className="font-bold">NOT</span> the{" "}
+            <span className="sm:pl-5">official</span> Netflix website.
+          </div>
+
           {(fromLanding || fromSignUp) && !isPassWrong && !loginError && (
             <div className="">
               <div className="bg-[#1c4072] text-white px-5 py-3 mb-2 rounded-sm flex items-center gap-2">
