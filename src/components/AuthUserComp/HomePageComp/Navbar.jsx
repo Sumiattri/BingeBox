@@ -37,12 +37,7 @@ const Navbar = ({ categoryOpen, setCategoryOpen, setIsLoading }) => {
       >
         <div className="bg-transparent  flex items-center gap-8  lg:px-13 sm:px-10 px-5 ">
           <button className="cursor-pointer" onClick={() => navigate("/home")}>
-            {/* <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
-              alt="Netflix Logo"
-              className="w-25  object-contain"
-            /> */}
-            <h1 className="flex justify-center text-[30px] font-[font2] text-[#E50815] tracking-tighter">
+            <h1 className="flex justify-center sm:text-[30px] text-[25px] font-[font2] text-[#E50815] tracking-tighter">
               <span className="inline-block origin-bottom rotate-[-8deg] ">
                 B
               </span>

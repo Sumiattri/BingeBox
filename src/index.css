@@ -50,12 +50,12 @@ body {
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
-  src: url("src/assets/fonts/NetflixSans_W_Bd.woff2") format("woff2");
+  src: url("/fonts/NetflixSans_W_Bd.woff2") format("woff2");
 }
 @font-face {
   font-family: font2;
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
-  src: url("src/assets/fonts/NetflixSans_W_Md.woff2") format("woff2");
+  src: url("/fonts/NetflixSans_W_Md.woff2") format("woff2");
 }

@@ -11,7 +11,7 @@ function Navbar() {
             alt="Netflix Logo"
             className="w-full h-auto object-contain mt-3"
           /> */}
-          <h1 className="flex justify-center text-[35px] font-[font2] text-[#E50815] tracking-tighter">
+          <h1 className="flex justify-center sm:text-[35px] text-[30px] font-[font2] text-[#E50815] tracking-tighter">
             <span className="inline-block origin-bottom rotate-[-8deg] ">
               B
             </span>

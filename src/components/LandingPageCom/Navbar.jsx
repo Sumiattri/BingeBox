@@ -9,12 +9,7 @@ function Navbar() {
           onClick={() => setTimeout(() => navigate("/"), 600)}
           className="md:w-40 w-25 h-20   cursor-pointer"
         >
-          {/* <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
-            alt="Netflix Logo"
-            className="w-full h-auto object-contain "
-          /> */}
-          <h1 className="flex justify-center text-[40px] font-[font2] text-[#E50815] tracking-tighter">
+          <h1 className="flex justify-center sm:text-[40px] text-[30px] font-[font2] text-[#E50815] tracking-tighter">
             <span className="inline-block origin-bottom rotate-[-8deg] ">
               B
             </span>
