@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
@@ -10,11 +9,37 @@ function Navbar() {
           onClick={() => setTimeout(() => navigate("/"), 600)}
           className="md:w-40 w-25 h-20   cursor-pointer"
         >
-          <img
+          {/* <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
             alt="Netflix Logo"
             className="w-full h-auto object-contain "
-          />
+          /> */}
+          <h1 className="flex justify-center text-[40px] font-[font2] text-[#E50815] tracking-tighter">
+            <span className="inline-block origin-bottom rotate-[-8deg] ">
+              B
+            </span>
+            <span className="inline-block origin-bottom rotate-[-6deg] -mt-[2px]">
+              i
+            </span>
+            <span className="inline-block origin-bottom rotate-[-4deg] -mt-[3px] ">
+              n
+            </span>
+            <span className="inline-block origin-bottom rotate-[-2deg] -mt-[4px]">
+              g
+            </span>
+            <span className="inline-block origin-bottom rotate-[2deg] -mt-[5px] ">
+              e
+            </span>
+            <span className="inline-block origin-bottom rotate-[4deg] -mt-[3px]">
+              B
+            </span>
+            <span className="inline-block origin-bottom rotate-[6deg] -mt-[2px]">
+              o
+            </span>
+            <span className="inline-block origin-bottom rotate-[8deg] mt-[1px] ">
+              x
+            </span>
+          </h1>
         </button>
 
         <div className="flex items-center gap-4.5">

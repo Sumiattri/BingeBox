@@ -148,7 +148,7 @@ function ProfileBtn({ setIsLoading }) {
               onClick={handleLogout}
               className="flex justify-center px-2 rounded w-full   text-center py-4 text-[12px]  hover:bg-zinc-700 transition"
             >
-              Sign out of Netflix
+              Sign out of BingeBox
             </button>
           </div>
         </div>

@@ -38,7 +38,7 @@ function Footer() {
           </button>
         </div>
         <div className="text-[#808080] text-xs">
-          Netfkix India Clone -Created By Sumit⚡️
+          BingeBox India -Created By Sumit⚡️
         </div>
       </div>
     </div>

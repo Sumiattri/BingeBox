@@ -110,21 +110,40 @@ function Login() {
           onClick={() => setTimeout(() => navigate("/"), 600)}
           className="md:w-40  w-25 h-20 cursor-pointer absolute z-2 sm:top-1 top-0 md:left-39 sm:left-15 left-5"
         >
-          <img
+          {/* <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
             alt="Netflix Logo"
             className="w-full h-auto object-contain sm:mt-1 "
-          />
+          /> */}
+          <h1 className="flex justify-center text-[40px] font-[font2] text-[#E50815] tracking-tighter">
+            <span className="inline-block origin-bottom rotate-[-8deg] ">
+              B
+            </span>
+            <span className="inline-block origin-bottom rotate-[-6deg] -mt-[2px]">
+              i
+            </span>
+            <span className="inline-block origin-bottom rotate-[-4deg] -mt-[3px] ">
+              n
+            </span>
+            <span className="inline-block origin-bottom rotate-[-2deg] -mt-[4px]">
+              g
+            </span>
+            <span className="inline-block origin-bottom rotate-[2deg] -mt-[5px] ">
+              e
+            </span>
+            <span className="inline-block origin-bottom rotate-[4deg] -mt-[3px]">
+              B
+            </span>
+            <span className="inline-block origin-bottom rotate-[6deg] -mt-[2px]">
+              o
+            </span>
+            <span className="inline-block origin-bottom rotate-[8deg] mt-[1px] ">
+              x
+            </span>
+          </h1>
         </button>
         <div className="absolute inset-0 bg-black sm:opacity-60 opacity-100 z-1  "></div>
         <div className="z-2 relative  h-[43rem] max-w-[30rem] bg-black/65 flex flex-col sm:pt-15 pt-10 sm:px-13 px-4 sm:mt-0 mt-8 gap-2 rounded-md  ">
-          <div className="text-white text-xs absolute -top-2 sm:left-0 px-1  sm:bg-[#e50815] bg-[#1c4072] py-1 text- font-medium sm:w-auto w-[92%] mx-auto">
-            ⚠️ <span className="font-bold px-1">IMPORTANT</span>: This is a DEMO
-            project for resume <span className="sm:pl-0 pl-5">purposes</span>{" "}
-            only. It is <span className="font-bold">NOT</span> the{" "}
-            <span className="sm:pl-5">official</span> Netflix website.
-          </div>
-
           {(fromLanding || fromSignUp) && !isPassWrong && !loginError && (
             <div className="">
               <div className="bg-[#1c4072] text-white px-5 py-3 mb-2 rounded-sm flex items-center gap-2">
@@ -251,7 +270,7 @@ function Login() {
           {showModal && <ResetPassModal setShowModal={setShowModal} />}
           <div className=" mt-10">
             <p className="text-gray-300">
-              New to Netflix?
+              New to BingeBox?{" "}
               <span>
                 <button
                   onClick={() => {
@@ -261,7 +280,6 @@ function Login() {
                   }}
                   className=" text-white cursor-pointer font-semibold hover:underline active:underline active:scale-110 transition-all duration-300"
                 >
-                  {" "}
                   Sign Up now.{" "}
                 </button>
               </span>

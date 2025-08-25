@@ -39,7 +39,7 @@ function Footer() {
         </div>
 
         <p className="text-xs mt-4 text-[#bababa]">
-          Netflix India Clone • Created by Sumit ⚡
+          BingeBox India • Created by Sumit ⚡
         </p>
       </div>
     </footer>

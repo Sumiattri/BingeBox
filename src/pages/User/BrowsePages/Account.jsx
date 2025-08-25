@@ -78,7 +78,7 @@ function Account() {
               }}
             >
               <IoArrowBackSharp className="text-xl " />
-              <h1 className="md:text-sm sm:text-[12px] ">Back to Netflix</h1>
+              <h1 className="md:text-sm sm:text-[12px] ">Back to BingeBox</h1>
             </div>
             <div className="flex sm:flex-col flex-row gap-1 ">
               <p

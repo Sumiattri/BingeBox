@@ -37,11 +37,37 @@ const Navbar = ({ categoryOpen, setCategoryOpen, setIsLoading }) => {
       >
         <div className="bg-transparent  flex items-center gap-8  lg:px-13 sm:px-10 px-5 ">
           <button className="cursor-pointer" onClick={() => navigate("/home")}>
-            <img
+            {/* <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Logonetflix.png/1600px-Logonetflix.png"
               alt="Netflix Logo"
               className="w-25  object-contain"
-            />
+            /> */}
+            <h1 className="flex justify-center text-[30px] font-[font2] text-[#E50815] tracking-tighter">
+              <span className="inline-block origin-bottom rotate-[-8deg] ">
+                B
+              </span>
+              <span className="inline-block origin-bottom rotate-[-6deg] -mt-[2px]">
+                i
+              </span>
+              <span className="inline-block origin-bottom rotate-[-4deg] -mt-[3px] ">
+                n
+              </span>
+              <span className="inline-block origin-bottom rotate-[-2deg] -mt-[4px]">
+                g
+              </span>
+              <span className="inline-block origin-bottom rotate-[0deg] -mt-[5px] ">
+                e
+              </span>
+              <span className="inline-block origin-bottom rotate-[4deg] -mt-[3px]">
+                B
+              </span>
+              <span className="inline-block origin-bottom rotate-[6deg] -mt-[2px]">
+                o
+              </span>
+              <span className="inline-block origin-bottom rotate-[8deg] mt-[1px] ">
+                x
+              </span>
+            </h1>
           </button>
           <div className="hidden  lg:flex gap-6 ml-2 ">
             {navItems.map((item) => (
