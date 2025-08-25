@@ -30,7 +30,7 @@ export async function signUp(email, password) {
   });
   try {
     await sendEmailVerification(user, {
-      url: "https://netflix-clone-iota-eight-99.vercel.app/auth-action",
+      url: "https://bingebox-watch.vercel.app/auth-action",
       handleCodeInApp: true,
     });
     console.log("Verification email sent");
