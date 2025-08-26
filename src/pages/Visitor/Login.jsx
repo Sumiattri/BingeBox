@@ -110,7 +110,7 @@ function Login() {
           onClick={() => setTimeout(() => navigate("/"), 600)}
           className="md:w-40  w-25 h-20 cursor-pointer absolute z-2 sm:top-1 top-0 md:left-39 sm:left-15 left-5"
         >
-          <h1 className="flex justify-center text-[40px] font-[font2] text-[#E50815] tracking-tighter">
+          <h1 className="flex justify-center sm:text-[40px] text-[30px] ml-4 font-[font2] text-[#E50815] tracking-tighter">
             <span className="inline-block origin-bottom rotate-[-8deg] ">
               B
             </span>
