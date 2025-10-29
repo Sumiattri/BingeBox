@@ -1,23 +1,23 @@
-# Netflix Clone 🎬
+# BingeBox 🎬
 
-A fully responsive Netflix UI clone built with React, Tailwind CSS, Redux Toolkit,React-Router-DOM, Firebase Authentication, and TMDB API.
+A fully responsive movies and shows streaming platform built with React, Tailwind CSS, Redux Toolkit,React-Router-DOM, Firebase Authentication, and TMDB API.
 
 ## 🚀 Features
 
--	🔥 Modern Landing Page with animated sections and smooth scroll
--	🎨 Fully responsive UI built with Tailwind CSS
--	🔐 Firebase Authentication (Signup, Login, Email Verification, Password Reset)
--	👤 Multi-profile support with Add/Edit/Delete functionality
--	🧠 Profile-based personalized experience
--	🎞️ Dynamic Movies/TV Shows sections using TMDB API
--	🆕 “New & Popular” and “Browse by Languages” pages
--	⭐ Add to / Remove from “My List” (stored in Firestore)
--	🔎 Search functionality with real-time filtering
--	🎬 Movie Detail Modal with cast, genres, and description
--	🎭 Hover previews and interactive modals (Netflix-style)
--	🌐 Protected Routes and Auth-aware Navigation
--	🧩 Redux Toolkit for global state management
--	⚡ Deployed using Vercel with Serverless Functions (for secure API requests)
+- 🔥 Modern Landing Page with animated sections and smooth scroll
+- 🎨 Fully responsive UI built with Tailwind CSS
+- 🔐 Firebase Authentication (Signup, Login, Email Verification, Password Reset)
+- 👤 Multi-profile support with Add/Edit/Delete functionality
+- 🧠 Profile-based personalized experience
+- 🎞️ Dynamic Movies/TV Shows sections using TMDB API
+- 🆕 “New & Popular” and “Browse by Languages” pages
+- ⭐ Add to / Remove from “My List” (stored in Firestore)
+- 🔎 Search functionality with real-time filtering
+- 🎬 Movie Detail Modal with cast, genres, and description
+- 🎭 Hover previews and interactive modals (Netflix-style)
+- 🌐 Protected Routes and Auth-aware Navigation
+- 🧩 Redux Toolkit for global state management
+- ⚡ Deployed using Vercel with Serverless Functions (for secure API requests)
 
 ## 🛠️ Tech Stack
 
@@ -35,13 +35,15 @@ A fully responsive Netflix UI clone built with React, Tailwind CSS, Redux Toolki
 ## 📷 Screenshots
 
 ### Landing Page
+
 <img width="1440" alt="Screenshot 2025-07-04 at 10 33 07" src="https://github.com/user-attachments/assets/abfe0889-a22d-4610-9b05-bd151afa7043" />
 
 ### Home Page
+
 <img width="1440" alt="Screenshot 2025-07-04 at 10 33 42" src="https://github.com/user-attachments/assets/1849f162-8389-4a7d-b4b6-fce0edf2aa0d" />
 
-
 ## 📁 Folder Structure
+
 ```
 src/
 ├── assets/
@@ -136,7 +138,6 @@ src/
 
 ```
 
-
 ## Contact
 
 Created by [@sumitattri](https://github.com/Sumiattri)  
@@ -153,3 +154,4 @@ npm run dev
 
 
 
+```
