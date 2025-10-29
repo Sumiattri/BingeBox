@@ -36,11 +36,13 @@ A fully responsive movies and shows streaming platform built with React, Tailwin
 
 ### Landing Page
 
-<img width="1440" alt="Screenshot 2025-07-04 at 10 33 07" src="https://github.com/user-attachments/assets/abfe0889-a22d-4610-9b05-bd151afa7043" />
+<img width="1440" height="900" alt="Screenshot 2025-10-29 at 12 28 00" src="https://github.com/user-attachments/assets/7574f2d1-6a4c-4bf6-99d6-95f1a6d3e165" />
 
 ### Home Page
 
-<img width="1440" alt="Screenshot 2025-07-04 at 10 33 42" src="https://github.com/user-attachments/assets/1849f162-8389-4a7d-b4b6-fce0edf2aa0d" />
+<img width="1440" height="900" alt="Screenshot 2025-10-29 at 12 23 37" src="https://github.com/user-attachments/assets/c76c1a8b-1ca5-4b73-94c3-1ed03084d2be" />
+
+
 
 ## 📁 Folder Structure
 
